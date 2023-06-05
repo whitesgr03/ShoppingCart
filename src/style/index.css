@@ -58,4 +58,16 @@ body {
 
 #root {
 	height: 100%;
+	display: flex;
+}
+
+#root .content {
+	flex: 1 1 80%;
+	display: flex;
+	flex-direction: column;
+	overflow: scroll;
+}
+
+#root .content > :first-child {
+	flex: 1 1 100%;
 }
