@@ -9,6 +9,7 @@
 :root {
 	--main-dark: #000;
 	--main-light: #fff;
+	--sidebar-link: #3e75c8;
 }
 
 * {
