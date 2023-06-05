@@ -22,14 +22,16 @@
 
 a {
 	text-decoration: none;
-	color: var(--main-dark);
+	color: inherit;
 }
 
 p,
 h1,
 h2,
+ul,
 li {
 	margin: 0;
+	padding: 0;
 	white-space: pre-line;
 }
 
@@ -39,10 +41,10 @@ button {
 	padding: 0;
 	background-color: transparent;
 	cursor: pointer;
+	color: inherit;
 }
 
 li {
-	padding: 0;
 	list-style: none;
 }
 
