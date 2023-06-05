@@ -1,0 +1,14 @@
+footer {
+	background-color: var(--main-dark);
+	color: var(--main-light);
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px 0;
+	column-gap: 10px;
+}
+
+footer svg {
+	width: 1.5rem;
+}
