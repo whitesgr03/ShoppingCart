@@ -1,0 +1,163 @@
+.home .carousel {
+	height: 100vh;
+	background-image: url(../images/carousel-3.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0 30px;
+	column-gap: 20px;
+}
+
+.home .arrow {
+	--arrow-size: 30px;
+	--arrow-width: 8px;
+	--arrow-radius-left: 0 20px 20px 0;
+	--arrow-radius-right: 20px 0 0 20px;
+	--arrow-color: var(--main-light);
+
+	opacity: 0.7;
+	transition: opacity 0.3s ease;
+	min-width: var(--arrow-size);
+	min-height: var(--arrow-size);
+	position: relative;
+}
+
+.home .arrow:hover {
+	opacity: 1;
+}
+
+.home .arrow.left::after,
+.home .arrow.left::before,
+.home .arrow.right::after,
+.home .arrow.right::before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: var(--arrow-width);
+	background-color: var(--arrow-color);
+}
+
+.home .arrow.left::after,
+.home .arrow.left::before {
+	left: 0;
+	border-radius: var(--arrow-radius-left);
+}
+
+.home .arrow.left::after {
+	top: 50%;
+	transform: rotate(-45deg) translateY(-50%);
+	transform-origin: 0 100%;
+}
+
+.home .arrow.left::before {
+	bottom: 50%;
+	transform: rotate(45deg) translateY(50%);
+	transform-origin: 0 0;
+}
+
+.home .arrow.right::after,
+.home .arrow.right::before {
+	right: 0;
+	border-radius: var(--arrow-radius-right);
+}
+
+.home .arrow.right::after {
+	top: 50%;
+	transform: rotate(45deg) translateY(-50%);
+	transform-origin: 100% 100%;
+}
+
+.home .arrow.right::before {
+	bottom: 50%;
+	transform: rotate(-45deg) translateY(50%);
+	transform-origin: 100% 0;
+}
+
+.home .content {
+	flex: 1 1 100%;
+	padding: 0 20px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.home .container {
+	max-width: 400px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	row-gap: 30px;
+}
+
+.home .container .title {
+	color: var(--main-light);
+	font-size: 3rem;
+	white-space: pre-line;
+	word-spacing: 5px;
+	text-align: center;
+	text-shadow: 0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark);
+}
+
+.home .container button {
+	--button-after-color: #daa520;
+	--button-before-color: var(--main-light);
+	--button-transition: all 0.3s ease;
+
+	position: relative;
+	padding: 20px;
+	transition: var(--button-transition);
+	z-index: 1;
+}
+
+.home .container button::before,
+.home .container button::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.home .container button::before {
+	transition: var(--button-transition);
+	background-color: var(--button-before-color);
+	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+	z-index: -1;
+}
+
+.home .container button::after {
+	transition: var(--button-transition);
+	background-color: var(--button-after-color);
+	transform: translate(10px, 10px);
+	z-index: -2;
+}
+
+.home .container button:hover {
+	transform: translate(10px, 10px);
+	color: var(--button-before-color);
+}
+.home .container button:hover::before {
+	background-color: var(--button-after-color);
+}
+.home .container button:hover::after {
+	background-color: var(--button-before-color);
+	transform: translate(-10px, -10px);
+}
