@@ -5,7 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import Root from "../components/Root";
 
 describe("Renders Root Component", () => {
-	it("Should return Root", () => {
+	it("Should return Root DOM", () => {
 		const { container } = render(
 			<MemoryRouter initialEntries={["/"]}>
 				<Root />

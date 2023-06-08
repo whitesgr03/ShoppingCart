@@ -5,7 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import Header from "../components/Header";
 
 describe("Renders Header Component", () => {
-	it("Should return Header", () => {
+	it("Should return Header DOM", () => {
 		const { container } = render(
 			<MemoryRouter initialEntries={["/"]}>
 				<Header />

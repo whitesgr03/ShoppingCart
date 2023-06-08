@@ -4,8 +4,8 @@ import { MemoryRouter } from "react-router-dom";
 
 import Footer from "../components/Footer";
 
-describe("Renders Header Component", () => {
-	it("Should return Header", () => {
+describe("Renders Footer Component", () => {
+	it("Should return Footer DOM", () => {
 		const { container } = render(
 			<MemoryRouter initialEntries={["/"]}>
 				<Footer />

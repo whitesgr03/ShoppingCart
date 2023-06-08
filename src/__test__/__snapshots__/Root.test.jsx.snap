@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders Root Component Should return Root 1`] = `
+exports[`Renders Root Component Should return Root DOM 1`] = `
 <div>
   <div
     class="sidebar"

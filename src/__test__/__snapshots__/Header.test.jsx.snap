@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders Header Component Should return Header 1`] = `
+exports[`Renders Header Component Should return Header DOM 1`] = `
 <div>
   <div
     class="sidebar"
