@@ -1,8 +1,9 @@
 import Root from "./components/Root";
-import Home from "./components/Home"; // { HomeLoader, rootAction }
-import Products from "./components/Products";
+import Home from "./components/Home";
+import Shop, { Products } from "./components/Shop";
 
 import Error from "./components/Error";
+
 import { createBrowserRouter } from "react-router-dom";
 
 const RouteSwitch = createBrowserRouter([
@@ -11,10 +12,21 @@ const RouteSwitch = createBrowserRouter([
 		element: <Root />,
 		errorElement: <Error />,
 		children: [
-			{ index: true, element: <Home /> },
 			{
-				path: "products",
-				element: <Products />,
+				index: true,
+				element: <Home />,
+			},
+			{
+				path: "shop",
+				element: <Shop />,
+				children: [
+					{
+						index: true,
+						element: <Products />,
+					},
+				],
+			},
+			{
 			},
 		],
 	},
