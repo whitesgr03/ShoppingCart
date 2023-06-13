@@ -3,16 +3,16 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
-function Root() {
+const Root = () => {
 	return (
 		<>
 			<Header />
-			<div className="content">
+			<div data-testid="content" className={"content"}>
 				<Outlet />
 				<Footer />
 			</div>
 		</>
 	);
-}
+};
 
-export default Root;
+export { Root as default };
