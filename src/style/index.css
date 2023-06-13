@@ -6,6 +6,7 @@
 @import url("./header.css");
 @import url("./footer.css");
 @import url("./home.css");
+@import url("./shop.css");
 
 :root {
 	--main-dark: #000;
