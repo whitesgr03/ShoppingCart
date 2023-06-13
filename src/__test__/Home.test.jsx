@@ -1,19 +1,23 @@
 import { render } from "@testing-library/react";
-
-import { MemoryRouter } from "react-router-dom";
+import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
 import Home from "../components/Home";
 
 describe("Renders Home Component", () => {
 	it("Should return Home DOM", () => {
-		const { container } = render(
-			<MemoryRouter initialEntries={["/"]}>
-				<Home />
-			</MemoryRouter>
-		);
+		const routes = [
+			{
+				path: "/",
+				element: <Home />,
+			},
+		];
 
-		const actual = container;
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
 
-		expect(actual).toMatchSnapshot();
+		const { container } = render(<RouterProvider router={router} />);
+
+		expect(container).toMatchSnapshot();
 	});
 });
