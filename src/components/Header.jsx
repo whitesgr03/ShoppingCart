@@ -25,7 +25,7 @@ const Header = () => {
 					<NavLink to="/">Home</NavLink>
 				</li>
 				<li>
-					<NavLink to="products">Shop</NavLink>
+					<NavLink to="shop">Shop</NavLink>
 				</li>
 				<li>
 					<NavLink to="contact">Contact</NavLink>
@@ -35,4 +35,4 @@ const Header = () => {
 	);
 };
 
-export default Header;
+export { Header as default };
