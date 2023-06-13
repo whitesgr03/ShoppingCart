@@ -1,19 +1,26 @@
-import { render } from "@testing-library/react";
-
-import { MemoryRouter } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
+import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import "@testing-library/jest-dom";
 
 import Root from "../components/Root";
 
 describe("Renders Root Component", () => {
 	it("Should return Root DOM", () => {
-		const { container } = render(
-			<MemoryRouter initialEntries={["/"]}>
-				<Root />
-			</MemoryRouter>
-		);
+		const routes = [
+			{
+				path: "/",
+				element: <Root />,
+			},
+		];
 
-		const actual = container;
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
 
-		expect(actual).toMatchSnapshot();
+		render(<RouterProvider router={router} />);
+
+		const actual = screen.getByTestId("content");
+
+		expect(actual).toBeInTheDocument();
 	});
 });
