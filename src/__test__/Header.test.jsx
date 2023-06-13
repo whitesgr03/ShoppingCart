@@ -1,19 +1,23 @@
 import { render } from "@testing-library/react";
 
-import { MemoryRouter } from "react-router-dom";
+import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
 import Header from "../components/Header";
 
 describe("Renders Header Component", () => {
 	it("Should return Header DOM", () => {
-		const { container } = render(
-			<MemoryRouter initialEntries={["/"]}>
-				<Header />
-			</MemoryRouter>
-		);
+		const routes = [
+			{
+				path: "/",
+				element: <Header />,
+			},
+		];
 
-		const actual = container;
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+		const { container } = render(<RouterProvider router={router} />);
 
-		expect(actual).toMatchSnapshot();
+		expect(container).toMatchSnapshot();
 	});
 });
