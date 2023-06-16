@@ -90,3 +90,56 @@ body {
 #root .content > :first-child {
 	flex: 1 1 100%;
 }
+
+#root .slide {
+	padding: 20px 30px;
+	color: var(--main-light);
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	transition: all 0.5s ease, transform 0.1s;
+	border: 1px solid var(--sidebar-link);
+}
+
+#root .slide::after,
+#root .slide::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+#root .slide:hover {
+	border-color: var(--main-dark);
+	color: var(--main-dark);
+}
+
+#root .slide:active {
+	transform: scale(0.9);
+}
+
+#root .slide::after {
+	background-color: var(--main-light);
+	transform: translateX(-100%);
+	transition: translateX 0s 10s;
+}
+
+#root .slide::before {
+	background-color: var(--sidebar-link);
+	transform: translateX(0%);
+	transition: transform 0.3s ease;
+}
+
+#root .slide:hover::after {
+	transform: translateX(0%);
+	transition: all 0.3s ease;
+}
+
+#root .slide:hover::before {
+	transform: translateX(-100%);
+	transition: transform 0s 0.3s;
+}
