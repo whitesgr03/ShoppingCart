@@ -1,0 +1,176 @@
+.shadow {
+	display: flex;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	transition: all 0.3s ease;
+}
+
+.shadow.active {
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+}
+
+.shadow.active > :first-child {
+	transform: translateX(0%);
+}
+
+.shadow .cart {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: max(400px, 30%);
+	color: var(--main-light);
+	background-color: var(--main-dark);
+	border-left: 1px solid var(--main-light);
+	transform: translateX(100%);
+	transition: transform 0.2s ease;
+}
+
+.shadow .cart .close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 2rem;
+	height: 2rem;
+	opacity: 0.6;
+	transition: all 0.3s ease;
+}
+
+.shadow .cart .close:hover {
+	opacity: 1;
+}
+.shadow .cart .close:active {
+	transform: scale(0.5);
+}
+
+.shadow .cart .close::after,
+.shadow .cart .close::before {
+	position: absolute;
+	content: "";
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+	width: 100%;
+	height: 5px;
+	border-radius: 10px;
+	background-color: var(--main-light);
+	border: 3px;
+}
+
+.shadow .cart .close::after {
+	transform: rotate(45deg);
+}
+
+.shadow .cart .close::before {
+	transform: rotate(-45deg);
+}
+
+.shadow .cart > div {
+	padding: 30px 20px;
+}
+
+.shadow .cart .title {
+	font-size: 2rem;
+	text-align: center;
+	border-bottom: 1px solid var(--main-light);
+}
+
+.shadow .cart .empty {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+}
+
+.shadow .cart .items {
+	flex: 1 1 100%;
+}
+
+.shadow .cart .checkout {
+	border-top: 1px solid var(--main-light);
+	display: flex;
+	column-gap: 20px;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.shadow .cart .checkout .price {
+	flex: 1 1 50%;
+	text-align: center;
+}
+
+.shadow .cart .checkout .slide {
+	display: flex;
+	flex: 1 1 50%;
+	align-items: center;
+	justify-content: center;
+}
+
+.shadow .cart .checkout .slide:hover {
+	border-color: var(--main-light);
+	color: var(--main-light);
+}
+
+.shadow .cart .checkout .slide::after {
+	background-color: var(--main-dark);
+}
+
+.shadow .cart .items {
+	display: flex;
+	flex-direction: column;
+	row-gap: 30px;
+	overflow: scroll;
+}
+
+.shadow .cart .item {
+	display: flex;
+}
+
+.shadow .cart .item .warp {
+	flex: 1 1 50%;
+	padding: 10px;
+	border: 1px solid;
+}
+
+/*  .shadow .cart .item .warp img {
+} */
+
+.shadow .cart .item .description {
+	flex: 1 1 50%;
+	padding: 0 10px;
+	justify-content: space-between;
+	display: flex;
+	flex-direction: column;
+}
+
+.shadow .cart .item .description .info {
+	display: flex;
+	flex-direction: column;
+	row-gap: 30px;
+}
+
+.shadow .cart .item .description .info .name {
+	font-size: 1.2rem;
+}
+
+.shadow .cart .item .description label {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+}
+
+.shadow .cart .item .description select {
+	padding: 10px 5px;
+	background-color: var(--main-dark);
+	color: var(--main-light);
+	border-color: var(--main-light);
+}
