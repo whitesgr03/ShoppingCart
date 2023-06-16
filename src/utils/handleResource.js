@@ -12,7 +12,7 @@ import pruduct11 from "../images/product/Slim-Fit Jeans.png";
 import pruduct12 from "../images/product/Straight Regular Jeans.png";
 
 const fetchResource = async () => {
-	const resources = [
+	const defaultResources = [
 		pruduct1,
 		pruduct2,
 		pruduct3,
@@ -27,10 +27,8 @@ const fetchResource = async () => {
 		pruduct12,
 	];
 
-	return resources.map((url, i) => {
+	return defaultResources.map((url, i) => {
 		const name = url.match(/(?<=\/)[A-Z][^.]+/g)[0];
-		const defaultPrice = ["19.90", "29.90"];
-
 		return {
 			id: btoa(name),
 			name: name,
