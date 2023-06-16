@@ -18,6 +18,9 @@ const Root = () => {
 				<Footer />
 			</div>
 			<Modal
+				cartList={cartList}
+				showModal={showModal}
+				onToggleModal={handleToggleModal}
 			/>
 		</>
 	);
