@@ -115,7 +115,7 @@
 		0 0 4px var(--main-dark);
 }
 
-.home .container button {
+.home .container .link {
 	--button-after-color: #daa520;
 	--button-before-color: var(--main-light);
 	--button-transition: all 0.3s ease;
@@ -126,8 +126,8 @@
 	z-index: 1;
 }
 
-.home .container button::before,
-.home .container button::after {
+.home .container .link::before,
+.home .container .link::after {
 	content: "";
 	position: absolute;
 	width: 100%;
@@ -136,28 +136,28 @@
 	left: 0;
 }
 
-.home .container button::before {
+.home .container .link::before {
 	transition: var(--button-transition);
 	background-color: var(--button-before-color);
 	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 	z-index: -1;
 }
 
-.home .container button::after {
+.home .container .link::after {
 	transition: var(--button-transition);
 	background-color: var(--button-after-color);
 	transform: translate(10px, 10px);
 	z-index: -2;
 }
 
-.home .container button:hover {
+.home .container .link:hover {
 	transform: translate(10px, 10px);
 	color: var(--button-before-color);
 }
-.home .container button:hover::before {
+.home .container .link:hover::before {
 	background-color: var(--button-after-color);
 }
-.home .container button:hover::after {
+.home .container .link:hover::after {
 	background-color: var(--button-before-color);
 	transform: translate(-10px, -10px);
 }
