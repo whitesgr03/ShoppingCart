@@ -3,7 +3,8 @@ import { mdiCartVariant, mdiAccount, mdiTextBoxOutline } from "@mdi/js";
 
 import { NavLink } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ cartList, onToggleModal }) => {
+	const handleOpenModal = () => onToggleModal(true);
 	return (
 		<div className="sidebar">
 			<div className="icons">
