@@ -5,9 +5,16 @@
 	row-gap: 40px;
 }
 
+.shop:first-child {
+	flex: 2 1 auto;
+}
+
+.shop:last-child {
+	flex: 8 1 auto;
+}
+
 .shop .navigation {
 	display: flex;
-	flex: 2 1 auto;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -107,7 +114,6 @@
 
 .shop .items {
 	display: flex;
-	flex: 8 1 auto;
 	flex-wrap: wrap;
 }
 
