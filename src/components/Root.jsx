@@ -12,7 +12,7 @@ const Root = () => {
 
 	return (
 		<>
-			<Header />
+			<Header cartList={cartList} onToggleModal={handleToggleModal} />
 			<div data-testid="content" className={"content"}>
 				<Outlet />
 				<Footer />
