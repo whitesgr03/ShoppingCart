@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Modal = (
-	{ cartList, showModal, onToggleModal, onEditItem }
-) => {
+const Modal = ({ cartList, showModal, onToggleModal, onEditItem }) => {
 	const handleCloseModal = e =>
 		(e.target.classList.contains("shadow") ||
 			e.target.classList.contains("close")) &&
@@ -11,16 +9,10 @@ const Modal = (
 	return (
 		<div
 			data-testid="shadow"
-			className={`shadow 
-			${showModal ? "active" : ""}
-			`
-			}
+			className={`shadow ${showModal ? "active" : ""}`}
 			onClick={handleCloseModal}
 		>
-			{cartList &&
-				<Cart
-				cartList={cartList} onEditItem={onEditItem}
-			/>}
+			{cartList && <Cart cartList={cartList} onEditItem={onEditItem} />}
 		</div>
 	);
 };
