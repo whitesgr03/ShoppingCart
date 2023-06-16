@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Modal = (
 	{ cartList, showModal, onToggleModal, onEditItem }
