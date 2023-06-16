@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders Shop Component Should return Navbar Component 1`] = `
+exports[`Renders Navbar Component Should return Navbar Component 1`] = `
 <div>
   <div
     class="navigation"
