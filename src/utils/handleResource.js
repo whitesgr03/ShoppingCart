@@ -12,6 +12,7 @@ import pruduct11 from "../images/product/Slim-Fit Jeans.png";
 import pruduct12 from "../images/product/Straight Regular Jeans.png";
 
 const fetchResource = async () => {
+	const defaultPrice = ["19.90", "29.90"];
 	const defaultResources = [
 		pruduct1,
 		pruduct2,
