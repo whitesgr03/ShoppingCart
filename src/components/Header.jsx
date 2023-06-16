@@ -14,7 +14,11 @@ const Header = ({ cartList, onToggleModal }) => {
 				<button type="button">
 					<Icon path={mdiTextBoxOutline} />
 				</button>
-				<button type="button">
+				<button
+					className="cart"
+					type="button"
+					onClick={handleOpenModal}
+				>
 					<Icon path={mdiCartVariant} />
 				</button>
 			</div>
