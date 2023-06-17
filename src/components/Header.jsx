@@ -5,6 +5,13 @@ import { NavLink } from "react-router-dom";
 
 const Header = ({ cartList, onToggleModal }) => {
 	const handleOpenModal = () => onToggleModal(true);
+
+	const badge = (
+		<span data-testid="quantity" className="quantity">
+			{cartList ? cartList.length : ""}
+		</span>
+	);
+
 	return (
 		<div className="sidebar">
 			<div className="icons">
@@ -20,6 +27,7 @@ const Header = ({ cartList, onToggleModal }) => {
 					onClick={handleOpenModal}
 				>
 					<Icon path={mdiCartVariant} />
+					{badge}
 				</button>
 			</div>
 			<h1 className="title">
