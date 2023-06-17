@@ -34,6 +34,25 @@
 	transform: scale(0.9);
 }
 
+.sidebar .icons .cart {
+	position: relative;
+}
+
+.sidebar .icons .cart .quantity {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle;
+	top: 0;
+	right: 0;
+	transform: translate(50%, -50%);
+	width: 1.5rem;
+	height: 1.5rem;
+	background-color: red;
+	border-radius: 100%;
+}
+
 .sidebar .title {
 	flex: 1 1 auto;
 	display: flex;
