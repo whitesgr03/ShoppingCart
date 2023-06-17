@@ -245,6 +245,25 @@
 	width: 50%;
 }
 
+.productInfo .info form button[type="submit"] {
+	padding: 20px 30px;
+	color: var(--main-light);
+	width: 100%;
+	background-color: var(--main-dark);
+}
+
+.productInfo .info form button[type="submit"]:hover {
+	color: var(--main-light);
+}
+
+.productInfo .info form button[type="submit"]::after {
+	background-color: var(--main-dark);
+}
+
+.productInfo .info form button[type="submit"]::before {
+	background-color: var(--sidebar-link);
+}
+
 .productError {
 	height: 100%;
 	margin: 0 auto;
