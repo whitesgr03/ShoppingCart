@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 
 import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
@@ -85,4 +85,59 @@ const Products = () => {
 	);
 };
 
-export { Shop as default, Navbar, Products };
+const ProductInfo = () => {
+	const { state } = useLocation();
+
+	const maxOptions = 10;
+
+	const options = Array.from({ length: maxOptions })
+		.fill([])
+		.map((_, i) => (
+			<option key={i} value={i + 1}>
+				{i + 1}
+			</option>
+		));
+
+	return state ? (
+		<div className="productInfo">
+			<div className="image">
+				<img src={state.product.url} alt={state.product.name} />
+			</div>
+			<div className="info">
+				<div className="description">
+					<h2 className="title">{state.product.name}</h2>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Magnam itaque nisi ipsa pariatur perspiciatis nemo.
+					</p>
+					<p className="price">${state.product.price}</p>
+				</div>
+
+				<form
+					onSubmit={e => {
+						e.preventDefault();
+					}}
+				>
+					<label htmlFor="quantity">
+						Quantity
+						<select name="quantity" id="quantity">
+							{options}
+						</select>
+					</label>
+					<button className="slide" type="submit">
+						Add to Cart
+					</button>
+				</form>
+			</div>
+		</div>
+	) : (
+		<div data-testid="productError" className="productError">
+			<div className="error">
+				<p>Our apologies, there has been an error.</p>
+				<p>Please come back later or return to the previous page.</p>
+			</div>
+		</div>
+	);
+};
+
+export { Shop as default, Navbar, Products, ProductInfo };
