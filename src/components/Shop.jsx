@@ -50,19 +50,24 @@ const Products = () => {
 	const productList = products ? (
 		products.map(product => (
 			<div className="item" key={product.id}>
-				<Link className="image-link" to={`/products/${product.id}`}>
+				<Link
+					className="image-link"
+					to={`/shop/${product.id}`}
+					state={{ product }}
+				>
 					<img src={product.url} alt={product.name} />
 				</Link>
 				<div className="info">
 					<div className="title">
 						<Link
 							className="text-link"
-							to={`/products/${product.id}`}
+							to={`/shop/${product.id}`}
+							state={{ product }}
 						>
 							{product.name}
 						</Link>
 					</div>
-					<div className="price">{`$${product.price}`}</div>
+					<div className="price">${product.price}</div>
 				</div>
 			</div>
 		))
