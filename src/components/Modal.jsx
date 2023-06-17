@@ -4,7 +4,7 @@ const Modal = ({ cartList, showModal, onToggleModal, onEditItem }) => {
 	const handleCloseModal = e =>
 		(e.target.classList.contains("shadow") ||
 			e.target.classList.contains("close")) &&
-		onToggleModal(false);
+		onToggleModal(null);
 
 	return (
 		<div
