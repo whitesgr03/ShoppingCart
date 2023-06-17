@@ -205,7 +205,7 @@
 .productInfo .info {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: space-between;
 	row-gap: 20px;
 	flex: 1 1 50%;
 	padding: 0 30px;
