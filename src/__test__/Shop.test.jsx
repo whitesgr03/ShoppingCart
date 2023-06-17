@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
-import Shop, { Navbar, Products } from "../components/Shop";
+import Shop, { Navbar, Products, ProductInfo } from "../components/Shop";
 
 import { fetchResource } from "../utils/handleResource";
 
@@ -15,6 +15,18 @@ jest.mock("../utils/handleResource", () => ({
 			price: "19.90",
 		},
 	]),
+}));
+
+jest.mock("react-router-dom", () => ({
+	...jest.requireActual("react-router-dom"),
+	useLocation: jest
+		.fn()
+		.mockReturnValueOnce({
+			state: {
+				product: { id: 0, name: "fake", url: "../", price: "19.90" },
+			},
+		})
+		.mockReturnValue({}),
 }));
 
 describe("Renders Shop Component", () => {
@@ -94,5 +106,41 @@ describe("Renders Products Component", () => {
 		expect(screen.getByText("$19.90")).toBeInTheDocument();
 	});
 });
+
+describe("Renders ProductInfo Component", () => {
+	it("Should return Navbar Component with state", () => {
+		const routes = [
+			{
+				path: "/",
+				element: <ProductInfo />,
+			},
+		];
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+		render(<RouterProvider router={router} />);
+
+		expect(screen.getByRole("img")).toHaveAttribute("src", "../");
+
+		expect(screen.getByText("fake")).toHaveClass("title");
+
+		expect(screen.getByText("$19.90")).toHaveClass("price");
+	});
+
+	it("Should return Navbar Component without state", () => {
+		const routes = [
+			{
+				path: "/",
+				element: <ProductInfo />,
+			},
+		];
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+		render(<RouterProvider router={router} />);
+
+		const actual = screen.getByTestId("productError");
+
+		expect(actual).toHaveClass("productError");
 	});
 });
