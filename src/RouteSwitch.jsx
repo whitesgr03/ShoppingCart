@@ -1,6 +1,6 @@
 import Root from "./components/Root";
 import Home from "./components/Home";
-import Shop, { Products } from "./components/Shop";
+import Shop, { Products, ProductInfo } from "./components/Shop";
 
 import Error from "./components/Error";
 
@@ -23,6 +23,10 @@ const RouteSwitch = createBrowserRouter([
 					{
 						index: true,
 						element: <Products />,
+					},
+					{
+						path: ":productId",
+						element: <ProductInfo />,
 					},
 				],
 			},
