@@ -1,6 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
-import "@testing-library/jest-dom";
 
 import Shop, { Navbar, Products } from "../components/Shop";
 
@@ -35,9 +34,11 @@ describe("Renders Shop Component", () => {
 
 		const actual = screen.getByTestId("shop");
 
-		expect(actual).toHaveClass("products");
+		expect(actual).toHaveClass("shop");
 	});
+});
 
+describe("Renders Navbar Component", () => {
 	it("Should return Navbar Component", () => {
 		const { container } = render(<Navbar />);
 
@@ -45,51 +46,53 @@ describe("Renders Shop Component", () => {
 
 		expect(actual).toMatchSnapshot();
 	});
+});
 
-	describe("Renders Products Component", () => {
-		it("Should show loading before fetch", async () => {
-			const routes = [
-				{
-					path: "/",
-					element: <Products />,
-				},
-			];
+describe("Renders Products Component", () => {
+	it("Should show loading before fetch", async () => {
+		const routes = [
+			{
+				path: "/",
+				element: <Products />,
+			},
+		];
 
-			const router = createMemoryRouter(routes, {
-				initialEntries: ["/"],
-			});
-
-			render(<RouterProvider router={router} />);
-
-			expect(screen.getByTestId("items")).toHaveClass("loading");
-
-			expect(fetchResource).toHaveBeenCalledTimes(1);
-
-			await waitFor(() => [
-				expect(screen.getByTestId("items")).not.toHaveClass("loading"),
-			]);
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
 		});
 
-		it("Should show products after fetch", async () => {
-			const routes = [
-				{
-					path: "/",
-					element: <Products />,
-				},
-			];
+		render(<RouterProvider router={router} />);
 
-			const router = createMemoryRouter(routes, {
-				initialEntries: ["/"],
-			});
+		expect(screen.getByTestId("items")).toHaveClass("loading");
 
-			render(<RouterProvider router={router} />);
+		expect(fetchResource).toHaveBeenCalledTimes(1);
 
-			const actual = await screen.findByRole("img");
+		await waitFor(() => [
+			expect(screen.getByTestId("items")).not.toHaveClass("loading"),
+		]);
+	});
 
-			expect(actual).toHaveAttribute("src", "../");
+	it("Should show products after fetch", async () => {
+		const routes = [
+			{
+				path: "/",
+				element: <Products />,
+			},
+		];
 
-			expect(screen.getByText("fake")).toBeInTheDocument();
-			expect(screen.getByText("$19.90")).toBeInTheDocument();
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
 		});
+
+		render(<RouterProvider router={router} />);
+
+		const actual = await screen.findByRole("img");
+
+		expect(actual).toHaveAttribute("src", "../");
+
+		expect(screen.getByText("fake")).toBeInTheDocument();
+		expect(screen.getByText("$19.90")).toBeInTheDocument();
+	});
+});
 	});
 });
