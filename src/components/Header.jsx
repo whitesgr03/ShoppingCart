@@ -4,7 +4,8 @@ import { mdiCartVariant, mdiAccount, mdiTextBoxOutline } from "@mdi/js";
 import { NavLink } from "react-router-dom";
 
 const Header = ({ cartList, onToggleModal }) => {
-	const handleOpenModal = () => onToggleModal(true);
+	const handleOpenModal = e =>
+		onToggleModal(e.target.closest(".button").name);
 
 	const badge = (
 		<span data-testid="quantity" className="quantity">
@@ -22,8 +23,9 @@ const Header = ({ cartList, onToggleModal }) => {
 					<Icon path={mdiTextBoxOutline} />
 				</button>
 				<button
-					className="cart"
+					className="cart button"
 					type="button"
+					name="showCart"
 					onClick={handleOpenModal}
 				>
 					<Icon path={mdiCartVariant} />
