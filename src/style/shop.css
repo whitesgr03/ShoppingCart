@@ -184,3 +184,76 @@
 .shop .item .info .price {
 	text-align: right;
 }
+
+.productInfo {
+	display: flex;
+	flex-wrap: wrap;
+	min-width: 0;
+}
+
+.productInfo .image {
+	flex: 1 1 50%;
+	padding: 0 30px;
+	text-align: center;
+}
+
+.productInfo .image img {
+	height: 100%;
+	object-fit: cover;
+}
+
+.productInfo .info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	row-gap: 20px;
+	flex: 1 1 50%;
+	padding: 0 30px;
+	font-size: 1.5rem;
+}
+
+.productInfo .info .description {
+	display: flex;
+	flex-direction: column;
+	row-gap: 40px;
+}
+
+.productInfo .info .description .title {
+	font-size: 2rem;
+	margin-bottom: 10px;
+}
+.productInfo .info .description .price {
+	font-size: 2rem;
+}
+
+.productInfo .info form {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	row-gap: 40px;
+}
+
+.productInfo .info form label {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.productInfo .info form select {
+	margin-top: 10px;
+	padding: 10px 20px;
+	width: 50%;
+}
+
+.productError {
+	height: 100%;
+	margin: 0 auto;
+}
+
+.productError .error {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	row-gap: 20px;
+}
