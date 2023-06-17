@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
-import "@testing-library/jest-dom";
 
 import Root from "../components/Root";
 
