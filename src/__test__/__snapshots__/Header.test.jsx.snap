@@ -35,7 +35,8 @@ exports[`Renders Header Component Should return Header DOM with empty cartList 1
         </svg>
       </button>
       <button
-        class="cart"
+        class="cart button"
+        name="showCart"
         type="button"
       >
         <svg
@@ -47,10 +48,6 @@ exports[`Renders Header Component Should return Header DOM with empty cartList 1
             style="fill: currentColor;"
           />
         </svg>
-        <span
-          class="quantity"
-          data-testid="quantity"
-        />
       </button>
     </div>
     <h1
