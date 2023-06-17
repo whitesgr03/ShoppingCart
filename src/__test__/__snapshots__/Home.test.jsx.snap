@@ -23,11 +23,12 @@ exports[`Renders Home Component Should return Home DOM 1`] = `
           >
             Casual Summer Collection
           </h2>
-          <button
-            type="button"
+          <a
+            class="link"
+            href="/shop"
           >
             VIEW MORE
-          </button>
+          </a>
         </div>
       </div>
       <button
