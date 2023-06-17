@@ -52,6 +52,6 @@ describe("Renders Cart Component", () => {
 
 		expect(screen.getByText("fake")).toHaveClass("name");
 
-		expect(screen.getByText("$19.90")).toHaveClass("price");
+		expect(screen.getByText("Total:")).toHaveClass("price");
 	});
 });

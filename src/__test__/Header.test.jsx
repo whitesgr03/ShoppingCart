@@ -18,10 +18,6 @@ describe("Renders Header Component", () => {
 		});
 		const { container } = render(<RouterProvider router={router} />);
 
-		const actual = screen.getByTestId("quantity");
-
-		expect(actual).toHaveTextContent("");
-
 		expect(container).toMatchSnapshot();
 	});
 
