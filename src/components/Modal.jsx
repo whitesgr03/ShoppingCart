@@ -9,7 +9,7 @@ const Modal = ({ cartList, showModal, onToggleModal, onEditItem }) => {
 	return (
 		<div
 			data-testid="shadow"
-			className={`shadow ${showModal ? "active" : ""}`}
+			className={`shadow ${showModal ? `${showModal} active` : ""}`}
 			onClick={handleCloseModal}
 		>
 			{cartList && <Cart cartList={cartList} onEditItem={onEditItem} />}
