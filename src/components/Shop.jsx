@@ -120,7 +120,7 @@ const ProductInfo = () => {
 				>
 					<label htmlFor="quantity">
 						Quantity
-						<select name="quantity" id="quantity">
+						<select name="quantity" id="quantity" defaultValue={1}>
 							{options}
 						</select>
 					</label>
