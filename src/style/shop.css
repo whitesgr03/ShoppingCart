@@ -24,7 +24,14 @@
 	flex: 7 1 auto;
 }
 
-.shop .navigation .search {
+.shop .navigation .category li {
+	white-space: break-spaces;
+}
+
+.shop .navigation .category li:hover {
+	color: var(--sidebar-link);
+}
+
 	--border-color: var(--main-dark);
 	--border-size: 2.5px;
 
