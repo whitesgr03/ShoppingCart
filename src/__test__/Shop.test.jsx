@@ -172,7 +172,7 @@ describe("Renders Navbar Component", () => {
 });
 
 describe("Renders Products Component", () => {
-	it("Should show loading before fetch", async () => {
+	it("Should show loading with empty products", () => {
 		const routes = [
 			{
 				path: "/",
@@ -186,16 +186,12 @@ describe("Renders Products Component", () => {
 
 		render(<RouterProvider router={router} />);
 
-		expect(screen.getByTestId("items")).toHaveClass("loading");
+		const actual = screen.getByTestId("products");
 
-		expect(fetchResource).toHaveBeenCalledTimes(1);
-
-		await waitFor(() => [
-			expect(screen.getByTestId("items")).not.toHaveClass("loading"),
-		]);
+		expect(actual).toHaveClass("loading");
 	});
 
-	it("Should show products after fetch", async () => {
+	it("Should show products matching the search text", () => {
 		const routes = [
 			{
 				path: "/",
@@ -209,12 +205,40 @@ describe("Renders Products Component", () => {
 
 		render(<RouterProvider router={router} />);
 
-		const actual = await screen.findByRole("img");
+		const products = screen.getByTestId("products");
+
+		expect(products).not.toHaveClass("loading");
+
+		expect(screen.queryByText("fakePants")).not.toBeInTheDocument();
+
+		const actual = screen.getByRole("img");
 
 		expect(actual).toHaveAttribute("src", "../");
 
-		expect(screen.getByText("fake")).toBeInTheDocument();
+		expect(screen.getByText("fakeBag")).toBeInTheDocument();
 		expect(screen.getByText("$19.90")).toBeInTheDocument();
+	});
+
+	it("Should show all products without searchText", () => {
+		const routes = [
+			{
+				path: "/",
+				element: <Products />,
+			},
+		];
+
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+
+		render(<RouterProvider router={router} />);
+
+		const products = screen.getByTestId("products");
+
+		expect(products).not.toHaveClass("loading");
+
+		expect(screen.getByText("fakePants")).toBeInTheDocument();
+		expect(screen.getByText("fakeBag")).toBeInTheDocument();
 	});
 });
 
