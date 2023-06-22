@@ -9,6 +9,23 @@ const Root = () => {
 	const [cartList, setCartList] = useState([]);
 	const [showModal, setShowModal] = useState(null);
 	const [latestItem, setLatestItem] = useState(null);
+	const handleAddItem = product => {
+		setCartList(
+			cartList.find(item => item.id === product.id)
+				? cartList.map(item =>
+						item.id === product.id
+							? {
+									...item,
+									quantity: item.quantity + product.quantity,
+							  }
+							: item
+				  )
+				: [...cartList, product]
+		);
+
+		setLatestItem(product);
+	};
+
 	const handleToggleModal = value => setShowModal(value);
 
 	return (
