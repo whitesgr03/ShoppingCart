@@ -7,7 +7,7 @@ import Modal from "./Modal";
 
 const Root = () => {
 	const [cartList, setCartList] = useState([]);
-	const [showModal, setShowModal] = useState(false);
+	const [showModal, setShowModal] = useState(null);
 	const handleToggleModal = value => setShowModal(value);
 
 	return (
