@@ -15,9 +15,16 @@ const Modal = ({
 }) => {
 	const [deleteItem, setDeleteItem] = useState(null);
 
+	const handleCheckTarget = e =>
 		(e.target.classList.contains("shadow") ||
 			e.target.classList.contains("close")) &&
+		handleCloseModal();
+
+	const handleCloseModal = () => {
 		onToggleModal(null);
+		setDeleteItem(null);
+		onSetLatestItem(null);
+	};
 
 	return (
 		<div
