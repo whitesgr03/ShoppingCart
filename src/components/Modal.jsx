@@ -30,7 +30,7 @@ const Modal = ({
 		<div
 			data-testid="shadow"
 			className={`shadow ${showModal ? `${showModal} active` : ""}`}
-			onClick={handleCloseModal}
+			onPointerUp={handleCheckTarget}
 		>
 			{cartList && <Cart cartList={cartList} onEditItem={onEditItem} />}
 		</div>
