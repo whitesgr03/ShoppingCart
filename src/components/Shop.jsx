@@ -165,6 +165,8 @@ const Products = () => {
 const ProductInfo = () => {
 	const { state } = useLocation();
 
+	const { onAddItem, onToggleModal } = useOutletContext();
+
 	const maxOptions = 10;
 
 	const options = Array.from({ length: maxOptions })
