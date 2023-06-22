@@ -48,23 +48,64 @@ const Shop = () => {
 	);
 };
 
-const Navbar = () => {
+const Navbar = ({
+	isShopRoute, 
+	filterText,
+	onFilterTextChange
+}) => {
+	const [active, setActive] = useState(false);
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		onFilterTextChange(...new FormData(e.target).values());
+	};
+
+	const handleChange = e => {
+		onFilterTextChange(e.target.value);
+	};
+
+	const handleActiveSearchBarBorder = () => {
+		setActive(true);
+	};
+
+	const handleDeActivateSearchBarBorder = () => {
+		setActive(false);
+	};
+
 	return (
-		<div className="navigation">
+		<div className="navigation" data-testid="navigation">
 			<ul className="category">
-				<li>Home /</li>
-				<li>Category /</li>
-				<li>Top</li>
+				<li>
+					<Link to="/shop">Shop</Link>
+				</li>
+				<li> / </li>
+				<li>
+					<Link to="/shop">Category</Link>
+				</li>
 			</ul>
-			<form className="search ">
-				{/* active-border */}
-				<div className="search-border">
-					<input type="search" placeholder="search..." />
-				</div>
-				<button type="submit">
-					<Icon path={mdiMagnify} />
-				</button>
-			</form>
+			{isShopRoute && (
+				<form
+					data-testid="searchBar"
+					className={`searchBar ${active ? "active-border" : ""}`}
+					onFocus={handleActiveSearchBarBorder}
+					onBlur={handleDeActivateSearchBarBorder}
+					onSubmit={handleSubmit}
+				>
+					<div className="search-border">
+						<input
+							data-testid="search"
+							type="search"
+							name="search"
+							placeholder="search..."
+							value={filterText}
+							onChange={handleChange}
+						/>
+					</div>
+					<button type="submit">
+						<Icon path={mdiMagnify} />
+					</button>
+				</form>
+			)}
 		</div>
 	);
 };
