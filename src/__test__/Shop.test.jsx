@@ -5,18 +5,6 @@ import Shop, { Navbar, Products, ProductInfo } from "../components/Shop";
 
 import { fetchResource } from "../utils/handleResource";
 
-jest.mock("../utils/handleResource", () => ({
-	...jest.requireActual("../utils/handleResource"),
-	fetchResource: jest.fn(async () => [
-		{
-			id: 0,
-			name: "fake",
-			url: "../",
-			price: "19.90",
-		},
-	]),
-}));
-
 jest.mock("react-router-dom", () => ({
 	...jest.requireActual("react-router-dom"),
 	useLocation: jest
