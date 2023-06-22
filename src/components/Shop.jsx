@@ -8,6 +8,8 @@ import { fetchResource } from "../utils/handleResource";
 
 const Shop = () => {
 	const { onAddItem, onToggleModal } = useOutletContext();
+	const { pathname, key: currentKey } = useLocation();
+
 	const [products, setProducts] = useState([]);
 	const [filterText, setFilterText] = useState("");
 
