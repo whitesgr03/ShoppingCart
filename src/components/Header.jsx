@@ -26,7 +26,7 @@ const Header = ({ cartList, onToggleModal }) => {
 					className="cart button"
 					type="button"
 					name="showCart"
-					onClick={handleOpenModal}
+					onPointerUp={handleOpenModal}
 				>
 					<Icon path={mdiCartVariant} />
 					{cartList && cartList.length > 0 && badge}
