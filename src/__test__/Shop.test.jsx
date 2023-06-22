@@ -61,10 +61,13 @@ jest.mock("../utils/handleResource", () => ({
 	...jest.requireActual("../utils/handleResource"),
 	fetchResource: jest.fn(),
 }));
+
+describe("Renders Navbar Component", () => {
+	it("Should return Navbar DOM", () => {
 		const routes = [
 			{
 				path: "/",
-				element: <Shop />,
+				element: <Navbar />,
 			},
 		];
 
@@ -74,19 +77,97 @@ jest.mock("../utils/handleResource", () => ({
 
 		render(<RouterProvider router={router} />);
 
-		const actual = screen.getByTestId("shop");
+		const actual = screen.getByTestId("navigation");
 
-		expect(actual).toHaveClass("shop");
+		expect(actual).toHaveClass("navigation");
 	});
-});
+	it("Should return searchBar DOM", () => {
+		const mockIsShopRoute = true;
 
-describe("Renders Navbar Component", () => {
-	it("Should return Navbar Component", () => {
-		const { container } = render(<Navbar />);
+		const routes = [
+			{
+				path: "/",
+				element: <Navbar isShopRoute={mockIsShopRoute} />,
+			},
+		];
 
-		const actual = container;
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
 
-		expect(actual).toMatchSnapshot();
+		render(<RouterProvider router={router} />);
+
+		const actual = screen.getByTestId("searchBar");
+
+		expect(actual).toHaveClass("searchBar");
+	});
+
+	it("Should return filterText with click event", async () => {
+		const user = userEvent.setup();
+
+		const mockIsShopRoute = true;
+		const mockFilterText = "Bag";
+		const mockOnFilterTextChange = jest.fn();
+
+		const routes = [
+			{
+				path: "/",
+				element: (
+					<Navbar
+						isShopRoute={mockIsShopRoute}
+						filterText={mockFilterText}
+						onFilterTextChange={mockOnFilterTextChange}
+					/>
+				),
+			},
+		];
+
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+
+		render(<RouterProvider router={router} />);
+
+		const button = screen.getByRole("button");
+
+		await user.pointer({ keys: "[MouseLeft]", target: button });
+
+		expect(mockOnFilterTextChange.mock.calls[0][0]).toEqual(mockFilterText);
+	});
+
+	it("Should return filterText with change event", async () => {
+		const user = userEvent.setup();
+
+		const mockIsShopRoute = true;
+		const mockOnFilterTextChange = jest.fn();
+
+		const routes = [
+			{
+				path: "/",
+				element: (
+					<Navbar
+						isShopRoute={mockIsShopRoute}
+						onFilterTextChange={mockOnFilterTextChange}
+					/>
+				),
+			},
+		];
+
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+
+		render(<RouterProvider router={router} />);
+
+		const input = screen.getByTestId("search");
+
+		const mockFilterText = "Bag";
+
+		await user.type(input, mockFilterText);
+
+		expect(mockOnFilterTextChange).toBeCalledTimes(3);
+
+		expect(mockOnFilterTextChange.mock.lastCall[0]).toEqual(mockFilterText);
 	});
 });
 
