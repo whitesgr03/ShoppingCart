@@ -17,8 +17,10 @@ jest.mock("react-router-dom", () => ({
 		.mockReturnValue({}),
 }));
 
-describe("Renders Shop Component", () => {
-	it("Should return Shop DOM", () => {
+jest.mock("../utils/handleResource", () => ({
+	...jest.requireActual("../utils/handleResource"),
+	fetchResource: jest.fn(),
+}));
 		const routes = [
 			{
 				path: "/",
