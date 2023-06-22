@@ -9,12 +9,52 @@ jest.mock("react-router-dom", () => ({
 	...jest.requireActual("react-router-dom"),
 	useLocation: jest
 		.fn()
-		.mockReturnValueOnce({
+		.mockReturnValueOnce({})
+		.mockReturnValue({
 			state: {
-				product: { id: 0, name: "fake", url: "../", price: "19.90" },
+				product: { id: 0, name: "fake", url: "../", price: 19.9 },
 			},
+		}),
+	useOutletContext: jest
+		.fn()
+		.mockReturnValueOnce({
+			products: [],
+			filterText: "",
 		})
-		.mockReturnValue({}),
+		.mockReturnValueOnce({
+			products: [
+				{
+					id: 0,
+					name: "fakeBag",
+					url: "../",
+					price: 19.9,
+				},
+				{
+					id: 1,
+					name: "fakePants",
+					url: "../",
+					price: 19.9,
+				},
+			],
+			filterText: "Bag",
+		})
+		.mockReturnValue({
+			products: [
+				{
+					id: 0,
+					name: "fakeBag",
+					url: "../",
+					price: 19.9,
+				},
+				{
+					id: 1,
+					name: "fakePants",
+					url: "../",
+					price: 19.9,
+				},
+			],
+			filterText: "",
+		}),
 }));
 
 jest.mock("../utils/handleResource", () => ({
