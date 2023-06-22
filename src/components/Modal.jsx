@@ -46,20 +46,21 @@ const Modal = ({
 
 const Cart = ({ cartList, onEditItem }) => {
 
-	const maxOptions = 10;
+	const totalPrice = cartList
+		.reduce((sum, product) => sum + product.price * product.quantity, 0)
+		.toFixed(2);
 
-	const options = Array.from({ length: maxOptions })
-		.fill([])
-		.map((_, i) => (
-			<option key={i} value={i + 1}>
-				{i + 1}
-			</option>
-		));
+	const createOptions = maxQuantity => {
+		const quantity = maxQuantity > 10 ? maxQuantity : 10;
 
-	const totalPrice = cartList.reduce(
-		(sum, product) => sum + product.price,
-		0
-	);
+		return Array.from({ length: quantity })
+			.fill([])
+			.map((_, i) => (
+				<option key={i} value={i + 1}>
+					{i + 1}
+				</option>
+			));
+	};
 
 	const list = cartList.map(product => (
 		<div className="item" key={product.id}>
