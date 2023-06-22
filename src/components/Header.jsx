@@ -26,6 +26,7 @@ const Header = ({ cartList, onToggleModal }) => {
 					className="cart button"
 					type="button"
 					name="showCart"
+					data-testid="cart"
 					onPointerUp={handleOpenModal}
 				>
 					<Icon path={mdiCartVariant} />
