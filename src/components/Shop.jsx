@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, Link, useLocation, useOutletContext } from "react-router-dom";
 
 import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
@@ -7,10 +7,24 @@ import { mdiMagnify } from "@mdi/js";
 import { fetchResource } from "../utils/handleResource";
 
 const Shop = () => {
+	const { onAddItem, onToggleModal } = useOutletContext();
+	const [products, setProducts] = useState([]);
+	const [filterText, setFilterText] = useState("");
+
+	useEffect(() => {
+		const handleFetch = async () => {
+			setProducts(await fetchResource());
+		};
+		handleFetch();
+	}, []);
 	return (
 		<div data-testid="shop" className="shop">
-			<Navbar />
-			<Outlet />
+			<Navbar
+				filterText={filterText}
+			/>
+			<Outlet
+				context={{ products, filterText, onAddItem, onToggleModal }}
+			/>
 		</div>
 	);
 };
