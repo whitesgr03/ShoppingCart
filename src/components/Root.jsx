@@ -62,7 +62,11 @@ const Root = () => {
 			<Modal
 				cartList={cartList}
 				showModal={showModal}
+				latestItem={latestItem}
 				onToggleModal={handleToggleModal}
+				onEditItem={handleEditItem}
+				onRemoveItem={handleRemoveItem}
+				onSetLatestItem={setLatestItem}
 			/>
 		</>
 	);
