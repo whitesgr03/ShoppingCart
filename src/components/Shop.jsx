@@ -26,6 +26,7 @@ const Shop = () => {
 			<Navbar
 				isShopRoute={isShopRoute}
 				filterText={filterText}
+				onFilterTextChange={setFilterText}
 			/>
 			<Outlet
 				context={{ products, filterText, onAddItem, onToggleModal }}
