@@ -32,7 +32,12 @@ const Root = () => {
 		<>
 			<Header cartList={cartList} onToggleModal={handleToggleModal} />
 			<div data-testid="content" className={"content"}>
-				<Outlet />
+				<Outlet
+					context={{
+						onAddItem: handleAddItem,
+						onToggleModal: handleToggleModal,
+					}}
+				/>
 				<Footer />
 			</div>
 			<Modal
