@@ -24,6 +24,7 @@ const Shop = () => {
 	return (
 		<div data-testid="shop" className="shop">
 			<Navbar
+				isShopRoute={isShopRoute}
 				filterText={filterText}
 			/>
 			<Outlet
