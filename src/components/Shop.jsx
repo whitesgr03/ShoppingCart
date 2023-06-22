@@ -177,6 +177,24 @@ const ProductInfo = () => {
 			</option>
 		));
 
+	const handleSubmit = e => {
+		e.preventDefault();
+
+		const formData = new FormData(e.target).entries();
+
+		const entriesNumeric = [...formData].map(([key, value]) =>
+			key === "quantity" ? [key, Number(value)] : [key, value]
+		);
+
+		const newProduct = {
+			...state.product,
+			...Object.fromEntries(entriesNumeric),
+		};
+
+		onAddItem(newProduct);
+		onToggleModal("showAlert");
+	};
+
 	return state ? (
 		<div className="productInfo">
 			<div className="image">
@@ -192,11 +210,7 @@ const ProductInfo = () => {
 					<p className="price">${state.product.price.toFixed(2)}</p>
 				</div>
 
-				<form
-					onSubmit={e => {
-						e.preventDefault();
-					}}
-				>
+				<form onSubmit={handleSubmit}>
 					<label htmlFor="quantity">
 						Quantity
 						<select name="quantity" id="quantity" defaultValue={1}>
