@@ -111,48 +111,51 @@ const Navbar = ({
 };
 
 const Products = () => {
-	const [products, setProducts] = useState(null);
+	const { products, filterText } = useOutletContext();
 
-	const handleFetch = async () => {
-		setProducts(await fetchResource());
-	};
+	const filterProducts =
+		filterText === ""
+			? products
+			: products.filter(
+					item =>
+						item.name
+							.toLowerCase()
+							.indexOf(filterText.toLowerCase().trim()) !== -1
+			  );
 
-	useEffect(() => {
-		handleFetch();
-	}, []);
-
-	const productList = products ? (
-		products.map(product => (
-			<div className="item" key={product.id}>
-				<Link
-					className="image-link"
-					to={`/shop/${product.id}`}
-					state={{ product }}
-				>
-					<img src={product.url} alt={product.name} />
-				</Link>
-				<div className="info">
-					<div className="title">
-						<Link
-							className="text-link"
-							to={`/shop/${product.id}`}
-							state={{ product }}
-						>
-							{product.name}
-						</Link>
+	const productList =
+		products.length > 0 ? (
+			filterProducts.map(product => (
+				<div className="item" key={product.id}>
+					<Link
+						className="image-link"
+						to={`/shop/${product.id}`}
+						state={{ product }}
+					>
+						<img src={product.url} alt={product.name} />
+					</Link>
+					<div className="info">
+						<div className="title">
+							<Link
+								className="text-link"
+								to={`/shop/${product.id}`}
+								state={{ product }}
+							>
+								{product.name}
+							</Link>
+						</div>
+						<div className="price">${product.price.toFixed(2)}</div>
 					</div>
-					<div className="price">${product.price}</div>
 				</div>
-			</div>
-		))
-	) : (
-		<div>{"loading..."}</div>
-	);
+			))
+		) : (
+			<div>{"loading..."}</div>
+		);
 
 	return (
 		<div
-			data-testid="items"
-			className={`items ${products ? "" : "loading"}`}
+			data-testid="products"
+			className={`products ${products.length > 0 ? "" : "loading"}`}
 		>
 			{productList}
 		</div>
