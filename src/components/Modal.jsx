@@ -1,7 +1,20 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Modal = ({ cartList, showModal, onToggleModal, onEditItem }) => {
-	const handleCloseModal = e =>
+import Icon from "@mdi/react";
+import { mdiTrashCanOutline } from "@mdi/js";
+
+const Modal = ({
+	cartList,
+	showModal,
+	latestItem,
+	onToggleModal,
+	onEditItem,
+	onRemoveItem,
+	onSetLatestItem,
+}) => {
+	const [deleteItem, setDeleteItem] = useState(null);
+
 		(e.target.classList.contains("shadow") ||
 			e.target.classList.contains("close")) &&
 		onToggleModal(null);
