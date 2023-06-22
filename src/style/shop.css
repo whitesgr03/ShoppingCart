@@ -120,17 +120,17 @@
 	width: 2rem;
 }
 
-.shop .items {
+.shop .products {
 	display: flex;
 	flex-wrap: wrap;
 }
 
-.shop .items.loading {
+.shop .products.loading {
 	justify-content: center;
 	align-items: center;
 }
 
-.shop .items .item {
+.shop .products .item {
 	display: flex;
 	flex-direction: column;
 	row-gap: 10px;
@@ -139,7 +139,7 @@
 	min-width: 0;
 }
 
-.shop .items .item:hover .info .text-link::after {
+.shop .products .item:hover .info .text-link::after {
 	transform: translateX(0);
 	transition: transform 0.3s ease;
 }
