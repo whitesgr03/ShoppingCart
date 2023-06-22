@@ -14,6 +14,7 @@ const Shop = () => {
 
 	const [products, setProducts] = useState([]);
 	const [filterText, setFilterText] = useState("");
+	const [previousKey, setPreviousKey] = useState(currentKey);
 
 	useEffect(() => {
 		const handleFetch = async () => {
