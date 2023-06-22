@@ -9,7 +9,7 @@ const Header = ({ cartList, onToggleModal }) => {
 
 	const badge = (
 		<span data-testid="quantity" className="quantity">
-			{cartList ? cartList.length : ""}
+			{cartList && cartList.length}
 		</span>
 	);
 
