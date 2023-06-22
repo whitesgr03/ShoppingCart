@@ -32,7 +32,14 @@ const Modal = ({
 			className={`shadow ${showModal ? `${showModal} active` : ""}`}
 			onPointerUp={handleCheckTarget}
 		>
-			{cartList && <Cart cartList={cartList} onEditItem={onEditItem} />}
+			{cartList && (
+				<Cart
+					cartList={cartList}
+					onEditItem={onEditItem}
+					onToggleModal={onToggleModal}
+					onSetDeleteItem={setDeleteItem}
+				/>
+			)}
 		</div>
 	);
 };
