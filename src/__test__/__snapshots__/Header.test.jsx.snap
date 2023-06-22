@@ -9,6 +9,8 @@ exports[`Renders Header Component Should return Header DOM with empty cartList 1
       class="icons"
     >
       <button
+        class="account button"
+        name="showAccount"
         type="button"
       >
         <svg
@@ -22,6 +24,8 @@ exports[`Renders Header Component Should return Header DOM with empty cartList 1
         </svg>
       </button>
       <button
+        class="order button"
+        name="showOrder"
         type="button"
       >
         <svg
@@ -36,6 +40,7 @@ exports[`Renders Header Component Should return Header DOM with empty cartList 1
       </button>
       <button
         class="cart button"
+        data-testid="cart"
         name="showCart"
         type="button"
       >
