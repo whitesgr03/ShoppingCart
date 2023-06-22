@@ -110,7 +110,7 @@ const ProductInfo = () => {
 						Lorem ipsum dolor sit amet consectetur adipisicing elit.
 						Magnam itaque nisi ipsa pariatur perspiciatis nemo.
 					</p>
-					<p className="price">${state.product.price}</p>
+					<p className="price">${state.product.price.toFixed(2)}</p>
 				</div>
 
 				<form
