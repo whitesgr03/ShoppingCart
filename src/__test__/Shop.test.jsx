@@ -243,7 +243,24 @@ describe("Renders Products Component", () => {
 });
 
 describe("Renders ProductInfo Component", () => {
-	it("Should return Navbar Component with state", () => {
+	it("Should return ProductInfo DOM without state", () => {
+		const routes = [
+			{
+				path: "/",
+				element: <ProductInfo />,
+			},
+		];
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+		render(<RouterProvider router={router} />);
+
+		const actual = screen.getByTestId("productError");
+
+		expect(actual).toHaveClass("productError");
+	});
+
+	it("Should return ProductInfo DOM with state", () => {
 		const routes = [
 			{
 				path: "/",
@@ -261,21 +278,29 @@ describe("Renders ProductInfo Component", () => {
 
 		expect(screen.getByText("$19.90")).toHaveClass("price");
 	});
+});
 
-	it("Should return Navbar Component without state", () => {
+describe("Renders Shop Component", () => {
+	it("Should return Shop DOM with fetch", async () => {
 		const routes = [
 			{
 				path: "/",
-				element: <ProductInfo />,
+				element: <Shop />,
 			},
 		];
+
 		const router = createMemoryRouter(routes, {
 			initialEntries: ["/"],
 		});
+
 		render(<RouterProvider router={router} />);
 
-		const actual = screen.getByTestId("productError");
+		const actual = screen.getByTestId("shop");
 
-		expect(actual).toHaveClass("productError");
+		expect(actual).toHaveClass("shop");
+
+		await waitFor(() => {
+			expect(fetchResource).toBeCalledTimes(1);
+		});
 	});
 });
