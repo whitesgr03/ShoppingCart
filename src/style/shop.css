@@ -32,6 +32,7 @@
 	color: var(--sidebar-link);
 }
 
+.shop .navigation .searchBar {
 	--border-color: var(--main-dark);
 	--border-size: 2.5px;
 
@@ -61,14 +62,14 @@
 	top: 0;
 }
 
-.shop .navigation .search .search-border {
+.shop .navigation .searchBar .search-border {
 	flex: 1 1 auto;
 	display: flex;
 	align-items: center;
 }
 
-.shop .navigation .search .search-border::before,
-.shop .navigation .search .search-border::after {
+.shop .navigation .searchBar .search-border::before,
+.shop .navigation .searchBar .search-border::after {
 	content: "";
 	position: absolute;
 	background-color: var(--border-color);
@@ -76,12 +77,12 @@
 	left: 0;
 }
 
-.shop .navigation .search .search-border::before {
+.shop .navigation .searchBar .search-border::before {
 	top: 0;
 	width: 0%;
 	transition: width 1s 0.5s;
 }
-.shop .navigation .search .search-border::after {
+.shop .navigation .searchBar .search-border::after {
 	bottom: 0;
 	width: 100%;
 }
@@ -98,24 +99,24 @@
 	width: 100%;
 }
 
-.shop .navigation .search input[type="search"] {
+.shop .navigation .searchBar input[type="search"] {
 	width: 100%;
 	height: 100%;
 }
 
-.shop .navigation .search button {
+.shop .navigation .searchBar button {
 	transition: transform 0.3s ease;
 }
 
-.shop .navigation .search button:hover {
+.shop .navigation .searchBar button:hover {
 	transform: scale(1.2);
 }
 
-.shop .navigation .search button:active {
+.shop .navigation .searchBar button:active {
 	transform: scale(0.9);
 }
 
-.shop .navigation .search svg {
+.shop .navigation .searchBar svg {
 	width: 2rem;
 }
 
