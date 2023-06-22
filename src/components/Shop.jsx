@@ -10,6 +10,8 @@ const Shop = () => {
 	const { onAddItem, onToggleModal } = useOutletContext();
 	const { pathname, key: currentKey } = useLocation();
 
+	const isShopRoute = pathname === "/shop";
+
 	const [products, setProducts] = useState([]);
 	const [filterText, setFilterText] = useState("");
 
