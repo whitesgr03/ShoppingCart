@@ -22,6 +22,18 @@ const Shop = () => {
 		};
 		handleFetch();
 	}, []);
+
+	useEffect(() => {
+		const isKeyChanged = previousKey !== currentKey;
+
+		const handleClearFilterText = () => {
+			setFilterText("");
+			setPreviousKey(currentKey);
+		};
+
+		isShopRoute && isKeyChanged && handleClearFilterText();
+	});
+
 	return (
 		<div data-testid="shop" className="shop">
 			<Navbar
