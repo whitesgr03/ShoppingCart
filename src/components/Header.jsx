@@ -16,10 +16,14 @@ const Header = ({ cartList, onToggleModal }) => {
 	return (
 		<div className="sidebar">
 			<div className="icons">
-				<button type="button">
+				<button
+					className="account button"
+					type="button"
+					name="showAccount"
+				>
 					<Icon path={mdiAccount} />
 				</button>
-				<button type="button">
+				<button className="order button" type="button" name="showOrder">
 					<Icon path={mdiTextBoxOutline} />
 				</button>
 				<button
