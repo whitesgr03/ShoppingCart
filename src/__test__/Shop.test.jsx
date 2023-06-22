@@ -1,6 +1,8 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
+import userEvent from "@testing-library/user-event";
+
 import Shop, { Navbar, Products, ProductInfo } from "../components/Shop";
 
 import { fetchResource } from "../utils/handleResource";
