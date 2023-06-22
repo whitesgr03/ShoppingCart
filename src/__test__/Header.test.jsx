@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
@@ -54,5 +55,35 @@ describe("Renders Header Component", () => {
 		const actual = screen.queryByTestId("quantity");
 
 		expect(actual).toHaveTextContent("1");
+	});
+
+	it("Should return button name with click event", async () => {
+		const user = userEvent.setup();
+
+		const mockToggleModal = jest.fn();
+
+		const routes = [
+			{
+				path: "/",
+				element: <Header onToggleModal={mockToggleModal} />,
+			},
+		];
+
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+		render(<RouterProvider router={router} />);
+
+		const button = screen.getByTestId("cart");
+
+		await user.pointer({ keys: "[MouseLeft]", target: button });
+
+		expect(mockToggleModal).toBeCalledTimes(1);
+
+		const actual = mockToggleModal.mock.calls[0][0];
+
+		const expected = "showCart";
+
+		expect(actual).toBe(expected);
 	});
 });
