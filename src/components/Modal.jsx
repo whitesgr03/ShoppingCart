@@ -70,7 +70,7 @@ const Cart = ({ cartList, onEditItem }) => {
 			<div className="description">
 				<div className="info">
 					<div className="name">{product.name}</div>
-					<div className="price">${product.price}</div>
+					<div className="price">${product.price.toFixed(2)}</div>
 				</div>
 
 				<label htmlFor={product.name}>
