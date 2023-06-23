@@ -73,7 +73,7 @@ describe("Renders Cart Component", () => {
 				id: 0,
 				name: "fake",
 				url: "../",
-				price: "19.90",
+				price: 19.9,
 				quantity: 1,
 			},
 		];
@@ -99,4 +99,84 @@ describe("Renders Cart Component", () => {
 
 		expect(screen.getByText("Total:")).toHaveClass("price");
 	});
+	it("Should show Remove Alert modal DOM with click event", async () => {
+		const mockToggleModal = jest.fn();
+		const mockSetDeleteItem = jest.fn();
+
+		const user = userEvent.setup();
+		const mockCartList = [
+			{
+				id: 0,
+				name: "fake",
+				url: "../",
+				price: 19.9,
+				quantity: 1,
+			},
+		];
+
+		const routes = [
+			{
+				path: "/",
+				element: (
+					<Cart
+						cartList={mockCartList}
+						onToggleModal={mockToggleModal}
+						onSetDeleteItem={mockSetDeleteItem}
+					/>
+				),
+			},
+		];
+
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+
+		render(<RouterProvider router={router} />);
+
+		const button = screen.getByTestId("removeBtn");
+
+		await user.pointer({ keys: "[MouseLeft]", target: button });
+
+		expect(mockToggleModal).toBeCalledTimes(1);
+		expect(mockSetDeleteItem).toBeCalledTimes(1);
+	});
+	it("Should change select value with change event", async () => {
+		const mockEditItem = jest.fn();
+
+		const user = userEvent.setup();
+		const mockCartList = [
+			{
+				id: 0,
+				name: "fake",
+				url: "../",
+				price: 19.9,
+				quantity: 1,
+			},
+		];
+
+		const routes = [
+			{
+				path: "/",
+				element: (
+					<Cart cartList={mockCartList} onEditItem={mockEditItem} />
+				),
+			},
+		];
+
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+
+		render(<RouterProvider router={router} />);
+
+		const select = screen.getByTestId("quantity");
+
+		expect(select).toHaveValue("1");
+
+		await user.selectOptions(select, "2");
+
+		expect(mockEditItem).toBeCalledTimes(1);
+	});
+});
+
 });
