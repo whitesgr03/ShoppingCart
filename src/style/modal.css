@@ -14,26 +14,7 @@
 	z-index: 1;
 }
 
-.shadow.active > :first-child {
-	transform: translateX(0%);
-}
-
-.shadow .cart {
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	width: max(400px, 30%);
-	color: var(--main-light);
-	background-color: var(--main-dark);
-	border-left: 1px solid var(--main-light);
-	transform: translateX(100%);
-	transition: transform 0.2s ease;
-}
-
-.shadow .cart .close {
+.shadow > div > .close {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -43,15 +24,15 @@
 	transition: all 0.3s ease;
 }
 
-.shadow .cart .close:hover {
+.shadow > div > .close:hover {
 	opacity: 1;
 }
-.shadow .cart .close:active {
+.shadow > div > .close:active {
 	transform: scale(0.5);
 }
 
-.shadow .cart .close::after,
-.shadow .cart .close::before {
+.shadow > div > .close::after,
+.shadow > div > .close::before {
 	position: absolute;
 	content: "";
 	top: 50%;
@@ -64,11 +45,11 @@
 	border: 3px;
 }
 
-.shadow .cart .close::after {
+.shadow > div > .close::after {
 	transform: rotate(45deg);
 }
 
-.shadow .cart .close::before {
+.shadow > div > .close::before {
 	transform: rotate(-45deg);
 }
 
