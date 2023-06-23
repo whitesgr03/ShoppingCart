@@ -44,7 +44,11 @@ const Modal = ({
 	);
 };
 
-const Cart = ({ cartList, onEditItem }) => {
+const Cart = ({ cartList, onEditItem, onToggleModal, onSetDeleteItem }) => {
+	const handleRemove = product => {
+		onToggleModal("showAlert");
+		onSetDeleteItem(product);
+	};
 
 	const totalPrice = cartList
 		.reduce((sum, product) => sum + product.price * product.quantity, 0)
@@ -94,6 +98,14 @@ const Cart = ({ cartList, onEditItem }) => {
 					</p>
 				</div>
 			</div>
+			<button
+				className="removeBtn"
+				data-testid="removeBtn"
+				onPointerUp={() => handleRemove(product)}
+			>
+				<Icon path={mdiTrashCanOutline} />
+			</button>
+		</div>
 	));
 
 	return (
