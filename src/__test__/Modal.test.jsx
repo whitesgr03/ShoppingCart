@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
-import Modal, { Cart } from "../components/Modal";
+import Modal, { Cart, Alert } from "../components/Modal";
 
 describe("Renders Modal Component", () => {
 	it("Should return Modal DOM", () => {
@@ -179,4 +179,108 @@ describe("Renders Cart Component", () => {
 	});
 });
 
+describe("Renders Alert Component", () => {
+	it("Should return Alert DOM", () => {
+		const { container } = render(<Alert />);
+
+		expect(container).toMatchSnapshot();
+	});
+
+	it("Should return Alert DOM with title 'Add product to cart'", () => {
+		const mockNewItem = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+		};
+		render(<Alert newItem={mockNewItem} />);
+
+		const actual = screen.getByTestId("title");
+
+		const expected = "Add product to cart";
+
+		expect(actual).toHaveTextContent(expected);
+	});
+	it("Should return Alert DOM with title 'Remove product from cart'", () => {
+		const mockDeleteItem = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+		};
+		render(<Alert deleteItem={mockDeleteItem} />);
+
+		const actual = screen.getByTestId("title");
+
+		const expected = "Remove product from cart";
+
+		expect(actual).toHaveTextContent(expected);
+	});
+
+	it("Should show cart DOM with click event", async () => {
+		const user = userEvent.setup();
+
+		const mockToggleModal = jest.fn();
+		const mockSetLatestItem = jest.fn();
+		const mockSetDeleteItem = jest.fn();
+
+		const mockNewItem = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+		};
+
+		render(
+			<Alert
+				newItem={mockNewItem}
+				onToggleModal={mockToggleModal}
+				onSetLatestItem={mockSetLatestItem}
+				onSetDeleteItem={mockSetDeleteItem}
+			/>
+		);
+
+		const button = screen.getByRole("button", { name: "VIEW CART" });
+
+		await user.pointer({ keys: "[MouseLeft]", target: button });
+
+		expect(mockToggleModal).toBeCalledTimes(1);
+		expect(mockSetLatestItem).toBeCalledTimes(1);
+		expect(mockSetDeleteItem).toBeCalledTimes(1);
+	});
+
+	it("Should remove product with click event", async () => {
+		const user = userEvent.setup();
+
+		const mockToggleModal = jest.fn();
+		const mockSetLatestItem = jest.fn();
+		const mockSetDeleteItem = jest.fn();
+		const mockRemoveItem = jest.fn();
+
+		const mockDeleteItem = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+		};
+
+		render(
+			<Alert
+				deleteItem={mockDeleteItem}
+				onToggleModal={mockToggleModal}
+				onSetLatestItem={mockSetLatestItem}
+				onSetDeleteItem={mockSetDeleteItem}
+				onRemoveItem={mockRemoveItem}
+			/>
+		);
+
+		const button = screen.getByRole("button", { name: "REMOVE" });
+
+		await user.pointer({ keys: "[MouseLeft]", target: button });
+
+		expect(mockToggleModal).toBeCalledTimes(1);
+		expect(mockSetLatestItem).toBeCalledTimes(1);
+		expect(mockSetDeleteItem).toBeCalledTimes(1);
+		expect(mockRemoveItem).toBeCalledTimes(1);
+	});
 });
