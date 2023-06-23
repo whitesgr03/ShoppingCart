@@ -6,12 +6,13 @@
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	transition: all 0.3s ease;
+	transition: z-index 0.4s;
 }
 
 .shadow.active {
 	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 1;
+	transition: z-index 0s;
 }
 
 .shadow > div > .close {
@@ -53,6 +54,9 @@
 	transform: rotate(-45deg);
 }
 
+.shadow.active.showCart .cart {
+	transform: translateX(0%);
+}
 
 .shadow .cart {
 	position: absolute;
@@ -200,5 +204,9 @@
 
 .shadow .cart .item .removeBtn svg {
 	width: 2rem;
+}
+
+.shadow.active.showAlert .alert {
+	transform: translate(-50%, 50%);
 }
 
