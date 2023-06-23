@@ -73,20 +73,27 @@ const Cart = ({ cartList, onEditItem }) => {
 					<div className="price">${product.price.toFixed(2)}</div>
 				</div>
 
-				<label htmlFor={product.name}>
-					Quantity
-					<select
-						data-testid="quantity"
-						name="quantity"
-						id={product.name}
-						onChange={e => handleChange(e, product)}
-						defaultValue={product.quantity}
-					>
-						{options}
-					</select>
-				</label>
+				<div className="subtotal">
+					<label htmlFor={product.name}>
+						Quantity
+						<select
+							data-testid="quantity"
+							name="quantity"
+							id={product.name}
+							onChange={e => {
+								onEditItem(product.id, +e.target.value);
+							}}
+							value={product.quantity}
+						>
+							{createOptions(product.quantity)}
+						</select>
+					</label>
+					<p>
+						Subtotal: $
+						{(product.quantity * product.price).toFixed(2)}
+					</p>
+				</div>
 			</div>
-		</div>
 	));
 
 	return (
