@@ -121,10 +121,7 @@ const Cart = ({ cartList, onEditItem, onToggleModal, onSetDeleteItem }) => {
 							Total: <b>${totalPrice}</b>
 						</p>
 
-						<Link
-							className="slide"
-							onClick={e => e.preventDefault()}
-						>
+						<Link className="checkoutBtn slide" to={"/checkout"}>
 							CHECKOUT
 						</Link>
 					</div>
