@@ -135,4 +135,101 @@ const Cart = ({ cartList, onEditItem, onToggleModal, onSetDeleteItem }) => {
 	);
 };
 
-export { Modal as default, Cart };
+const Alert = ({
+	newItem,
+	deleteItem,
+	onToggleModal,
+	onSetLatestItem,
+	onRemoveItem,
+	onSetDeleteItem,
+}) => {
+	const product = (newItem || deleteItem) ?? false;
+
+	const handleShowCart = () => {
+		onToggleModal("showCart");
+		removeAlertProduct();
+	};
+
+	const handleRemoveItem = () => {
+		onRemoveItem(product.id);
+		handleShowCart();
+	};
+
+	const removeAlertProduct = () => {
+		onSetLatestItem(null);
+		onSetDeleteItem(null);
+	};
+
+	return (
+		<div className="alert">
+			{product && (
+				<>
+					<div className="title" data-testid="title">
+						{newItem
+							? "Add product to cart"
+							: "Remove product from cart"}
+					</div>
+					<button className="close"></button>
+					<div className="product">
+						{
+							<>
+								<div className="image">
+									<img src={product.url} alt={product.name} />
+								</div>
+								<div className="description">
+									<h2 className="title">{product.name}</h2>
+									<p className="quantity">
+										Quantity: {product.quantity}
+									</p>
+									<p className="price">
+										Price: ${product.price.toFixed(2)}
+									</p>
+									<p className="subtotal">
+										Subtotal (without tax):{" "}
+										{product.quantity}
+										item(s) $
+										{(
+											product.quantity * product.price
+										).toFixed(2)}
+									</p>
+								</div>
+							</>
+						}
+					</div>
+					<div className="buttons">
+						{newItem ? (
+							<>
+								<button
+									className="left slide"
+									onPointerUp={handleShowCart}
+								>
+									VIEW CART
+								</button>
+								<button className="right slide close">
+									CONTINUE SHOPPING
+								</button>
+							</>
+						) : (
+							<>
+								<button
+									className="left slide"
+									onPointerUp={handleRemoveItem}
+								>
+									REMOVE
+								</button>
+								<button
+									className="right slide"
+									onPointerUp={handleShowCart}
+								>
+									CANCEL
+								</button>
+							</>
+						)}
+					</div>
+				</>
+			)}
+		</div>
+	);
+};
+
+export { Modal as default, Cart, Alert };
