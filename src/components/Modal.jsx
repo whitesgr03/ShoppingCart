@@ -40,6 +40,14 @@ const Modal = ({
 					onSetDeleteItem={setDeleteItem}
 				/>
 			)}
+			<Alert
+				newItem={latestItem}
+				deleteItem={deleteItem}
+				onToggleModal={onToggleModal}
+				onSetLatestItem={onSetLatestItem}
+				onRemoveItem={onRemoveItem}
+				onSetDeleteItem={setDeleteItem}
+			/>
 		</div>
 	);
 };
