@@ -1,10 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders Modal Component Should return Modal DOM without Cart Component 1`] = `
+exports[`Renders Alert Component Should return Alert DOM 1`] = `
 <div>
   <div
-    class="shadow "
-    data-testid="shadow"
+    class="alert"
   />
 </div>
 `;
