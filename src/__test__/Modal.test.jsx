@@ -1,14 +1,59 @@
 import { screen, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
 import Modal, { Cart } from "../components/Modal";
 
 describe("Renders Modal Component", () => {
-	it("Should return Modal DOM without Cart Component", () => {
-		const { container } = render(<Modal />);
+	it("Should return Modal DOM", () => {
+		const routes = [
+			{
+				path: "/",
+				element: <Modal />,
+			},
+		];
 
-		expect(container).toMatchSnapshot();
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+
+		render(<RouterProvider router={router} />);
+
+		const actual = screen.getByTestId("shadow");
+
+		expect(actual).toBeInTheDocument();
+	});
+
+	it("Should close Modal DOM with click event", async () => {
+		const mockToggleModal = jest.fn();
+		const mockSetLatestItem = jest.fn();
+
+		const user = userEvent.setup();
+		const routes = [
+			{
+				path: "/",
+				element: (
+					<Modal
+						onToggleModal={mockToggleModal}
+						onSetLatestItem={mockSetLatestItem}
+					/>
+				),
+			},
+		];
+
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+
+		render(<RouterProvider router={router} />);
+
+		const shadow = screen.getByTestId("shadow");
+
+		await user.pointer({ keys: "[MouseLeft]", target: shadow });
+
+		expect(mockToggleModal).toBeCalledTimes(1);
+		expect(mockSetLatestItem).toBeCalledTimes(1);
 	});
 });
 
