@@ -20,7 +20,7 @@
 		"build": "react-scripts build",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build",
-		"test": "react-scripts test --detectOpenHandles --coverage",
+		"test": "react-scripts test --watchAll --detectOpenHandles --coverage",
 		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
