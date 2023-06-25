@@ -9,7 +9,6 @@ const Root = () => {
 	const [cartList, setCartList] = useState([]);
 	const [showModal, setShowModal] = useState(null);
 	const [latestItem, setLatestItem] = useState(null);
-	
 
 	const handleRemoveItem = id => {
 		setCartList(cartList.filter(item => item.id !== id));
