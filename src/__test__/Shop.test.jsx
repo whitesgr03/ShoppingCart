@@ -249,7 +249,7 @@ describe("Renders ProductInfo Component", () => {
 });
 
 describe("Renders Shop Component", () => {
-	it("Should return Shop DOM with fetch", async () => {
+	it("Should return Shop DOM", async () => {
 		const routes = [
 			{
 				path: "/",
@@ -263,12 +263,14 @@ describe("Renders Shop Component", () => {
 
 		render(<RouterProvider router={router} />);
 
-		const actual = screen.getByTestId("shop");
+		const loading = screen.getByTestId("loading");
 
-		expect(actual).toHaveClass("shop");
+		expect(loading).toHaveClass("loading");
+
+		expect(fetchResource).toBeCalledTimes(1);
 
 		await waitFor(() => {
-			expect(fetchResource).toBeCalledTimes(1);
+			expect(loading).not.toBeInTheDocument();
 		});
 	});
 });
