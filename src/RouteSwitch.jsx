@@ -32,6 +32,10 @@ const RouteSwitch = createBrowserRouter([
 			},
 			{
 			},
+			{
+				path: "*",
+				element: <Error />,
+			},
 		],
 	},
 ]);
