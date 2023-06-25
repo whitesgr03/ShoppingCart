@@ -1,22 +1,24 @@
-import { useEffect } from "react";
-import { useRouteError, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Error() {
-	const navigate = useNavigate();
-	const error = useRouteError();
-	console.error(error);
+import Icon from "@mdi/react";
+import { mdiHanger } from "@mdi/js";
 
-	useEffect(() => {
-		setTimeout(() => navigate("/"), 1000);
-	}, [navigate]);
-
+const Error = () => {
 	return (
-		<div id="error-page">
-			<h1>Oops!</h1>
-			<p>Sorry, an unexpected error has occurred.</p>
-			<p>
-				<i>{error.statusText || error.message}</i>
-			</p>
+		<div className="error">
+			<Icon path={mdiHanger} size={7} />
+
+			<div>
+				<h1>Service temporarily unavailable.</h1>
+				<p>
+					Our apologies, there has been an error. Please come back
+					later or return to the <Link to="/">Home</Link> page. If you
+					have any questions, please visit the{" "}
+					<Link to="/">Contact us</Link>.
+				</p>
+			</div>
 		</div>
 	);
-}
+};
+
+export { Error as default };
