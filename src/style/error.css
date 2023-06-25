@@ -1,0 +1,35 @@
+.error {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.error svg {
+	margin-bottom: 1rem;
+}
+
+.error div:first-of-type {
+	width: 50%;
+}
+
+.error h1 {
+	margin-bottom: 1rem;
+}
+
+.error p {
+	line-height: 1.5rem;
+}
+.error a {
+	text-decoration: underline;
+	color: var(--sidebar-link);
+	vertical-align: baseline;
+}
+
+.error a:hover {
+	opacity: 0.7;
+}
+
+.error a:active {
+	color: purple;
+}
