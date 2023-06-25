@@ -7,6 +7,20 @@ import Shop, { Navbar, Products, ProductInfo } from "../components/Shop";
 
 import { fetchResource } from "../utils/utils";
 
+const fakeData = [
+	{
+		id: 0,
+		name: "fakeBag",
+		url: "../",
+		price: 19.9,
+	},
+	{
+		id: 1,
+		name: "fakePants",
+		url: "../",
+		price: 19.9,
+	},
+];
 
 jest.mock("react-router-dom", () => ({
 	...jest.requireActual("react-router-dom"),
@@ -21,48 +35,18 @@ jest.mock("react-router-dom", () => ({
 	useOutletContext: jest
 		.fn()
 		.mockReturnValueOnce({
-			products: [],
-			filterText: "",
-		})
-		.mockReturnValueOnce({
-			products: [
-				{
-					id: 0,
-					name: "fakeBag",
-					url: "../",
-					price: 19.9,
-				},
-				{
-					id: 1,
-					name: "fakePants",
-					url: "../",
-					price: 19.9,
-				},
-			],
+			products: fakeData,
 			filterText: "Bag",
 		})
 		.mockReturnValue({
-			products: [
-				{
-					id: 0,
-					name: "fakeBag",
-					url: "../",
-					price: 19.9,
-				},
-				{
-					id: 1,
-					name: "fakePants",
-					url: "../",
-					price: 19.9,
-				},
-			],
+			products: fakeData,
 			filterText: "",
 		}),
 }));
 
-jest.mock("../utils/handleResource", () => ({
-	...jest.requireActual("../utils/handleResource"),
-	fetchResource: jest.fn(),
+jest.mock("../utils/utils", () => ({
+	...jest.requireActual("../utils/utils"),
+	fetchResource: jest.fn(() => fakeData),
 }));
 
 describe("Renders Navbar Component", () => {
