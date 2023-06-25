@@ -63,11 +63,7 @@ const Shop = () => {
 	);
 };
 
-const Navbar = ({
-	isShopRoute, 
-	filterText,
-	onFilterTextChange
-}) => {
+const Navbar = ({ isShopRoute, filterText, onFilterTextChange }) => {
 	const [active, setActive] = useState(false);
 
 	const handleSubmit = e => {
