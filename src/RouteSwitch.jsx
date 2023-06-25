@@ -10,7 +10,6 @@ const RouteSwitch = createBrowserRouter([
 	{
 		path: "/",
 		element: <Root />,
-		errorElement: <Error />,
 		children: [
 			{
 				index: true,
