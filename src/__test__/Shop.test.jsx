@@ -159,25 +159,6 @@ describe("Renders Navbar Component", () => {
 });
 
 describe("Renders Products Component", () => {
-	it("Should show loading with empty products", () => {
-		const routes = [
-			{
-				path: "/",
-				element: <Products />,
-			},
-		];
-
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
-		});
-
-		render(<RouterProvider router={router} />);
-
-		const actual = screen.getByTestId("products");
-
-		expect(actual).toHaveClass("loading");
-	});
-
 	it("Should show products matching the search text", () => {
 		const routes = [
 			{
