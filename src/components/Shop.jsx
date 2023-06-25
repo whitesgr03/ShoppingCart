@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation, useOutletContext } from "react-router-dom";
 
 import Icon from "@mdi/react";
-import { mdiMagnify } from "@mdi/js";
+import { mdiMagnify, mdiLoading } from "@mdi/js";
 
-import { fetchResource } from "../utils/handleResource";
+import { fetchResource } from "../utils/utils";
 
 const Shop = () => {
 	const { onAddItem, onToggleModal } = useOutletContext();
@@ -12,7 +12,7 @@ const Shop = () => {
 
 	const isShopRoute = pathname === "/shop";
 
-	const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState(null);
 	const [filterText, setFilterText] = useState("");
 	const [previousKey, setPreviousKey] = useState(currentKey);
 
@@ -36,14 +36,29 @@ const Shop = () => {
 
 	return (
 		<div data-testid="shop" className="shop">
-			<Navbar
-				isShopRoute={isShopRoute}
-				filterText={filterText}
-				onFilterTextChange={setFilterText}
-			/>
-			<Outlet
-				context={{ products, filterText, onAddItem, onToggleModal }}
-			/>
+			{products ? (
+				<>
+					<Navbar
+						isShopRoute={isShopRoute}
+						filterText={filterText}
+						onFilterTextChange={setFilterText}
+					/>
+
+					<Outlet
+						context={{
+							products,
+							filterText,
+							onAddItem,
+							onToggleModal,
+						}}
+					/>
+				</>
+			) : (
+				<div data-testid="loading" className="loading">
+					<Icon path={mdiLoading} spin={1} size={3} />
+					{"Loading..."}
+				</div>
+			)}
 		</div>
 	);
 };
