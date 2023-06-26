@@ -8,7 +8,7 @@ import pruduct7 from "../images/product/Relaxed Fit Printed T-shirt.png";
 import pruduct8 from "../images/product/STWD Backpack.png";
 import pruduct9 from "../images/product/Skinny Jeans.png";
 import pruduct10 from "../images/product/Slim Fit Cotton Chinos.png";
-import pruduct11 from "../images/product/Slim-Fit Jeans.png";
+import pruduct11 from "../images/product/Slim Fit Jeans.png";
 import pruduct12 from "../images/product/Straight Regular Jeans.png";
 
 const fetchResource = () => {
@@ -30,7 +30,8 @@ const fetchResource = () => {
 		];
 
 		const result = defaultResources.map((url, i) => {
-			const name = url.match(/(?<=\/)[A-Z][^.]+/g)[0];
+			const name = url.match(/(?<=\/)[\w\s-]+(?=\.)/g)[0];
+
 			return {
 				id: btoa(name),
 				name: name,
