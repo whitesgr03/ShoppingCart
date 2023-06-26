@@ -56,8 +56,8 @@ li {
 	list-style: none;
 }
 
-input {
-	border: 0;
+input,
+textarea {
 	outline: 0;
 }
 
