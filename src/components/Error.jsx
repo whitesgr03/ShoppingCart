@@ -14,7 +14,7 @@ const Error = () => {
 					Our apologies, there has been an error. Please come back
 					later or return to the <Link to="/">Home</Link> page. If you
 					have any questions, please visit the{" "}
-					<Link to="/">Contact us</Link>.
+					<Link to="/contact">Contact us</Link>.
 				</p>
 			</div>
 		</div>
