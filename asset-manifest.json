@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ShoppingCart/static/css/main.b8344874.css",
-    "main.js": "/ShoppingCart/static/js/main.e4c1b0d4.js",
+    "main.js": "/ShoppingCart/static/js/main.47d3eff8.js",
     "static/media/contact-1.jpg": "/ShoppingCart/static/media/contact-1.dfb548a64812868c8f5f.jpg",
     "static/media/Linen Resort Shirt.png": "/ShoppingCart/static/media/Linen Resort Shirt.cb97cb07c40e2c3d7f1d.png",
     "static/media/Embroidery Faded Cap.png": "/ShoppingCart/static/media/Embroidery Faded Cap.2ab0c83fe5f324ee34e4.png",
@@ -18,10 +18,10 @@
     "static/media/carousel-3.jpg": "/ShoppingCart/static/media/carousel-3.716df0067ea68096ced2.jpg",
     "index.html": "/ShoppingCart/index.html",
     "main.b8344874.css.map": "/ShoppingCart/static/css/main.b8344874.css.map",
-    "main.e4c1b0d4.js.map": "/ShoppingCart/static/js/main.e4c1b0d4.js.map"
+    "main.47d3eff8.js.map": "/ShoppingCart/static/js/main.47d3eff8.js.map"
   },
   "entrypoints": [
     "static/css/main.b8344874.css",
-    "static/js/main.e4c1b0d4.js"
+    "static/js/main.47d3eff8.js"
   ]
 }
