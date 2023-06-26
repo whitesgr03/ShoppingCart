@@ -61,7 +61,18 @@ describe("Renders Cart Component", () => {
 	it("Should return empty class without data", () => {
 		const mockCartList = [];
 
-		render(<Cart cartList={mockCartList} />);
+		const routes = [
+			{
+				path: "/",
+				element: <Cart cartList={mockCartList} />,
+			},
+		];
+
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+
+		render(<RouterProvider router={router} />);
 
 		const actual = screen.getByTestId("empty");
 
