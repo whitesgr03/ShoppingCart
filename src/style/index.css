@@ -9,6 +9,7 @@
 @import url("./shop.css");
 @import url("./modal.css");
 @import url("./error.css");
+@import url("./contact.css");
 
 :root {
 	--main-dark: #000;
