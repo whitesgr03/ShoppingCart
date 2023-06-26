@@ -29,7 +29,7 @@ exports[`Renders Error Component Should return Error DOM 1`] = `
          page. If you have any questions, please visit the
          
         <a
-          href="/"
+          href="/contact"
         >
           Contact us
         </a>
