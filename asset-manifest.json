@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/shippingCart/static/css/main.f4b8f3fb.css",
-    "main.js": "/shippingCart/static/js/main.79a2475c.js",
-    "static/media/contact-1.jpg": "/shippingCart/static/media/contact-1.dfb548a64812868c8f5f.jpg",
-    "static/media/Linen Resort Shirt.png": "/shippingCart/static/media/Linen Resort Shirt.cb97cb07c40e2c3d7f1d.png",
-    "static/media/Embroidery Faded Cap.png": "/shippingCart/static/media/Embroidery Faded Cap.2ab0c83fe5f324ee34e4.png",
-    "static/media/Slim-Fit Jeans.png": "/shippingCart/static/media/Slim-Fit Jeans.dc23d9ca9de1891f7010.png",
-    "static/media/Relaxed Fit Printed T-shirt.png": "/shippingCart/static/media/Relaxed Fit Printed T-shirt.7b4911448ec14e5d684e.png",
-    "static/media/Regular Fit Printed T-shirt.png": "/shippingCart/static/media/Regular Fit Printed T-shirt.7ffaedcd795c08dec78b.png",
-    "static/media/Slim Fit Cotton Chinos.png": "/shippingCart/static/media/Slim Fit Cotton Chinos.9ffe1c9c7a06dedeaf0c.png",
-    "static/media/Leather Sports Bag.png": "/shippingCart/static/media/Leather Sports Bag.3bf9ca2bb72b4a5d0d46.png",
-    "static/media/Straight Regular Jeans.png": "/shippingCart/static/media/Straight Regular Jeans.6992c5f2a00f0bfff541.png",
-    "static/media/Skinny Jeans.png": "/shippingCart/static/media/Skinny Jeans.46c5ea2f05d27d48e3ad.png",
-    "static/media/Oversized Fit Printed Mesh T-shirt.png": "/shippingCart/static/media/Oversized Fit Printed Mesh T-shirt.d3b37c4f335e86bf7755.png",
-    "static/media/Cotton Twill Cap.png": "/shippingCart/static/media/Cotton Twill Cap.ee000ba521b09d9b7dc7.png",
-    "static/media/STWD Backpack.png": "/shippingCart/static/media/STWD Backpack.8efb885b826c2ad7060d.png",
-    "static/media/carousel-3.jpg": "/shippingCart/static/media/carousel-3.716df0067ea68096ced2.jpg",
-    "index.html": "/shippingCart/index.html",
-    "main.f4b8f3fb.css.map": "/shippingCart/static/css/main.f4b8f3fb.css.map",
-    "main.79a2475c.js.map": "/shippingCart/static/js/main.79a2475c.js.map"
+    "main.css": "/ShippingCart/static/css/main.12d3f6dc.css",
+    "main.js": "/ShippingCart/static/js/main.7cdb1f8a.js",
+    "static/media/contact-1.jpg": "/ShippingCart/static/media/contact-1.dfb548a64812868c8f5f.jpg",
+    "static/media/Linen Resort Shirt.png": "/ShippingCart/static/media/Linen Resort Shirt.cb97cb07c40e2c3d7f1d.png",
+    "static/media/Embroidery Faded Cap.png": "/ShippingCart/static/media/Embroidery Faded Cap.2ab0c83fe5f324ee34e4.png",
+    "static/media/Slim-Fit Jeans.png": "/ShippingCart/static/media/Slim-Fit Jeans.dc23d9ca9de1891f7010.png",
+    "static/media/Relaxed Fit Printed T-shirt.png": "/ShippingCart/static/media/Relaxed Fit Printed T-shirt.7b4911448ec14e5d684e.png",
+    "static/media/Regular Fit Printed T-shirt.png": "/ShippingCart/static/media/Regular Fit Printed T-shirt.7ffaedcd795c08dec78b.png",
+    "static/media/Slim Fit Cotton Chinos.png": "/ShippingCart/static/media/Slim Fit Cotton Chinos.9ffe1c9c7a06dedeaf0c.png",
+    "static/media/Leather Sports Bag.png": "/ShippingCart/static/media/Leather Sports Bag.3bf9ca2bb72b4a5d0d46.png",
+    "static/media/Straight Regular Jeans.png": "/ShippingCart/static/media/Straight Regular Jeans.6992c5f2a00f0bfff541.png",
+    "static/media/Skinny Jeans.png": "/ShippingCart/static/media/Skinny Jeans.46c5ea2f05d27d48e3ad.png",
+    "static/media/Oversized Fit Printed Mesh T-shirt.png": "/ShippingCart/static/media/Oversized Fit Printed Mesh T-shirt.d3b37c4f335e86bf7755.png",
+    "static/media/Cotton Twill Cap.png": "/ShippingCart/static/media/Cotton Twill Cap.ee000ba521b09d9b7dc7.png",
+    "static/media/STWD Backpack.png": "/ShippingCart/static/media/STWD Backpack.8efb885b826c2ad7060d.png",
+    "static/media/carousel-3.jpg": "/ShippingCart/static/media/carousel-3.716df0067ea68096ced2.jpg",
+    "index.html": "/ShippingCart/index.html",
+    "main.12d3f6dc.css.map": "/ShippingCart/static/css/main.12d3f6dc.css.map",
+    "main.7cdb1f8a.js.map": "/ShippingCart/static/js/main.7cdb1f8a.js.map"
   },
   "entrypoints": [
-    "static/css/main.f4b8f3fb.css",
-    "static/js/main.79a2475c.js"
+    "static/css/main.12d3f6dc.css",
+    "static/js/main.7cdb1f8a.js"
   ]
 }
