@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Icon from "@mdi/react";
 import { mdiTrashCanOutline } from "@mdi/js";
@@ -38,6 +38,7 @@ const Modal = ({
 					onEditItem={onEditItem}
 					onToggleModal={onToggleModal}
 					onSetDeleteItem={setDeleteItem}
+					onCloseModal={handleCloseModal}
 				/>
 			)}
 			<Alert
@@ -52,7 +53,15 @@ const Modal = ({
 	);
 };
 
-const Cart = ({ cartList, onEditItem, onToggleModal, onSetDeleteItem }) => {
+const Cart = ({
+	cartList,
+	onEditItem,
+	onToggleModal,
+	onSetDeleteItem,
+	onCloseModal,
+}) => {
+	const navigate = useNavigate();
+
 	const handleRemove = product => {
 		onToggleModal("showAlert");
 		onSetDeleteItem(product);
@@ -116,6 +125,11 @@ const Cart = ({ cartList, onEditItem, onToggleModal, onSetDeleteItem }) => {
 		</div>
 	));
 
+	const handleCheckout = () => {
+		onCloseModal();
+		navigate("/");
+	};
+
 	return (
 		<div className="cart">
 			<button className="close"></button>
@@ -129,9 +143,12 @@ const Cart = ({ cartList, onEditItem, onToggleModal, onSetDeleteItem }) => {
 							Total: <b>${totalPrice}</b>
 						</p>
 
-						<Link className="checkoutBtn slide" to={"/checkout"}>
+						<button
+							className="checkoutBtn slide"
+							onClick={handleCheckout}
+						>
 							CHECKOUT
-						</Link>
+						</button>
 					</div>
 				</>
 			) : (
