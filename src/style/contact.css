@@ -1,0 +1,159 @@
+.contact {
+	background-image: url(../images/contact/contact-1.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.contact div:first-child {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 0 50px;
+	backdrop-filter: blur(3px);
+}
+
+.contact .title {
+	flex: 1 1 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 3rem;
+	letter-spacing: 5px;
+	color: var(--main-light);
+	text-shadow: 0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark), 0 0 4px var(--main-dark),
+		0 0 4px var(--main-dark);
+}
+
+.contact .container {
+	flex: 1 1 80%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	border: 5px solid var(--main-light);
+	border-radius: 10px;
+	margin: 50px 0;
+}
+
+.contact legend {
+	font-size: 1.5rem;
+	padding: 3px 5px;
+	text-shadow: 0 0 4px var(--main-light), 0 0 4px var(--main-light),
+		0 0 4px var(--main-light), 0 0 4px var(--main-light),
+		0 0 4px var(--main-light), 0 0 4px var(--main-light),
+		0 0 4px var(--main-light), 0 0 4px var(--main-light),
+		0 0 4px var(--main-light), 0 0 4px var(--main-light),
+		0 0 4px var(--main-light);
+	color: var(--main-dark);
+	border-radius: 10px;
+}
+
+.contact .info {
+	color: var(--main-light);
+	flex: 1 1 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto 0;
+	height: 25%;
+	column-gap: 20px;
+}
+
+.contact .info .icons {
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+	border-radius: 20px;
+	padding: 20px 5px;
+	background-color: gray;
+}
+
+.contact .info .describe {
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+	line-height: 24px;
+}
+
+.contact form {
+	flex: 1 1 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	row-gap: 20px;
+}
+
+.contact form label {
+	display: flex;
+	flex-direction: column;
+	row-gap: 5px;
+	width: 80%;
+	color: var(--main-light);
+}
+
+.contact form label:hover,
+.contact form label:focus-within {
+	color: var(--main-light);
+	text-shadow: 0 0 4px var(--sidebar-link), 0 0 4px var(--sidebar-link),
+		0 0 4px var(--sidebar-link), 0 0 4px var(--sidebar-link),
+		0 0 4px var(--sidebar-link), 0 0 4px var(--sidebar-link),
+		0 0 4px var(--sidebar-link), 0 0 4px var(--sidebar-link),
+		0 0 4px var(--sidebar-link), 0 0 4px var(--sidebar-link),
+		0 0 4px var(--sidebar-link);
+}
+
+.contact form input,
+.contact form textarea {
+	border-radius: 20px;
+
+	border: 0;
+	padding: 10px;
+	background-color: gray;
+	color: white;
+}
+
+/* .contact form textarea {
+	border-radius: 20px;
+	border: 1px solid var(--main-dark);
+	padding: 10px;
+	resize: none;
+} */
+
+.contact .wrap {
+	flex: 1 1 20%;
+	display: flex;
+	align-items: center;
+	justify-content: baseline;
+}
+
+.contact button[type="submit"] {
+	padding: 20px 30px;
+	border-radius: 10px;
+	color: var(--main-light);
+	background-color: var(--main-dark);
+	border: 1px solid var(--sidebar-link);
+}
+
+.contact button[type="submit"]:hover {
+	color: var(--main-light);
+	border-color: var(--main-light);
+}
+
+.contact button[type="submit"]::after {
+	background-color: var(--main-dark);
+}
+
+.contact button[type="submit"]::before {
+	background-color: var(--sidebar-link);
+}
