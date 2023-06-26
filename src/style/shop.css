@@ -42,8 +42,8 @@
 	padding: 5px;
 }
 
-.shop .navigation .search::before,
-.shop .navigation .search::after {
+.shop .navigation .searchBar::before,
+.shop .navigation .searchBar::after {
 	height: 0%;
 	width: var(--border-size);
 	transition: height 0.5s ease;
@@ -52,12 +52,12 @@
 	position: absolute;
 }
 
-.shop .navigation .search::before {
+.shop .navigation .searchBar::before {
 	left: 0;
 	bottom: 0;
 	transition-delay: 1.5s;
 }
-.shop .navigation .search::after {
+.shop .navigation .searchBar::after {
 	right: 0;
 	top: 0;
 }
@@ -87,15 +87,15 @@
 	width: 100%;
 }
 
-.shop .navigation .search.active-border::before {
+.shop .navigation .searchBar.active-border::before {
 	transition: height 0.5s;
 	height: 100%;
 }
-.shop .navigation .search.active-border::after {
+.shop .navigation .searchBar.active-border::after {
 	height: 100%;
 	transition: height 0.5s 1.5s;
 }
-.shop .navigation .search.active-border .search-border::before {
+.shop .navigation .searchBar.active-border .search-border::before {
 	width: 100%;
 }
 
