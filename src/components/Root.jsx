@@ -14,7 +14,7 @@ const Root = () => {
 		setCartList(cartList.filter(item => item.id !== id));
 	};
 
-	const handleEditItem = (id, quantity) => {
+	const handleEditItem = ({ id, quantity }) => {
 		setCartList(
 			cartList.map(item =>
 				item.id === id
