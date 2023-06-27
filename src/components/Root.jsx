@@ -7,8 +7,8 @@ import Modal from "./Modal";
 
 const Root = () => {
 	const [cartList, setCartList] = useState([]);
-	const [showModal, setShowModal] = useState(null);
-	const [latestItem, setLatestItem] = useState(null);
+	const [showModal, setShowModal] = useState('');
+	const [latestItem, setLatestItem] = useState(false);
 
 	const handleRemoveItem = id => {
 		setCartList(cartList.filter(item => item.id !== id));
