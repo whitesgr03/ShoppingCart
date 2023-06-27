@@ -102,7 +102,10 @@ const Cart = ({
 							name="quantity"
 							id={product.name}
 							onChange={e => {
-								onEditItem(product.id, +e.target.value);
+								onEditItem({
+									id: product.id,
+									quantity: +e.target.value,
+								});
 							}}
 							value={product.quantity}
 						>
