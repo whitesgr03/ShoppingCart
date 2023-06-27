@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ShoppingCart/static/css/main.b8344874.css",
-    "main.js": "/ShoppingCart/static/js/main.c7213ef7.js",
+    "main.css": "/ShoppingCart/static/css/main.f160235f.css",
+    "main.js": "/ShoppingCart/static/js/main.6c8e8338.js",
     "static/media/contact-1.jpg": "/ShoppingCart/static/media/contact-1.dfb548a64812868c8f5f.jpg",
     "static/media/Linen Resort Shirt.png": "/ShoppingCart/static/media/Linen Resort Shirt.cb97cb07c40e2c3d7f1d.png",
     "static/media/Embroidery Faded Cap.png": "/ShoppingCart/static/media/Embroidery Faded Cap.2ab0c83fe5f324ee34e4.png",
@@ -17,11 +17,11 @@
     "static/media/STWD Backpack.png": "/ShoppingCart/static/media/STWD Backpack.8efb885b826c2ad7060d.png",
     "static/media/carousel-3.jpg": "/ShoppingCart/static/media/carousel-3.716df0067ea68096ced2.jpg",
     "index.html": "/ShoppingCart/index.html",
-    "main.b8344874.css.map": "/ShoppingCart/static/css/main.b8344874.css.map",
-    "main.c7213ef7.js.map": "/ShoppingCart/static/js/main.c7213ef7.js.map"
+    "main.f160235f.css.map": "/ShoppingCart/static/css/main.f160235f.css.map",
+    "main.6c8e8338.js.map": "/ShoppingCart/static/js/main.6c8e8338.js.map"
   },
   "entrypoints": [
-    "static/css/main.b8344874.css",
-    "static/js/main.c7213ef7.js"
+    "static/css/main.f160235f.css",
+    "static/js/main.6c8e8338.js"
   ]
 }
