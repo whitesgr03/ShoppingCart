@@ -40,8 +40,6 @@ const Root = () => {
 				  )
 				: [...cartList, product]
 		);
-
-		setLatestItem(product);
 	};
 
 	const handleToggleModal = value => setShowModal(value);
