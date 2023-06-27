@@ -52,6 +52,7 @@ const Root = () => {
 					context={{
 						onAddItem: handleAddItem,
 						onToggleModal: handleToggleModal,
+						onSetLatestItem: setLatestItem,
 					}}
 				/>
 				<Footer />
