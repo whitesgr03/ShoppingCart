@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import Icon from "@mdi/react";
 import { mdiCartVariant, mdiAccount, mdiTextBoxOutline } from "@mdi/js";
 
@@ -53,6 +55,11 @@ const Header = ({ cartList, onToggleModal }) => {
 			</ul>
 		</div>
 	);
+};
+
+Header.propTypes = {
+	cartList: PropTypes.array,
+	onToggleModal: PropTypes.func,
 };
 
 export { Header as default };
