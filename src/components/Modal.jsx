@@ -13,7 +13,7 @@ const Modal = ({
 	onRemoveItem,
 	onSetLatestItem,
 }) => {
-	const [deleteItem, setDeleteItem] = useState(null);
+	const [deleteItem, setDeleteItem] = useState(false);
 
 	const handleCheckTarget = e =>
 		(e.target.classList.contains("shadow") ||
