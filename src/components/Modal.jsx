@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Icon from "@mdi/react";
 import { mdiTrashCanOutline } from "@mdi/js";
@@ -260,4 +261,30 @@ const Alert = ({
 	);
 };
 
+Modal.propTypes = {
+	cartList: PropTypes.array,
+	showModal: PropTypes.string,
+	latestItem: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+	onToggleModal: PropTypes.func,
+	onEditItem: PropTypes.func,
+	onRemoveItem: PropTypes.func,
+	onSetLatestItem: PropTypes.func,
+};
+
+Cart.propTypes = {
+	cartList: PropTypes.array,
+	onEditItem: PropTypes.func,
+	onToggleModal: PropTypes.func,
+	onSetDeleteItem: PropTypes.func,
+	onCloseModal: PropTypes.func,
+};
+
+Alert.propTypes = {
+	newItem: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+	deleteItem: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+	onToggleModal: PropTypes.func,
+	onSetLatestItem: PropTypes.func,
+	onRemoveItem: PropTypes.func,
+	onSetDeleteItem: PropTypes.func,
+};
 export { Modal as default, Cart, Alert };
