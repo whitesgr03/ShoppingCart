@@ -21,9 +21,9 @@ const Modal = ({
 		handleCloseModal();
 
 	const handleCloseModal = () => {
-		onToggleModal(null);
-		setDeleteItem(null);
-		onSetLatestItem(null);
+		onToggleModal("");
+		setDeleteItem(false);
+		onSetLatestItem(false);
 	};
 
 	return (
