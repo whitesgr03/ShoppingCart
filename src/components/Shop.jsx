@@ -169,7 +169,7 @@ const Products = () => {
 const ProductInfo = () => {
 	const { state } = useLocation();
 
-	const { onAddItem, onToggleModal } = useOutletContext();
+	const { onAddItem, onToggleModal, onSetLatestItem } = useOutletContext();
 
 	const maxOptions = 10;
 
@@ -196,6 +196,7 @@ const ProductInfo = () => {
 		};
 
 		onAddItem(newProduct);
+		onSetLatestItem(newProduct);
 		onToggleModal("showAlert");
 	};
 
