@@ -184,8 +184,8 @@ const Alert = ({
 	};
 
 	const removeAlertProduct = () => {
-		onSetLatestItem(null);
-		onSetDeleteItem(null);
+		onSetLatestItem(false);
+		onSetDeleteItem(false);
 	};
 
 	return (
