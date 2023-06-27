@@ -7,7 +7,7 @@ import { mdiMagnify, mdiLoading } from "@mdi/js";
 import { fetchResource } from "../utils/utils";
 
 const Shop = () => {
-	const { onAddItem, onToggleModal } = useOutletContext();
+	const { onAddItem, onToggleModal, onSetLatestItem } = useOutletContext();
 	const { pathname, key: currentKey } = useLocation();
 
 	const isShopRoute = pathname === "/shop";
@@ -50,6 +50,7 @@ const Shop = () => {
 							filterText,
 							onAddItem,
 							onToggleModal,
+							onSetLatestItem,
 						}}
 					/>
 				</>
