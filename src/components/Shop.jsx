@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link, useLocation, useOutletContext } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Icon from "@mdi/react";
 import { mdiMagnify, mdiLoading } from "@mdi/js";
@@ -236,6 +237,12 @@ const ProductInfo = () => {
 			</div>
 		</div>
 	);
+};
+
+Navbar.propTypes = {
+	isShopRoute: PropTypes.bool,
+	filterText: PropTypes.string,
+	onFilterTextChange: PropTypes.func,
 };
 
 export { Shop as default, Navbar, Products, ProductInfo };
