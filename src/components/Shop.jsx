@@ -191,13 +191,14 @@ const ProductInfo = () => {
 			key === "quantity" ? [key, Number(value)] : [key, value]
 		);
 
-		const newProduct = {
+		const newItem = {
 			...state.product,
+			productId: state.product.id,
 			...Object.fromEntries(entriesNumeric),
 		};
 
-		onAddItem(newProduct);
-		onSetLatestItem(newProduct);
+		onAddItem(newItem);
+		onSetLatestItem(newItem);
 		onToggleModal("showAlert");
 	};
 
