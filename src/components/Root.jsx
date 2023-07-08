@@ -1,45 +1,36 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import { Outlet } from "react-router-dom";
 
 import Header from "./Header";
 import Footer from "./Footer";
 import Modal from "./Modal";
 
+import cartReducer from "./cartsReducer";
+
 const Root = () => {
-	const [cartList, setCartList] = useState([]);
-	const [showModal, setShowModal] = useState('');
+	const [cartList, dispatch] = useReducer(cartReducer, []);
+	const [showModal, setShowModal] = useState("");
 	const [latestItem, setLatestItem] = useState(false);
 
-	const handleRemoveItem = id => {
-		setCartList(cartList.filter(item => item.id !== id));
+	const handleAddItem = item => {
+		dispatch({
+			type: "added",
+			item,
+		});
 	};
 
-	const handleEditItem = ({ id, quantity }) => {
-		setCartList(
-			cartList.map(item =>
-				item.id === id
-					? {
-							...item,
-							quantity,
-					  }
-					: item
-			)
-		);
+	const handleChangeItem = item => {
+		dispatch({
+			type: "changed",
+			item,
+		});
 	};
 
-	const handleAddItem = product => {
-		setCartList(
-			cartList.find(item => item.id === product.id)
-				? cartList.map(item =>
-						item.id === product.id
-							? {
-									...item,
-									quantity: item.quantity + product.quantity,
-							  }
-							: item
-				  )
-				: [...cartList, product]
-		);
+	const handleDeleteItem = cartId => {
+		dispatch({
+			type: "deleted",
+			id: cartId,
+		});
 	};
 
 	const handleToggleModal = value => setShowModal(value);
@@ -62,8 +53,8 @@ const Root = () => {
 				showModal={showModal}
 				latestItem={latestItem}
 				onToggleModal={handleToggleModal}
-				onEditItem={handleEditItem}
-				onRemoveItem={handleRemoveItem}
+				onChangeItem={handleChangeItem}
+				onRemoveItem={handleDeleteItem}
 				onSetLatestItem={setLatestItem}
 			/>
 		</>
