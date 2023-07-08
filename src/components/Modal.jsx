@@ -10,7 +10,7 @@ const Modal = ({
 	showModal,
 	latestItem,
 	onToggleModal,
-	onEditItem,
+	onChangeItem,
 	onRemoveItem,
 	onSetLatestItem,
 }) => {
@@ -36,7 +36,7 @@ const Modal = ({
 			{cartList && (
 				<Cart
 					cartList={cartList}
-					onEditItem={onEditItem}
+					onChangeItem={onChangeItem}
 					onToggleModal={onToggleModal}
 					onSetDeleteItem={setDeleteItem}
 					onCloseModal={handleCloseModal}
@@ -56,7 +56,7 @@ const Modal = ({
 
 const Cart = ({
 	cartList,
-	onEditItem,
+	onChangeItem,
 	onToggleModal,
 	onSetDeleteItem,
 	onCloseModal,
@@ -103,8 +103,8 @@ const Cart = ({
 							name="quantity"
 							id={product.name}
 							onChange={e => {
-								onEditItem({
-									id: product.id,
+								onChangeItem({
+									...product,
 									quantity: +e.target.value,
 								});
 							}}
@@ -266,14 +266,14 @@ Modal.propTypes = {
 	showModal: PropTypes.string,
 	latestItem: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 	onToggleModal: PropTypes.func,
-	onEditItem: PropTypes.func,
+	onChangeItem: PropTypes.func,
 	onRemoveItem: PropTypes.func,
 	onSetLatestItem: PropTypes.func,
 };
 
 Cart.propTypes = {
 	cartList: PropTypes.array,
-	onEditItem: PropTypes.func,
+	onChangeItem: PropTypes.func,
 	onToggleModal: PropTypes.func,
 	onSetDeleteItem: PropTypes.func,
 	onCloseModal: PropTypes.func,

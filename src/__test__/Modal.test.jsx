@@ -169,7 +169,7 @@ describe("Renders Cart Component", () => {
 			{
 				path: "/",
 				element: (
-					<Cart cartList={mockCartList} onEditItem={mockEditItem} />
+					<Cart cartList={mockCartList} onChangeItem={mockEditItem} />
 				),
 			},
 		];
