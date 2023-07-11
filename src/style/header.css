@@ -38,7 +38,7 @@
 	position: relative;
 }
 
-.sidebar .icons .cart .quantity {
+.sidebar .icons .cart .badge {
 	position: absolute;
 	display: flex;
 	justify-content: center;
