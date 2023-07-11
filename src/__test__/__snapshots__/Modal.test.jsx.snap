@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Renders Alert Component Should return Alert DOM 1`] = `
-<div>
-  <div
-    class="alert"
-  />
-</div>
-`;

@@ -3,10 +3,19 @@ import userEvent from "@testing-library/user-event";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
-import Header from "../components/Header";
+import Header, { HeaderBadge } from "../../App/Header";
+
+let mockUseCart = [];
+let mockDispatch = null;
+
+jest.mock("../../App/RootContext", () => ({
+	...jest.requireActual("../../App/RootContext"),
+	useCart: () => mockUseCart,
+	useModalDispatch: () => mockDispatch,
+}));
 
 describe("Renders Header Component", () => {
-	it("Should return Header DOM with empty cartList", () => {
+	it("Should return Header DOM", () => {
 		const routes = [
 			{
 				path: "/",
@@ -17,13 +26,15 @@ describe("Renders Header Component", () => {
 		const router = createMemoryRouter(routes, {
 			initialEntries: ["/"],
 		});
-		const { container } = render(<RouterProvider router={router} />);
+		render(<RouterProvider router={router} />);
 
-		expect(container).toMatchSnapshot();
+		const actual = screen.getByTestId("sidebar");
+
+		expect(actual).toBeInTheDocument();
 	});
 
-	it("Should return Header DOM with cartList", () => {
-		const mockCartList = [
+	it("Should return HeaderBadge DOM with cartList", () => {
+		mockUseCart = [
 			{
 				id: 0,
 				name: "fake",
@@ -33,17 +44,10 @@ describe("Renders Header Component", () => {
 			},
 		];
 
-		const mockToggleModal = jest.fn();
-
 		const routes = [
 			{
 				path: "/",
-				element: (
-					<Header
-						cartList={mockCartList}
-						onToggleModal={mockToggleModal}
-					/>
-				),
+				element: <HeaderBadge />,
 			},
 		];
 
@@ -52,20 +56,20 @@ describe("Renders Header Component", () => {
 		});
 		render(<RouterProvider router={router} />);
 
-		const actual = screen.queryByTestId("quantity");
+		const actual = screen.queryByTestId("badge");
 
 		expect(actual).toHaveTextContent("1");
 	});
 
-	it("Should return button name with click event", async () => {
-		const user = userEvent.setup();
+	it("Should show cart Alert with click event", async () => {
+		mockDispatch = jest.fn();
 
-		const mockToggleModal = jest.fn();
+		const user = userEvent.setup();
 
 		const routes = [
 			{
 				path: "/",
-				element: <Header onToggleModal={mockToggleModal} />,
+				element: <Header />,
 			},
 		];
 
@@ -78,12 +82,6 @@ describe("Renders Header Component", () => {
 
 		await user.pointer({ keys: "[MouseLeft]", target: button });
 
-		expect(mockToggleModal).toBeCalledTimes(1);
-
-		const actual = mockToggleModal.mock.calls[0][0];
-
-		const expected = "showCart";
-
-		expect(actual).toBe(expected);
+		expect(mockDispatch).toBeCalledTimes(1);
 	});
 });

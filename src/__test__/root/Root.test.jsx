@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
-import Root from "../components/Root";
+import Root from "../../App/Root";
 
 describe("Renders Root Component", () => {
 	it("Should return Root DOM", () => {

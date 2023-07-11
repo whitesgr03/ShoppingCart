@@ -1,21 +1,21 @@
 import { render } from "@testing-library/react";
-
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
-import Error from "../components/Error";
+import ProductsNavbar from "../../components/products/ProductsNavbar";
 
-describe("Renders Error Component", () => {
-	it("Should return Error DOM", () => {
+describe("Renders ProductsNavbar Component", () => {
+	it("Should return ProductsNavbar DOM", () => {
 		const routes = [
 			{
 				path: "/",
-				element: <Error />,
+				element: <ProductsNavbar />,
 			},
 		];
 
 		const router = createMemoryRouter(routes, {
 			initialEntries: ["/"],
 		});
+
 		const { container } = render(<RouterProvider router={router} />);
 
 		expect(container).toMatchSnapshot();
