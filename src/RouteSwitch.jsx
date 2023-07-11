@@ -1,9 +1,14 @@
-import Root from "./components/Root";
+import Root from "./App/Root";
+
 import Home from "./components/Home";
-import Shop, { Products, ProductInfo } from "./components/Shop";
+
+import ShopPage from "./components/products/ShopPage";
+import ProductList from "./components/products/ProductList";
+import SingleProductPage from "./components/products/SignProductPage";
+
 import Contact from "./components/Contact";
 
-import Error from "./components/Error";
+import Error from "./App/Error";
 
 import { createHashRouter } from "react-router-dom";
 
@@ -18,15 +23,15 @@ const RouteSwitch = createHashRouter([
 			},
 			{
 				path: "shop",
-				element: <Shop />,
+				element: <ShopPage />,
 				children: [
 					{
 						index: true,
-						element: <Products />,
+						element: <ProductList />,
 					},
 					{
 						path: ":productId",
-						element: <ProductInfo />,
+						element: <SingleProductPage />,
 					},
 				],
 			},
