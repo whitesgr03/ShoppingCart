@@ -62,7 +62,7 @@ const SingleProductPage = () => {
 					<p className="price">${state.product.price.toFixed(2)}</p>
 				</div>
 
-				<form   onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit}>
 					<label htmlFor="quantity">
 						Quantity
 						<select name="quantity" id="quantity" defaultValue={1}>
