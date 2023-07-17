@@ -10,9 +10,9 @@ import Contact from "./components/Contact";
 
 import Error from "./App/Error";
 
-import { createHashRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
-const RouteSwitch = createHashRouter([
+const RouteSwitch = createBrowserRouter([
 	{
 		path: "/",
 		element: <Root />,
