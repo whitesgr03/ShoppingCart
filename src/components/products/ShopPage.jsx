@@ -10,16 +10,8 @@ const ShopPage = () => {
 
 	const isShopRoute = pathname === "/shop";
 
-	const [products, setProducts] = useState([]);
 	const [filterText, setFilterText] = useState("");
 	const [previousKey, setPreviousKey] = useState(currentKey);
-
-	useEffect(() => {
-		const handleFetch = async () => {
-			setProducts(await fetchResource());
-		};
-		handleFetch();
-	}, []);
 
 	useEffect(() => {
 		const isKeyChanged = previousKey !== currentKey;
@@ -43,19 +35,12 @@ const ShopPage = () => {
 					/>
 				)}
 			</div>
-			{products.length === 0 ? (
-				<div data-testid="loading" className="loading">
-					<Icon path={mdiLoading} spin={1} size={3} />
-					{"Loading..."}
-				</div>
-			) : (
-				<Outlet
-					context={{
-						products,
-						filterText,
-					}}
-				/>
-			)}
+			<Outlet
+				context={{
+					products,
+					filterText,
+				}}
+			/>
 		</div>
 	);
 };
