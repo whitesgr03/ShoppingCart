@@ -5,7 +5,7 @@
 	height: 100%;
 }
 
-.contact div:first-child {
+.contact .blur {
 	height: 100%;
 	display: flex;
 	align-items: center;
