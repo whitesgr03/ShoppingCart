@@ -1,9 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 const Home = () => {
+	const { backgroundImage } = useOutletContext();
+
 	return (
 		<div className="home">
-			<div className="carousel">
+			<div
+				className="carousel"
+				style={{
+					backgroundImage: backgroundImage.home,
+				}}
+			>
 				<button type="button" className="arrow left"></button>
 				<div className="content">
 					<div className="container">
