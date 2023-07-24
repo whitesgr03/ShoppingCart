@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-
-import Icon from "@mdi/react";
-import { mdiLoading } from "@mdi/js";
-
-import { fetchResource } from "../../utils/utils";
+import { Outlet, useLocation, useOutletContext } from "react-router-dom";
 
 import ProductsNavbar from "./ProductsNavbar";
 import ProductsSearchBar from "./ProductsSearchBar";
 
 const ShopPage = () => {
 	const { pathname, key: currentKey } = useLocation();
+	const { products } = useOutletContext();
 
 	const isShopRoute = pathname === "/shop";
 
