@@ -1,32 +1,21 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
 import Shop from "../../components/products/ShopPage";
 
-import { fetchResource } from "../../utils/utils";
+let mockOutletContext = null;
 
-const mockFetchData = [
-	{
-		id: 0,
-		name: "fakeBag",
-		url: "../",
-		price: 19.9,
-	},
-	{
-		id: 1,
-		name: "fakePants",
-		url: "../",
-		price: 19.9,
-	},
-];
-
-jest.mock("../../utils/utils", () => ({
-	...jest.requireActual("../../utils/utils"),
-	fetchResource: jest.fn(() => mockFetchData),
+jest.mock("react-router-dom", () => ({
+	...jest.requireActual("react-router-dom"),
+	useOutletContext: () => mockOutletContext,
 }));
 
 describe("Renders Shop Component", () => {
 	it("Should return Shop DOM", async () => {
+		mockOutletContext = {
+			products: [],
+		};
+
 		const routes = [
 			{
 				path: "/",
@@ -38,16 +27,8 @@ describe("Renders Shop Component", () => {
 			initialEntries: ["/"],
 		});
 
-		render(<RouterProvider router={router} />);
+		const { container } = render(<RouterProvider router={router} />);
 
-		const loading = screen.getByTestId("loading");
-
-		expect(loading).toHaveClass("loading");
-
-		expect(fetchResource).toBeCalledTimes(1);
-
-		await waitFor(() => {
-			expect(loading).not.toBeInTheDocument();
-		});
+		expect(container).toMatchSnapshot();
 	});
 });
