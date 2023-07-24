@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
+import Icon from "@mdi/react";
+import { mdiLoading } from "@mdi/js";
 
 import Header from "./Header";
 import Footer from "./Footer";
