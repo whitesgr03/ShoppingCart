@@ -9,6 +9,8 @@ import Footer from "./Footer";
 import Modal from "../components/modals/Modal";
 
 import RootProvider from "./RootContext";
+
+import fetchProducts from "../utils/fetchProducts";
 import fetchBackgroundImageUrl from "../utils/fetchBackgroundImageUrl";
 
 const Root = () => {
@@ -18,6 +20,8 @@ const Root = () => {
 		home: null,
 		contact: null,
 	});
+	const [products, setProducts] = useState([]);
+
 	const location = useLocation();
 	const navigate = useNavigate();
 
@@ -51,6 +55,26 @@ const Root = () => {
 
 		backgroundImage[page] === null && handleFetch();
 	}, [page, backgroundImage, navigate]);
+
+	useEffect(() => {
+		const handleFetch = async () => {
+			setIsLoading(true);
+
+			try {
+				setProducts(await fetchProducts());
+			} catch (error) {
+				console.log({
+					message: "No such document!",
+					state: error,
+				});
+				navigate("/error");
+			} finally {
+				setIsLoading(false);
+			}
+		};
+
+		page === "shop" && products.length === 0 && handleFetch();
+	}, [page, products, navigate]);
 
 	return (
 		<>
