@@ -1,12 +1,12 @@
 .home .carousel {
 	height: 100vh;
-	background-image: url(../images/home/carousel-3.jpg);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+
 	padding: 0 30px;
 	column-gap: 20px;
 }

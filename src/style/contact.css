@@ -1,8 +1,8 @@
-.contact {
-	background-image: url(../images/contact/contact-1.jpg);
+.contact > div {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	height: 100%;
 }
 
 .contact div:first-child {
