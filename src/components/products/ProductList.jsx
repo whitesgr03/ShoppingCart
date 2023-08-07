@@ -1,7 +1,8 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useOutletContext, useLocation } from "react-router-dom";
 
 const ProductList = () => {
 	const { products, filterText } = useOutletContext();
+	const location = useLocation();
 
 	const filterProducts =
 		filterText === ""
@@ -20,7 +21,10 @@ const ProductList = () => {
 					<Link
 						className="image-link"
 						to={`/shop/${product.id}`}
-						state={{ product }}
+						state={{
+							product,
+							prevPath: location.pathname,
+						}}
 					>
 						<img src={product.url} alt={product.name} />
 					</Link>
@@ -29,7 +33,7 @@ const ProductList = () => {
 							<Link
 								className="text-link"
 								to={`/shop/${product.id}`}
-								state={{ product }}
+								state={{ product, prevPath: location.pathname }}
 							>
 								{product.name}
 							</Link>
