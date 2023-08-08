@@ -2,17 +2,17 @@ import { screen, render } from "@testing-library/react";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
+import { useCart } from "../../App/RootContext";
+
 import ModalCart from "../../components/modals/ModalCart";
 
-let mockCartData = [];
-
-jest.mock("../../App/RootContext", () => ({
-	...jest.requireActual("../../App/RootContext"),
-	useCart: () => mockCartData,
-}));
+jest.mock("../../App/RootContext");
+jest.mock("../../firebase-config");
 
 describe("Renders ModalCart Component", () => {
 	it("Should return empty class without data", () => {
+		useCart.mockReturnValueOnce([]);
+
 		const routes = [
 			{
 				path: "/",
@@ -31,7 +31,7 @@ describe("Renders ModalCart Component", () => {
 		expect(actual).toBeInTheDocument();
 	});
 	it("Should return cart list with data", () => {
-		mockCartData = [
+		const mockCartData = [
 			{
 				id: 0,
 				name: "fake",
@@ -40,6 +40,8 @@ describe("Renders ModalCart Component", () => {
 				quantity: 1,
 			},
 		];
+
+		useCart.mockReturnValueOnce(mockCartData);
 
 		const routes = [
 			{
