@@ -254,6 +254,10 @@
 	color: var(--main-light);
 	width: 100%;
 	background-color: var(--main-dark);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 10px;
 }
 
 .productInfo .info form button[type="submit"]:hover {
