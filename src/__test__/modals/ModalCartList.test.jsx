@@ -2,16 +2,18 @@ import { screen, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
+
 import { updateUserCartItem } from "../../utils/handleUserCarts";
+import { useModalDispatch, useCartDispatch } from "../../App/RootContext";
 
 import ModalCartList from "../../components/modals/ModalCartList";
 
+jest.mock("../../App/RootContext");
+jest.mock("../../firebase-config");
 jest.mock("../../utils/handleUserCarts");
 
 describe("Renders ModalCartList Component", () => {
-	it("Should show Remove Alert modal DOM with click event", async () => {
-		mockModalDispatch = jest.fn();
-
+	it("Should return ModalCartList DOM", async () => {
 		const mockCartData = [
 			{
 				id: 0,
@@ -21,12 +23,68 @@ describe("Renders ModalCartList Component", () => {
 				quantity: 1,
 			},
 		];
+
+		const mockIsLoad = false;
+
+		const mockOnLoading = jest.fn();
+
+		const routes = [
+			{
+				path: "/",
+				element: (
+					<ModalCartList
+						list={mockCartData}
+						isLoading={mockIsLoad}
+						onLoading={mockOnLoading}
+					/>
+				),
+			},
+		];
+
+		const router = createMemoryRouter(routes, {
+			initialEntries: ["/"],
+		});
+
+		const { container } = render(<RouterProvider router={router} />);
+
+		expect(container).toMatchSnapshot();
+	});
+	it("Should show Remove Alert modal DOM with click event", async () => {
+		const mockCartData = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+			quantity: 1,
+		};
+
+		const fakeData = {
+			type: "alert",
+			item: {
+				state: "remove",
+				product: mockCartData,
+			},
+		};
+
+		const mockIsLoad = false;
+
+		const mockModalDispatch = jest.fn();
+		const mockOnLoading = jest.fn();
+
+		useModalDispatch.mockReturnValueOnce(mockModalDispatch);
+
 		const user = userEvent.setup();
 
 		const routes = [
 			{
 				path: "/",
-				element: <ModalCartList list={mockCartData} />,
+				element: (
+					<ModalCartList
+						list={[mockCartData]}
+						isLoading={mockIsLoad}
+						onLoading={mockOnLoading}
+					/>
+				),
 			},
 		];
 
@@ -41,6 +99,7 @@ describe("Renders ModalCartList Component", () => {
 		await user.pointer({ keys: "[MouseLeft]", target: button });
 
 		expect(mockModalDispatch).toBeCalledTimes(1);
+		expect(mockModalDispatch.mock.calls[0][0]).toEqual(fakeData);
 	});
 	it("Should change select value with change event", async () => {
 		const mockCartData = {
