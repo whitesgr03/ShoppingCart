@@ -8,6 +8,8 @@ import SingleProductPage from "./components/products/SingleProductPage";
 
 import Contact from "./components/Contact";
 
+import AuthGuard from "./App/AuthGuard";
+
 import Error from "./App/Error";
 
 import { createHashRouter } from "react-router-dom";
@@ -31,7 +33,11 @@ const RouteSwitch = createHashRouter([
 					},
 					{
 						path: ":productId",
-						element: <SingleProductPage />,
+						element: (
+							<AuthGuard>
+								<SingleProductPage />,
+							</AuthGuard>
+						),
 					},
 				],
 			},
