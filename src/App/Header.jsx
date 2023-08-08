@@ -1,6 +1,16 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { initialAuth } from "../firebase-config";
+
 import { useCart, useCartDispatch, useModalDispatch } from "./RootContext";
+
+import {
+	userLogout,
+	googleLogin,
+	checkUser,
+	createUser,
+} from "../utils/handleUserAccount";
+import { getUserCart } from "../utils/handleUserCarts";
 
 import Icon from "@mdi/react";
 import { mdiCartVariant, mdiAccount, mdiTextBoxOutline } from "@mdi/js";
@@ -24,6 +34,8 @@ const HeaderBadge = () => {
 const Header = () => {
 	const [isLogin, setIsLogin] = useState(false);
 	const [auth, setAuth] = useState(true);
+	const navigate = useNavigate();
+
 	const modalDispatch = useModalDispatch();
 	const cartDispatch = useCartDispatch();
 
@@ -32,6 +44,45 @@ const Header = () => {
 			type: "cart",
 		});
 	};
+
+	useEffect(() => {
+		const auth = initialAuth();
+
+		const unsubscribe = auth.onAuthStateChanged(async user => {
+			const hasUser = user && (await checkUser(user.uid));
+
+			if (hasUser && !hasUser.success) {
+				console.error(hasUser.message);
+				return;
+			}
+
+			const createNewUser =
+				user && !hasUser.data.userExists && (await createUser(user));
+
+			if (createNewUser && !createNewUser.success) {
+				console.error(hasUser.message);
+				return;
+			}
+
+			const getCart = user && (await getUserCart());
+
+			if (getCart && !getCart.success) {
+				console.error(getCart.message);
+				navigate("/error");
+				return;
+			}
+
+			cartDispatch({
+				type: "initialize_cart",
+				cart: user && getCart.success ? getCart.data : [],
+			});
+
+			setIsLogin(user ? true : false);
+			setAuth(false);
+		});
+
+		return () => unsubscribe();
+	}, [cartDispatch, navigate]);
 
 	return (
 		<div className="sidebar" data-testid="sidebar">
