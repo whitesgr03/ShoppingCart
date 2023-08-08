@@ -28,7 +28,7 @@ const Header = () => {
 	const cartDispatch = useCartDispatch();
 
 	const handlePointerUp = () => {
-		dispatch({
+		modalDispatch({
 			type: "cart",
 		});
 	};
