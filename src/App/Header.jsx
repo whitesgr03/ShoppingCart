@@ -13,9 +13,12 @@ import {
 import { getUserCart } from "../utils/handleUserCarts";
 
 import Icon from "@mdi/react";
-import { mdiCartVariant, mdiAccount, mdiTextBoxOutline } from "@mdi/js";
-
-import { useCart, useModalDispatch } from "./RootContext";
+import {
+	mdiCartVariant,
+	mdiAccount,
+	mdiTextBoxOutline,
+	mdiLogout,
+} from "@mdi/js";
 
 const HeaderBadge = () => {
 	const cartList = useCart();
@@ -86,19 +89,20 @@ const Header = () => {
 
 	return (
 		<div className="sidebar" data-testid="sidebar">
-			<div className="icons">
+			<div className={`icons ${auth ? "authenticate" : ""}`}>
 				<button
-					className="account button"
+					className={`account`}
 					type="button"
 					name="showAccount"
+					onClick={isLogin ? userLogout : googleLogin}
 				>
-					<Icon path={mdiAccount} />
+					<Icon path={isLogin ? mdiLogout : mdiAccount} />
 				</button>
-				<button className="order button" type="button" name="showOrder">
+				<button className={`order`} type="button" name="showOrder">
 					<Icon path={mdiTextBoxOutline} />
 				</button>
 				<button
-					className="cart button"
+					className={`cart`}
 					type="button"
 					name="showCart"
 					data-testid="cart"
