@@ -23,6 +23,8 @@ const ModalCartList = ({ list, isLoading, onLoading }) => {
 	const cartDispatch = useCartDispatch();
 	const modalDispatch = useModalDispatch();
 
+	const navigate = useNavigate();
+
 	const handleRemove = product => {
 		modalDispatch({
 			type: "alert",
@@ -33,11 +35,24 @@ const ModalCartList = ({ list, isLoading, onLoading }) => {
 		});
 	};
 
-	const handleChange = item => {
-		cartDispatch({
-			type: "changed",
-			item,
-		});
+	const handleChange = async product => {
+		onLoading(true);
+
+		const result = await updateUserCartItem(product);
+
+		if (!result.success) {
+			onLoading(false);
+			navigate("/error");
+			return;
+		}
+
+		result.success &&
+			cartDispatch({
+				type: "changed",
+				product,
+			});
+
+		onLoading(false);
 	};
 
 	return (
