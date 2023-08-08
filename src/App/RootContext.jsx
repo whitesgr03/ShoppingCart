@@ -25,15 +25,15 @@ const RootProvider = ({ children }) => {
 	});
 
 	return (
-		<cartContext.Provider value={cart}>
-			<cartDispatchContext.Provider value={cartListDispatch}>
-				<modalContext.Provider value={modal}>
-					<modalDispatchContext.Provider value={modalDispatch}>
+		<modalContext.Provider value={modal}>
+			<modalDispatchContext.Provider value={modalDispatch}>
+				<cartContext.Provider value={cart}>
+					<cartDispatchContext.Provider value={cartListDispatch}>
 						{children}
-					</modalDispatchContext.Provider>
-				</modalContext.Provider>
-			</cartDispatchContext.Provider>
-		</cartContext.Provider>
+					</cartDispatchContext.Provider>
+				</cartContext.Provider>
+			</modalDispatchContext.Provider>
+		</modalContext.Provider>
 	);
 };
 
