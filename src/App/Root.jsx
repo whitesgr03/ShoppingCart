@@ -10,8 +10,8 @@ import Modal from "../components/modals/Modal";
 
 import RootProvider from "./RootContext";
 
-import fetchProducts from "../utils/fetchProducts";
-import fetchBackgroundImageUrl from "../utils/fetchBackgroundImageUrl";
+import getAllProducts from "../utils/handleProducts";
+import getBackgroundImageUrl from "../utils/handleBackgroundImageUrl";
 
 const Root = () => {
 	const [isLoading, setIsLoading] = useState(false);
