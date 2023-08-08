@@ -21,6 +21,7 @@ const HeaderBadge = () => {
 
 const Header = () => {
 	const [isLogin, setIsLogin] = useState(false);
+	const [auth, setAuth] = useState(true);
 
 	const handlePointerUp = () => {
 		dispatch({
