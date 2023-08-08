@@ -70,9 +70,4 @@ const Header = () => {
 	);
 };
 
-// Header.propTypes = {
-// 	cartList: PropTypes.array,
-// 	onToggleModal: PropTypes.func,
-// };
-
 export { Header as default, HeaderBadge };
