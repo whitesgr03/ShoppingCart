@@ -5,7 +5,7 @@ import { useModalDispatch } from "../../App/RootContext";
 
 import ModalCartList from "./ModalCartList";
 
-const ModalCart = () => {
+const ModalCart = ({ isLoading, onLoading }) => {
 	const navigate = useNavigate();
 	const cartList = useCart();
 
