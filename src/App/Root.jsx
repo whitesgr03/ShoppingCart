@@ -57,23 +57,22 @@ const Root = () => {
 	}, [page, backgroundImage, navigate]);
 
 	useEffect(() => {
-		const handleFetch = async () => {
+		const handleProductsFetch = async () => {
 			setIsLoading(true);
 
-			try {
-				setProducts(await fetchProducts());
-			} catch (error) {
-				console.log({
-					message: "No such document!",
-					state: error,
-				});
+			const result = await getAllProducts();
+
+			if (!result.success) {
 				navigate("/error");
-			} finally {
-				setIsLoading(false);
+				return;
 			}
+
+			result.success && setProducts(result.data);
+
+			setIsLoading(false);
 		};
 
-		page === "shop" && products.length === 0 && handleFetch();
+		page === "shop" && products.length === 0 && handleProductsFetch();
 	}, [page, products, navigate]);
 
 	return (
