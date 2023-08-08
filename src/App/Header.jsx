@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import Icon from "@mdi/react";
 import { mdiCartVariant, mdiAccount, mdiTextBoxOutline } from "@mdi/js";
@@ -20,7 +20,7 @@ const HeaderBadge = () => {
 };
 
 const Header = () => {
-	const dispatch = useModalDispatch();
+	const [isLogin, setIsLogin] = useState(false);
 
 	const handlePointerUp = () => {
 		dispatch({
