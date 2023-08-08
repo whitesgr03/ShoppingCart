@@ -26,7 +26,7 @@ const Modal = () => {
 		<div
 			data-testid="shadow"
 			className={`shadow ${modal ? `${modal} active` : ""}`}
-			onPointerUp={handleCheckTarget}
+			onPointerUp={handleCloseModule}
 		>
 			<ModalCart />
 			<ModalAlert />
