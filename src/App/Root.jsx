@@ -53,7 +53,7 @@ const Root = () => {
 			result.success && setImageUrl(result.data);
 		};
 
-		backgroundImage[page] === null && handleFetch();
+		backgroundImage[page] === null && handleUrlFetch();
 	}, [page, backgroundImage, navigate]);
 
 	useEffect(() => {
