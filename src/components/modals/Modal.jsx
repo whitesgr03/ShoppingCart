@@ -1,9 +1,13 @@
+import { useState } from "react";
+
 import ModalCart from "./ModalCart";
-import ModalAlert from "./ModalAlert";
+import ModalProductAlert from "./ModalProductAlert";
 
 import { useModal, useModalDispatch } from "../../App/RootContext";
 
 const Modal = () => {
+	const [isLoading, setIsLoading] = useState(false);
+
 	const { modal } = useModal();
 
 	const dispatch = useModalDispatch();
