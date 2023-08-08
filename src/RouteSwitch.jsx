@@ -4,7 +4,7 @@ import Home from "./components/Home";
 
 import ShopPage from "./components/products/ShopPage";
 import ProductList from "./components/products/ProductList";
-import SingleProductPage from "./components/products/SignProductPage";
+import SingleProductPage from "./components/products/SingleProductPage";
 
 import Contact from "./components/Contact";
 
