@@ -113,6 +113,8 @@ const ModalCartList = ({ list, isLoading, onLoading }) => {
 
 ModalCartList.propTypes = {
 	list: PropTypes.array,
+	isLoading: PropTypes.bool,
+	onLoading: PropTypes.func,
 };
 
 ModalCartListOption.propTypes = {
