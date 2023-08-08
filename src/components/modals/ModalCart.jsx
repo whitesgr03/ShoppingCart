@@ -33,7 +33,11 @@ const ModalCart = ({ isLoading, onLoading }) => {
 				</div>
 			) : (
 				<>
-					<ModalCartList list={cartList} />
+					<ModalCartList
+						list={cartList}
+						isLoading={isLoading}
+						onLoading={onLoading}
+					/>
 					<div className="checkout">
 						<p className="price">
 							Total: <b>${totalPrice}</b>
