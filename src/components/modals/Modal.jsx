@@ -28,8 +28,8 @@ const Modal = () => {
 			className={`shadow ${modal ? `${modal} active` : ""}`}
 			onPointerUp={handleCloseModule}
 		>
-			<ModalCart />
-			<ModalAlert />
+			<ModalCart isLoading={isLoading} onLoading={setIsLoading} />
+			<ModalProductAlert isLoading={isLoading} onLoading={setIsLoading} />
 		</div>
 	);
 };
