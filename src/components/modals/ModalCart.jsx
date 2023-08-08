@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useCart, useModalDispatch } from "../../App/RootContext";
 
+import PropTypes from "prop-types";
 
 import ModalCartList from "./ModalCartList";
 
@@ -54,6 +55,11 @@ const ModalCart = ({ isLoading, onLoading }) => {
 			)}
 		</div>
 	);
+};
+
+ModalCart.propTypes = {
+	isLoading: PropTypes.bool,
+	onLoading: PropTypes.func,
 };
 
 export default ModalCart;
