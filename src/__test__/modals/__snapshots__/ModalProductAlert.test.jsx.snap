@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Alert Component Should return ModalProductAlert DOM 1`] = `
+<div>
+  <div
+    class="productAlert"
+  >
+    <div
+      class="title"
+      data-testid="title"
+    >
+      Add product to cart
+    </div>
+    <button
+      class="close"
+    />
+    <div
+      class="product"
+    >
+      <div
+        class="image"
+        style="height: 0px;"
+      >
+        <img
+          alt="fake"
+          src="../"
+        />
+      </div>
+      <div
+        class="description"
+      >
+        <h2
+          class="title"
+        >
+          fake
+        </h2>
+        <p
+          class="quantity"
+        >
+          Quantity: 
+        </p>
+        <p
+          class="price"
+        >
+          Price: $
+          19.90
+        </p>
+        <p
+          class="subtotal"
+        >
+          Subtotal (without tax): 
+          item(s) $
+          NaN
+        </p>
+      </div>
+    </div>
+    <div
+      class="buttons"
+    >
+      <button
+        class="left slide"
+      >
+        VIEW CART
+      </button>
+      <button
+        class="right slide close"
+      >
+        CONTINUE SHOPPING
+      </button>
+    </div>
+  </div>
+</div>
+`;
