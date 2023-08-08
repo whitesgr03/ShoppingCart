@@ -3,26 +3,26 @@ import userEvent from "@testing-library/user-event";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
+import { useCart, useModal, useModalDispatch } from "../../App/RootContext";
+
 import Modal from "../../components/modals/Modal";
 
-let mockModal = null;
-let mockModalDispatch = null;
-
-jest.mock("../../App/RootContext", () => ({
-	...jest.requireActual("../../App/RootContext"),
-	useModal: () => mockModal,
-	useModalDispatch: () => mockModalDispatch,
-}));
+jest.mock("../../firebase-config");
+jest.mock("../../App/RootContext");
 
 describe("Renders Modal Component", () => {
 	it("Should return Modal DOM", () => {
-		mockModal = {
-			modal: "",
+		const mockModal = {
+			modal: "fake",
 			alertProduct: {
 				state: "",
 				product: null,
 			},
 		};
+
+		useModal.mockReturnValue(mockModal);
+
+		useCart.mockReturnValueOnce([]);
 
 		const routes = [
 			{
@@ -43,14 +43,21 @@ describe("Renders Modal Component", () => {
 	});
 
 	it("Should close Modal DOM with click event", async () => {
-		mockModal = {
-			modal: "",
+		const mockModal = {
+			modal: "fake",
 			alertProduct: {
 				state: "",
 				product: null,
 			},
 		};
-		mockModalDispatch = jest.fn();
+
+		const mockModalDispatch = jest.fn();
+
+		useModal.mockReturnValue(mockModal);
+
+		useCart.mockReturnValueOnce([]);
+
+		useModalDispatch.mockReturnValueOnce(mockModalDispatch);
 
 		const user = userEvent.setup();
 		const routes = [
