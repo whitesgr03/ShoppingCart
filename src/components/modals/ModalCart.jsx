@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { useCart } from "../../App/RootContext";
-import { useModalDispatch } from "../../App/RootContext";
+import { useCart, useModalDispatch } from "../../App/RootContext";
+
 
 import ModalCartList from "./ModalCartList";
 
