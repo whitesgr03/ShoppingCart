@@ -3,19 +3,25 @@ import userEvent from "@testing-library/user-event";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
+import { useCart, useModalDispatch } from "../../App/RootContext";
+
 import Header, { HeaderBadge } from "../../App/Header";
 
-let mockUseCart = [];
-let mockDispatch = null;
-
-jest.mock("../../App/RootContext", () => ({
-	...jest.requireActual("../../App/RootContext"),
-	useCart: () => mockUseCart,
-	useModalDispatch: () => mockDispatch,
+jest.mock("../../firebase-config", () => ({
+	...jest.requireActual("../../firebase-config"),
+	initialAuth: () => ({
+		onAuthStateChanged: jest.fn(() => jest.fn()),
+	}),
 }));
+
+jest.mock("../../App/RootContext");
+jest.mock("../../utils/handleUserAccount");
+jest.mock("../../utils/handleUserCarts");
 
 describe("Renders Header Component", () => {
 	it("Should return Header DOM", () => {
+		useCart.mockReturnValueOnce([]);
+
 		const routes = [
 			{
 				path: "/",
@@ -26,6 +32,7 @@ describe("Renders Header Component", () => {
 		const router = createMemoryRouter(routes, {
 			initialEntries: ["/"],
 		});
+
 		render(<RouterProvider router={router} />);
 
 		const actual = screen.getByTestId("sidebar");
@@ -34,7 +41,7 @@ describe("Renders Header Component", () => {
 	});
 
 	it("Should return HeaderBadge DOM with cartList", () => {
-		mockUseCart = [
+		const mockUseCart = [
 			{
 				id: 0,
 				name: "fake",
@@ -43,6 +50,8 @@ describe("Renders Header Component", () => {
 				quantity: 1,
 			},
 		];
+
+		useCart.mockReturnValueOnce(mockUseCart);
 
 		const routes = [
 			{
@@ -62,7 +71,11 @@ describe("Renders Header Component", () => {
 	});
 
 	it("Should show cart Alert with click event", async () => {
-		mockDispatch = jest.fn();
+		useCart.mockReturnValueOnce([]);
+
+		const mockFn = jest.fn();
+
+		useModalDispatch.mockReturnValueOnce(mockFn);
 
 		const user = userEvent.setup();
 
@@ -79,9 +92,8 @@ describe("Renders Header Component", () => {
 		render(<RouterProvider router={router} />);
 
 		const button = screen.getByTestId("cart");
-
 		await user.pointer({ keys: "[MouseLeft]", target: button });
 
-		expect(mockDispatch).toBeCalledTimes(1);
+		expect(mockFn).toBeCalledTimes(1);
 	});
 });
