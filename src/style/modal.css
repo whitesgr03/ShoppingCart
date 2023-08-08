@@ -163,6 +163,34 @@
 	overflow: scroll;
 }
 
+.shadow .cart .items.changing {
+	pointer-events: none;
+}
+
+.shadow .cart .items.changing .update {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+.shadow .cart .items.changing .update::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-color: var(--main-dark);
+	opacity: 0.5;
+}
+
 .shadow .cart .item {
 	position: relative;
 	display: flex;
