@@ -39,18 +39,18 @@ const Root = () => {
 	};
 
 	useEffect(() => {
-		const handleFetch = async () => {
+		const handleUrlFetch = async () => {
 			setIsLoading(true);
-			try {
-				setImageUrl(await fetchBackgroundImageUrl(page));
-			} catch (error) {
-				console.log({
-					message: "fetch image does not exist",
-					state: error,
-				});
+
+			const result = await getBackgroundImageUrl(page);
+
+			if (!result.success) {
 				navigate("/error");
 				setIsLoading(false);
+				return;
 			}
+
+			result.success && setImageUrl(result.data);
 		};
 
 		backgroundImage[page] === null && handleFetch();
