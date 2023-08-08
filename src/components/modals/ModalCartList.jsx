@@ -17,7 +17,7 @@ const ModalCartListOption = ({ quantity }) => {
 		));
 };
 
-const ModalCartList = ({ list }) => {
+const ModalCartList = ({ list, isLoading, onLoading }) => {
 	const cartDispatch = useCartDispatch();
 	const modalDispatch = useModalDispatch();
 
