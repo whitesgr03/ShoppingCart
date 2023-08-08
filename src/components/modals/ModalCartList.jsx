@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 
 import { useCartDispatch, useModalDispatch } from "../../App/RootContext";
 
+import { updateUserCartItem } from "../../utils/handleUserCarts";
+
 const ModalCartListOption = ({ quantity }) => {
 	const maxQuantity = quantity > 10 ? quantity : 10;
 
