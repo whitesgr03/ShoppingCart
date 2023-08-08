@@ -1,16 +1,16 @@
 const modalReducer = (state, action) => {
 	switch (action.type) {
 		case "cart": {
-			return { modal: "showCart", ...state };
+			return { ...state, modal: "showCart" };
 		}
 		case "alert": {
 			return {
-				modal: "showAlert",
 				alertProduct: action.item,
+				modal: "showAlert",
 			};
 		}
 		case "close": {
-			return { modal: "", ...state };
+			return { ...state, modal: "" };
 		}
 		default:
 			return "Unknown action: " + action.type;
