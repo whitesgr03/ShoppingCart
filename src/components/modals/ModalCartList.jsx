@@ -59,24 +59,65 @@ const ModalCartList = ({ list, isLoading, onLoading }) => {
 
 	return (
 		<div className="items">
-			{list.map(product => (
-				<div className="item" key={product.id}>
-					<div className="warp">
-						<img src={product.url} alt={product.name} />
-					</div>
-					<div className="description">
-						<div className="info">
-							<div className="name">{product.name}</div>
-							<div className="price">
-								${product.price.toFixed(2)}
+			<div className="itemWarp">
+				{list.map(product => (
+					<div className="item" key={product.id}>
+						<div className="warp">
+							<img src={product.url} alt={product.name} />
+						</div>
+						<div className="description">
+							<div className="info">
+								<div className="name">{product.name}</div>
+								<div className="price">
+									${product.price.toFixed(2)}
+								</div>
+							</div>
+
+							<div className="subtotal">
+								<label htmlFor={product.name}>
+									Quantity
+									<select
+										data-testid="quantity"
+										name="quantity"
+										id={product.name}
+										onChange={e =>
+											handleChange({
+												...product,
+												quantity: +e.target.value,
+											})
+										}
+										value={product.quantity}
+									>
+										<ModalCartListOption
+											quantity={product.quantity}
+										/>
+									</select>
+								</label>
+								<p>
+									Subtotal: $
+									{(product.quantity * product.price).toFixed(
+										2
+									)}
+								</p>
 							</div>
 						</div>
+						<button
+							className="removeBtn"
+							data-testid="removeBtn"
+							onPointerUp={() => handleRemove(product)}
+						>
+							<Icon path={mdiTrashCanOutline} />
+						</button>
+					</div>
+				))}
+			</div>
 
 			{isLoading && (
 				<div className="loading">
 					<Icon path={mdiLoading} spin={1} size={3}></Icon>
 				</div>
 			)}
+		</div>
 	);
 };
 
