@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useCart, useCartDispatch, useModalDispatch } from "./RootContext";
 
 import Icon from "@mdi/react";
 import { mdiCartVariant, mdiAccount, mdiTextBoxOutline } from "@mdi/js";
@@ -23,6 +24,8 @@ const HeaderBadge = () => {
 const Header = () => {
 	const [isLogin, setIsLogin] = useState(false);
 	const [auth, setAuth] = useState(true);
+	const modalDispatch = useModalDispatch();
+	const cartDispatch = useCartDispatch();
 
 	const handlePointerUp = () => {
 		dispatch({
