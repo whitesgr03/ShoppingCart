@@ -259,11 +259,11 @@
 	width: 2rem;
 }
 
-.shadow.active.showAlert .alert {
+.shadow.active.showAlert .productAlert {
 	transform: translate(-50%, 50%);
 }
 
-.shadow .alert {
+.shadow .productAlert {
 	display: flex;
 	flex-direction: column;
 	position: absolute;
@@ -279,7 +279,7 @@
 	overflow: hidden;
 }
 
-.shadow .alert > .title {
+.shadow .productAlert > .title {
 	padding: 10px 0;
 	font-size: 1.5rem;
 	text-align: center;
@@ -287,19 +287,21 @@
 	color: var(--main-light);
 }
 
-.shadow .alert .product {
+.shadow .productAlert .product {
 	flex: 1 1 auto;
 	display: flex;
 	min-height: 0;
 	padding: 10px 20px;
 	column-gap: 20px;
+	overflow: scroll;
+	position: relative;
 }
 
-.shadow .alert .product .image {
+.shadow .productAlert .product .image {
 	flex: 1 1 40%;
 }
 
-.shadow .alert .product img {
+.shadow .productAlert .product img {
 	border: 1px solid var(--main-dark);
 	border-radius: 10px;
 	width: 100%;
@@ -307,22 +309,22 @@
 	object-fit: cover;
 }
 
-.shadow .alert .product .description {
+.shadow .productAlert .product .description {
 	flex: 1 1 60%;
 	display: flex;
 	flex-direction: column;
 }
 
-.shadow .alert .product .description > p {
+.shadow .productAlert .product .description > p {
 	padding: 20px 0;
 }
 
-.shadow .alert .product .description .title {
+.shadow .productAlert .product .description .title {
 	flex: 1 1 auto;
 	font-size: 1.2rem;
 }
 
-.shadow .alert .buttons {
+.shadow .productAlert .buttons {
 	padding: 20px 0;
 	display: flex;
 	align-items: center;
@@ -330,41 +332,41 @@
 	background-color: var(--sidebar-link);
 }
 
-.shadow .alert .buttons button {
+.shadow .productAlert .buttons button {
 	padding: 10px 30px;
 }
 
-.shadow .alert .buttons .left {
+.shadow .productAlert .buttons .left {
 	color: var(--main-light);
 	background-color: var(--main-light);
 }
 
-.shadow .alert .buttons .left:hover {
+.shadow .productAlert .buttons .left:hover {
 	color: var(--main-dark);
 }
 
-.shadow .alert .buttons .left::after {
+.shadow .productAlert .buttons .left::after {
 	background-color: var(--main-light);
 }
 
-.shadow .alert .buttons .left::before {
+.shadow .productAlert .buttons .left::before {
 	background-color: var(--main-dark);
 }
 
-.shadow .alert .buttons .right {
+.shadow .productAlert .buttons .right {
 	border: 1px solid var(--main-light);
 	background-color: var(--main-dark);
 	color: var(--main-light);
 }
 
-.shadow .alert .buttons .right:hover {
+.shadow .productAlert .buttons .right:hover {
 	color: var(--main-light);
 }
 
-.shadow .alert .buttons .right::after {
+.shadow .productAlert .buttons .right::after {
 	background-color: var(--main-dark);
 }
 
-.shadow .alert .buttons .right::before {
+.shadow .productAlert .buttons .right::before {
 	background-color: var(--sidebar-link);
 }
