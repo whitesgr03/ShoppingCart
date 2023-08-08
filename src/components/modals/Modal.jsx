@@ -12,12 +12,15 @@ const Modal = () => {
 
 	const dispatch = useModalDispatch();
 
-	const handleCheckTarget = e =>
-		(e.target.classList.contains("shadow") ||
-			e.target.classList.contains("close")) &&
-		dispatch({
-			type: "close",
-		});
+	const handleCloseModule = e => {
+		const classList = e.target.classList;
+
+		!isLoading &&
+			(classList.contains("shadow") || classList.contains("close")) &&
+			dispatch({
+				type: "close",
+			});
+	};
 
 	return (
 		<div
