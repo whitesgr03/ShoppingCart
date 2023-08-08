@@ -76,34 +76,33 @@ const Root = () => {
 	}, [page, products, navigate]);
 
 	return (
-		<>
-			<RootProvider>
-				<Header />
-				<div data-testid="content" className={"content"}>
-					{isLoading ? (
-						<div data-testid="loading" className="loading">
-							<img
-								onLoad={imageLoad}
-								src={imageUrl}
-								alt="none"
-								hidden
-							/>
-							<Icon path={mdiLoading} spin={1} size={3} />
-							Loading...
-						</div>
-					) : (
-						<Outlet
-							context={{
-								products,
-								backgroundImage,
-							}}
+		<RootProvider>
+			<Header />
+
+			<div data-testid="content" className={"content"}>
+				{isLoading ? (
+					<div data-testid="loading" className="loading">
+						<img
+							onLoad={imageLoad}
+							src={imageUrl}
+							alt="none"
+							hidden
 						/>
-					)}
-					<Footer />
-				</div>
-				<Modal />
-			</RootProvider>
-		</>
+						<Icon path={mdiLoading} spin={1} size={3} />
+						Loading...
+					</div>
+				) : (
+					<Outlet
+						context={{
+							products,
+							backgroundImage,
+						}}
+					/>
+				)}
+				<Footer />
+			</div>
+			<Modal />
+		</RootProvider>
 	);
 };
 
