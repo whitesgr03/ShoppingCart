@@ -26,6 +26,15 @@
 	transition: transform 0.3s ease;
 }
 
+.sidebar .icons.authenticate button {
+	border-radius: 50%;
+	background-color: rgba(128, 128, 128, 0.499);
+}
+
+.sidebar .icons.authenticate button svg {
+	opacity: 0;
+}
+
 .sidebar .icons button:hover {
 	transform: scale(1.2);
 }
