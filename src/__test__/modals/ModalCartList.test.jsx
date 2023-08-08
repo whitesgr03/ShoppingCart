@@ -2,17 +2,11 @@ import { screen, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import { updateUserCartItem } from "../../utils/handleUserCarts";
 
 import ModalCartList from "../../components/modals/ModalCartList";
 
-let mockModalDispatch = null;
-let mockCartDispatch = null;
-
-jest.mock("../../App/RootContext", () => ({
-	...jest.requireActual("../../App/RootContext"),
-	useModalDispatch: () => mockModalDispatch,
-	useCartDispatch: () => mockCartDispatch,
-}));
+jest.mock("../../utils/handleUserCarts");
 
 describe("Renders ModalCartList Component", () => {
 	it("Should show Remove Alert modal DOM with click event", async () => {
@@ -49,24 +43,41 @@ describe("Renders ModalCartList Component", () => {
 		expect(mockModalDispatch).toBeCalledTimes(1);
 	});
 	it("Should change select value with change event", async () => {
-		mockCartDispatch = jest.fn();
+		const mockCartData = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+			quantity: 1,
+		};
 
-		const mockCartData = [
-			{
-				id: 0,
-				name: "fake",
-				url: "../",
-				price: 19.9,
-				quantity: 1,
-			},
-		];
+		const updateFetchResult = {
+			message: "Update cart item success.",
+			success: true,
+		};
+
+		const mockIsLoad = false;
+
+		const mockModalDispatch = jest.fn();
+		const mockCartDispatch = jest.fn();
+		const mockOnLoading = jest.fn();
+
+		useModalDispatch.mockReturnValueOnce(mockModalDispatch);
+		useCartDispatch.mockReturnValueOnce(mockCartDispatch);
+		updateUserCartItem.mockReturnValueOnce(updateFetchResult);
 
 		const user = userEvent.setup();
 
 		const routes = [
 			{
 				path: "/",
-                element: <ModalCartList list={mockCartData} />,
+				element: (
+					<ModalCartList
+						list={[mockCartData]}
+						isLoading={mockIsLoad}
+						onLoading={mockOnLoading}
+					/>
+				),
 			},
 		];
 
@@ -82,6 +93,8 @@ describe("Renders ModalCartList Component", () => {
 
 		await user.selectOptions(select, "2");
 
+		expect(updateUserCartItem).toBeCalledTimes(1);
+		expect(mockOnLoading).toBeCalledTimes(2);
 		expect(mockCartDispatch).toBeCalledTimes(1);
 	});
 });
