@@ -1,3 +1,5 @@
+import "../../style/modals/modal.css";
+
 import { useState } from "react";
 
 import ModalCart from "./ModalCart";
