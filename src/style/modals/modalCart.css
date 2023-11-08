@@ -1,0 +1,67 @@
+.modal .cart {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: max(400px, 30%);
+	color: var(--main-light);
+	background-color: var(--main-dark);
+	border-left: 1px solid var(--main-light);
+	transform: translateX(100%);
+	transition: transform 0.2s ease;
+}
+
+.modal .cart .title {
+	padding: 30px;
+	font-size: 2rem;
+	text-align: center;
+	border-bottom: 1px solid var(--main-light);
+}
+
+.modal .cart .empty {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+}
+
+.modal .cart .checkout {
+	padding: 30px;
+	border-top: 1px solid var(--main-light);
+	display: flex;
+	column-gap: 20px;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.modal .cart .checkout .price {
+	flex: 1 1 50%;
+}
+
+.modal .cart .checkout .checkoutBtn {
+	display: flex;
+	padding: 20px 30px;
+	flex: 1 1 50%;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--main-dark);
+	color: var(--main-light);
+	border: 1px solid var(--sidebar-link);
+}
+
+.modal .cart .checkout .checkoutBtn:hover {
+	border-color: var(--main-light);
+	color: var(--main-light);
+}
+
+.modal .cart .checkout .checkoutBtn::after {
+	background-color: var(--main-dark);
+}
+
+.modal .cart .checkout .checkoutBtn::before {
+	background-color: var(--sidebar-link);
+}
