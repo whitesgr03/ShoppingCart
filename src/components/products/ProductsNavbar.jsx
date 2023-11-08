@@ -1,3 +1,4 @@
+import "../../style/products/productNavBar.css";
 import { Link } from "react-router-dom";
 
 const ProductsNavbar = () => {
