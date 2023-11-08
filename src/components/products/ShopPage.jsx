@@ -1,3 +1,5 @@
+import "../../style/products/shop.css";
+
 import { useState, useEffect } from "react";
 import { Outlet, useLocation, useOutletContext } from "react-router-dom";
 
