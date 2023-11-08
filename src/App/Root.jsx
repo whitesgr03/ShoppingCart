@@ -39,7 +39,7 @@ const Root = () => {
 	};
 
 	useEffect(() => {
-		const handleUrlFetch = async () => {
+		const handleBgFetch = async () => {
 			setIsLoading(true);
 
 			const result = await getBackgroundImageUrl(page);
@@ -53,7 +53,7 @@ const Root = () => {
 			result.success && setImageUrl(result.data);
 		};
 
-		backgroundImage[page] === null && handleUrlFetch();
+		backgroundImage[page] === null && handleBgFetch();
 	}, [page, backgroundImage, navigate]);
 
 	useEffect(() => {
