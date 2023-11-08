@@ -36,12 +36,6 @@ exports[`Renders Home Component Should return Home DOM 1`] = `
         type="button"
       />
     </div>
-    <div
-      class="info"
-    />
-    <div
-      class="category"
-    />
   </div>
 </div>
 `;

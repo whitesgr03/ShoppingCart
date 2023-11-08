@@ -23,8 +23,6 @@ const Home = () => {
 				</div>
 				<button type="button" className="arrow right"></button>
 			</div>
-			<div className="info"></div>
-			<div className="category"></div>
 		</div>
 	);
 };
