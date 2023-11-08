@@ -1,0 +1,107 @@
+.modal .productAlert {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	left: 50%;
+	bottom: 50%;
+	margin: 0 auto;
+	transform: translate(-50%, -100%);
+	width: 40%;
+	height: 50%;
+	background-color: var(--main-light);
+	border-radius: 10px;
+	transition: transform 0.3s ease;
+	overflow: hidden;
+}
+
+.modal .productAlert > .title {
+	padding: 10px 0;
+	font-size: 1.5rem;
+	text-align: center;
+	background-color: var(--sidebar-link);
+	color: var(--main-light);
+}
+
+.modal .productAlert .product {
+	flex: 1 1 auto;
+	display: flex;
+	min-height: 0;
+	padding: 10px 20px;
+	column-gap: 20px;
+	overflow: scroll;
+	position: relative;
+}
+
+.modal .productAlert .product .image {
+	flex: 1 1 40%;
+}
+
+.modal .productAlert .product img {
+	border: 1px solid var(--main-dark);
+	border-radius: 10px;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.modal .productAlert .product .description {
+	flex: 1 1 60%;
+	display: flex;
+	flex-direction: column;
+}
+
+.modal .productAlert .product .description > p {
+	padding: 20px 0;
+}
+
+.modal .productAlert .product .description .title {
+	flex: 1 1 auto;
+	font-size: 1.2rem;
+}
+
+.modal .productAlert .buttons {
+	padding: 20px 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	background-color: var(--sidebar-link);
+}
+
+.modal .productAlert .buttons button {
+	padding: 10px 30px;
+}
+
+.modal .productAlert .buttons .left {
+	color: var(--main-light);
+	background-color: var(--main-light);
+}
+
+.modal .productAlert .buttons .left:hover {
+	color: var(--main-dark);
+}
+
+.modal .productAlert .buttons .left::after {
+	background-color: var(--main-light);
+}
+
+.modal .productAlert .buttons .left::before {
+	background-color: var(--main-dark);
+}
+
+.modal .productAlert .buttons .right {
+	border: 1px solid var(--main-light);
+	background-color: var(--main-dark);
+	color: var(--main-light);
+}
+
+.modal .productAlert .buttons .right:hover {
+	color: var(--main-light);
+}
+
+.modal .productAlert .buttons .right::after {
+	background-color: var(--main-dark);
+}
+
+.modal .productAlert .buttons .right::before {
+	background-color: var(--sidebar-link);
+}
