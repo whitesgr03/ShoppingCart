@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
-
+import "../../style/modals/modalCartList.css";
 import Icon from "@mdi/react";
 import { mdiTrashCanOutline, mdiLoading } from "@mdi/js";
+
+import { useNavigate } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
