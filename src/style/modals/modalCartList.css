@@ -1,0 +1,113 @@
+.modal .items {
+	flex: 1 1 100%;
+	position: relative;
+}
+
+.modal .items .itemWarp {
+	position: absolute;
+	padding: 20px;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+	overflow: scroll;
+}
+
+.modal .items.changing {
+	pointer-events: none;
+}
+
+.modal .items.changing .update {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+.modal .items.changing .update::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-color: var(--main-dark);
+	opacity: 0.5;
+}
+
+.modal .item {
+	position: relative;
+	display: flex;
+}
+
+.modal .item .warp {
+	flex: 1 1 40%;
+	padding: 10px;
+	border: 1px solid;
+}
+
+.modal .item .description {
+	flex: 1 1 60%;
+	padding-left: 10px;
+	padding-right: 40px;
+	justify-content: space-between;
+	display: flex;
+	flex-direction: column;
+}
+
+.modal .item .description .info {
+	display: flex;
+	flex-direction: column;
+	row-gap: 30px;
+}
+
+.modal .item .description .info .name {
+	font-size: 1.2rem;
+}
+
+.modal .item .description .subtotal {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+}
+
+.modal .item .description label {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+}
+
+.modal .item .description select {
+	padding: 5px;
+	background-color: var(--main-dark);
+	color: var(--main-light);
+	border-color: var(--main-light);
+}
+
+.modal .item .removeBtn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	transition: transform 0.3s ease;
+}
+
+.modal .item .removeBtn:hover {
+	transform: scale(1.1);
+}
+
+.modal .item .removeBtn:active {
+	transform: scale(0.9);
+}
+
+.modal .item .removeBtn svg {
+	width: 2rem;
+}
