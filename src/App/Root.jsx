@@ -39,6 +39,8 @@ const Root = () => {
 	};
 
 	useEffect(() => {
+		let ignore = false;
+
 		const handleBgFetch = async () => {
 			setIsLoading(true);
 
@@ -54,6 +56,10 @@ const Root = () => {
 		};
 
 		backgroundImage[page] === null && handleBgFetch();
+
+		return () => {
+			ignore = true;
+		};
 	}, [page, backgroundImage, navigate]);
 
 	useEffect(() => {
