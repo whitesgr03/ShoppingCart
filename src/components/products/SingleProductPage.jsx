@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-
+import "../../style/products/singleProductPage.css";
 import Icon from "@mdi/react";
 import { mdiLoading } from "@mdi/js";
+
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
 	useCart,
