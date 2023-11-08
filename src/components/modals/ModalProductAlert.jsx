@@ -1,8 +1,9 @@
-import { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-
+import "../../style/modals/modalProductAlert.css";
 import Icon from "@mdi/react";
 import { mdiLoading } from "@mdi/js";
+
+import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
 	useCartDispatch,
