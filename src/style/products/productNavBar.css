@@ -1,0 +1,12 @@
+.category {
+	display: flex;
+	flex: 7 1 auto;
+}
+
+.category li {
+	white-space: break-spaces;
+}
+
+.category li:hover {
+	color: var(--sidebar-link);
+}
