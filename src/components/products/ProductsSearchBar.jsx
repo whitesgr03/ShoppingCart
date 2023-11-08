@@ -1,7 +1,8 @@
-import { useState } from "react";
-
+import "../../style/products/productSearchBar.css";
 import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
+
+import { useState } from "react";
 
 import PropTypes from "prop-types";
 
