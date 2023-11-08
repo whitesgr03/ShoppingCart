@@ -1,7 +1,8 @@
-import { useOutletContext } from "react-router-dom";
-
+import "../style/App/contact.css";
 import Icon from "@mdi/react";
 import { mdiPhone, mdiEmailOutline, mdiMapMarker } from "@mdi/js";
+
+import { useOutletContext } from "react-router-dom";
 
 const Contact = () => {
 	const { backgroundImage } = useOutletContext();
