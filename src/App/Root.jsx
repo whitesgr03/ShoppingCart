@@ -8,7 +8,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Modal from "../components/modals/Modal";
 
-import RootProvider from "./RootContext";
+import RootContext from "./RootContext";
 
 import getAllProducts from "../utils/handleProducts";
 import getBackgroundImageUrl from "../utils/handleBackgroundImageUrl";
