@@ -1,19 +1,19 @@
-import Root from "./App/Root";
+import App from "./components/App";
 import Home from "./components/Home";
 import ShopPage from "./components/products/ShopPage";
 import ProductList from "./components/products/ProductList";
 import SingleProductPage from "./components/products/SingleProductPage";
 import Contact from "./components/Contact";
-import AuthGuard from "./App/AuthGuard";
-import Error from "./App/Error";
+import AuthGuard from "./components/AuthGuard";
+import Error from "./components/Error";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const RouteSwitch = () => {
+const Root = () => {
 	const router = createBrowserRouter([
 		{
 			path: "/",
-			element: <Root />,
+			element: <App />,
 			children: [
 				{
 					path: "*",
@@ -51,4 +51,4 @@ const RouteSwitch = () => {
 	return <RouterProvider router={router} />;
 };
 
-export default RouteSwitch;
+export default Root;

@@ -4,11 +4,11 @@ import userEvent from "@testing-library/user-event";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
 import { updateUserCartItem } from "../../utils/handleUserCarts";
-import { useModalDispatch, useCartDispatch } from "../../App/RootContext";
+import { useModalDispatch, useCartDispatch } from "../../components/RootContext";
 
 import ModalCartList from "../../components/modals/ModalCartList";
 
-jest.mock("../../App/RootContext");
+jest.mock("../../components/RootContext");
 jest.mock("../../firebase-config");
 jest.mock("../../utils/handleUserCarts");
 

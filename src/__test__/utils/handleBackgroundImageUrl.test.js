@@ -16,7 +16,6 @@ it("Should successfully fetch Background Image data", async () => {
 	const mockRef = jest.fn(() => ({
 		getDownloadURL: mockGetDownloadURL,
 	}));
-
 	const mockInitialStorage = {
 		ref: mockRef,
 	};

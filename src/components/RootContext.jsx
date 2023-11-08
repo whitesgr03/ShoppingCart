@@ -1,6 +1,6 @@
 import { createContext, useReducer, useContext } from "react";
-import cartReducer from "../components/modals/modalCartReducer";
-import modalReducer from "../components/modals/modalReducer";
+import cartReducer from "./modals/modalCartReducer";
+import modalReducer from "./modals/modalReducer";
 
 const cartContext = createContext([]);
 const cartDispatchContext = createContext(cartReducer);

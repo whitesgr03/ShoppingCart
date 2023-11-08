@@ -1,4 +1,4 @@
-import "../style/App/error.css";
+import "../style/error.css";
 import Icon from "@mdi/react";
 import { mdiHanger } from "@mdi/js";
 

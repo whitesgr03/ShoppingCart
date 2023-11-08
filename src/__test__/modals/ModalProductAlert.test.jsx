@@ -7,7 +7,7 @@ import {
 	useModal,
 	useModalDispatch,
 	useCartDispatch,
-} from "../../App/RootContext";
+} from "../../components/RootContext";
 
 import ModalProductAlert from "../../components/modals/ModalProductAlert";
 
@@ -20,7 +20,7 @@ jest.mock("react-router-dom", () => ({
 
 jest.mock("../../firebase-config");
 jest.mock("../../utils/handleUserCarts");
-jest.mock("../../App/RootContext");
+jest.mock("../../components/RootContext");
 jest.mock("../../utils/handleUserCarts");
 
 describe("Renders Alert Component", () => {

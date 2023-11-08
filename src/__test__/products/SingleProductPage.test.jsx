@@ -8,7 +8,7 @@ import {
 	useCart,
 	useModalDispatch,
 	useCartDispatch,
-} from "../../App/RootContext";
+} from "../../components/RootContext";
 
 import { addUserCartItem } from "../../utils/handleUserCarts";
 
@@ -28,7 +28,7 @@ jest.mock("../../firebase-config", () => ({
 	}),
 }));
 
-jest.mock("../../App/RootContext");
+jest.mock("../../components/RootContext");
 jest.mock("../../utils/handleUserCarts");
 
 describe("Renders SignProductPage Component", () => {

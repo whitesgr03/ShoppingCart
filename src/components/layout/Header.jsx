@@ -1,4 +1,4 @@
-import "../style/App/header.css";
+import "../../style/layout/header.css";
 import Icon from "@mdi/react";
 import {
 	mdiCartVariant,
@@ -9,17 +9,17 @@ import {
 
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { initialAuth } from "../firebase-config";
+import { initialAuth } from "../../firebase-config";
 
-import { useCart, useCartDispatch, useModalDispatch } from "./RootContext";
+import { useCart, useCartDispatch, useModalDispatch } from "../RootContext";
 
 import {
 	userLogout,
 	googleLogin,
 	checkUser,
 	createUser,
-} from "../utils/handleUserAccount";
-import { getUserCart } from "../utils/handleUserCarts";
+} from "../../utils/handleUserAccount";
+import { getUserCart } from "../../utils/handleUserCarts";
 
 const HeaderBadge = () => {
 	const cartList = useCart();

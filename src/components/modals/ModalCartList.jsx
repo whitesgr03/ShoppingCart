@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
-import { useCartDispatch, useModalDispatch } from "../../App/RootContext";
+import { useCartDispatch, useModalDispatch } from "../RootContext";
 
 import { updateUserCartItem } from "../../utils/handleUserCarts";
 

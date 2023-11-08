@@ -2,7 +2,7 @@ import "../../style/modals/modalCart.css";
 
 import { useNavigate } from "react-router-dom";
 
-import { useCart, useModalDispatch } from "../../App/RootContext";
+import { useCart, useModalDispatch } from "../RootContext";
 
 import PropTypes from "prop-types";
 

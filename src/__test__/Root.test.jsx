@@ -1,10 +1,10 @@
 import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
-import Root from "../../App/Root";
+import Root from "../components/App";
 
-import getBackgroundImageUrl from "../../utils/handleBackgroundImageUrl";
-import getAllProducts from "../../utils/handleProducts";
+import getBackgroundImageUrl from "../utils/handleBackgroundImageUrl";
+import getAllProducts from "../utils/handleProducts";
 
 let mockLocation = null;
 let mockNavigate = null;
@@ -15,15 +15,15 @@ jest.mock("react-router-dom", () => ({
 	useNavigate: jest.fn(() => mockNavigate),
 }));
 
-jest.mock("../../firebase-config", () => ({
-	...jest.requireActual("../../firebase-config"),
+jest.mock("../firebase-config", () => ({
+	...jest.requireActual("../firebase-config"),
 	initialAuth: () => ({
 		onAuthStateChanged: jest.fn(() => jest.fn()),
 	}),
 }));
 
-jest.mock("../../utils/handleBackgroundImageUrl");
-jest.mock("../../utils/handleProducts");
+jest.mock("../utils/handleBackgroundImageUrl");
+jest.mock("../utils/handleProducts");
 
 describe("Renders Root Component", () => {
 	it("Should fetch BackgroundImageUrl with home path", async () => {

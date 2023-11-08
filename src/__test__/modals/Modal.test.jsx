@@ -3,12 +3,12 @@ import userEvent from "@testing-library/user-event";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
-import { useCart, useModal, useModalDispatch } from "../../App/RootContext";
+import { useCart, useModal, useModalDispatch } from "../../components/RootContext";
 
 import Modal from "../../components/modals/Modal";
 
 jest.mock("../../firebase-config");
-jest.mock("../../App/RootContext");
+jest.mock("../../components/RootContext");
 
 describe("Renders Modal Component", () => {
 	it("Should return Modal DOM", () => {

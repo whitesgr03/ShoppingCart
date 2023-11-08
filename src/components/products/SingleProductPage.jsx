@@ -5,11 +5,7 @@ import { mdiLoading } from "@mdi/js";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import {
-	useCart,
-	useCartDispatch,
-	useModalDispatch,
-} from "../../App/RootContext";
+import { useCart, useCartDispatch, useModalDispatch } from "../RootContext";
 
 import { addUserCartItem } from "../../utils/handleUserCarts";
 

@@ -2,11 +2,11 @@ import { screen, render } from "@testing-library/react";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
-import { useCart } from "../../App/RootContext";
+import { useCart } from "../../components/RootContext";
 
 import ModalCart from "../../components/modals/ModalCart";
 
-jest.mock("../../App/RootContext");
+jest.mock("../../components/RootContext");
 jest.mock("../../firebase-config");
 
 describe("Renders ModalCart Component", () => {

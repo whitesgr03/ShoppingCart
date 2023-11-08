@@ -1,4 +1,4 @@
-import "../style/App/contact.css";
+import "../style/contact.css";
 import Icon from "@mdi/react";
 import { mdiPhone, mdiEmailOutline, mdiMapMarker } from "@mdi/js";
 

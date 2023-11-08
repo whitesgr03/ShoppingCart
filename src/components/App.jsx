@@ -4,9 +4,9 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiLoading } from "@mdi/js";
 
-import Header from "./Header";
-import Footer from "./Footer";
-import Modal from "../components/modals/Modal";
+import Header from "./layout/Header";
+import Footer from "./layout/Footer";
+import Modal from "./modals/Modal";
 
 import RootContext from "./RootContext";
 

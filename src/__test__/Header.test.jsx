@@ -3,20 +3,20 @@ import userEvent from "@testing-library/user-event";
 
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
-import { useCart, useModalDispatch } from "../../App/RootContext";
+import { useCart, useModalDispatch } from "../components/RootContext";
 
-import Header, { HeaderBadge } from "../../App/Header";
+import Header, { HeaderBadge } from "../components/layout/Header";
 
-jest.mock("../../firebase-config", () => ({
-	...jest.requireActual("../../firebase-config"),
+jest.mock("../firebase-config", () => ({
+	...jest.requireActual("../firebase-config"),
 	initialAuth: () => ({
 		onAuthStateChanged: jest.fn(() => jest.fn()),
 	}),
 }));
 
-jest.mock("../../App/RootContext");
-jest.mock("../../utils/handleUserAccount");
-jest.mock("../../utils/handleUserCarts");
+jest.mock("../components/RootContext");
+jest.mock("../utils/handleUserAccount");
+jest.mock("../utils/handleUserCarts");
 
 describe("Renders Header Component", () => {
 	it("Should return Header DOM", () => {
