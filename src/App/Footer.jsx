@@ -1,3 +1,5 @@
+import "../style/App/footer.css";
+
 import Icon from "@mdi/react";
 import { mdiGithub } from "@mdi/js";
 
