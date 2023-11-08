@@ -75,7 +75,7 @@ const Root = () => {
 	}, [page, products, navigate]);
 
 	return (
-		<RootProvider>
+		<RootContext>
 			<Header />
 
 			<div data-testid="content" className={"content"}>
@@ -101,7 +101,7 @@ const Root = () => {
 				<Footer />
 			</div>
 			<Modal />
-		</RootProvider>
+		</RootContext>
 	);
 };
 
