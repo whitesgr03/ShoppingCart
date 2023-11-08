@@ -1,0 +1,108 @@
+.productInfo {
+	display: flex;
+	flex-wrap: wrap;
+	min-width: 0;
+}
+
+.productInfo .image {
+	flex: 1 1 50%;
+	padding: 0 30px;
+	text-align: center;
+}
+
+.productInfo .image img {
+	height: 100%;
+	object-fit: cover;
+}
+
+.productInfo .info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	row-gap: 20px;
+	flex: 1 1 50%;
+	padding: 0 30px;
+	font-size: 1.5rem;
+}
+
+.productInfo .info .description {
+	display: flex;
+	flex-direction: column;
+	row-gap: 40px;
+}
+
+.productInfo .info .description .title {
+	font-size: 2rem;
+	margin-bottom: 10px;
+}
+.productInfo .info .description .price {
+	font-size: 2rem;
+}
+
+.productInfo .info form {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	row-gap: 40px;
+}
+
+.productInfo .info form label {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.productInfo .info form select {
+	margin-top: 10px;
+	padding: 10px 20px;
+	width: 50%;
+}
+
+.productInfo .info form button[type="submit"] {
+	padding: 20px 30px;
+	color: var(--main-light);
+	width: 100%;
+	background-color: var(--main-dark);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 10px;
+}
+
+.productInfo .info form button[type="submit"]:hover {
+	color: var(--main-light);
+}
+
+.productInfo .info form button[type="submit"]::after {
+	background-color: var(--main-dark);
+}
+
+.productInfo .info form button[type="submit"]::before {
+	background-color: var(--sidebar-link);
+}
+
+.productInfo .info form button[type="submit"].adding::after {
+	transform: translateX(0%);
+	transition: all 0.3s ease;
+}
+.productInfo .info form button[type="submit"].adding::before {
+	transform: translateX(-100%);
+	transition: transform 0s 0.3s;
+}
+
+.productInfo .info form button[type="submit"].adding svg {
+	width: 24px;
+}
+
+.productError {
+	height: 100%;
+	margin: 0 auto;
+}
+
+.productError .error {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	row-gap: 20px;
+}
