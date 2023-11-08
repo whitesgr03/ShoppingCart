@@ -1,3 +1,12 @@
+import "../style/App/header.css";
+import Icon from "@mdi/react";
+import {
+	mdiCartVariant,
+	mdiAccount,
+	mdiTextBoxOutline,
+	mdiLogout,
+} from "@mdi/js";
+
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { initialAuth } from "../firebase-config";
@@ -11,14 +20,6 @@ import {
 	createUser,
 } from "../utils/handleUserAccount";
 import { getUserCart } from "../utils/handleUserCarts";
-
-import Icon from "@mdi/react";
-import {
-	mdiCartVariant,
-	mdiAccount,
-	mdiTextBoxOutline,
-	mdiLogout,
-} from "@mdi/js";
 
 const HeaderBadge = () => {
 	const cartList = useCart();
@@ -91,18 +92,18 @@ const Header = () => {
 		<div className="sidebar" data-testid="sidebar">
 			<div className={`icons ${auth ? "authenticate" : ""}`}>
 				<button
-					className={`account`}
+					className="account"
 					type="button"
 					name="showAccount"
 					onClick={isLogin ? userLogout : googleLogin}
 				>
 					<Icon path={isLogin ? mdiLogout : mdiAccount} />
 				</button>
-				<button className={`order`} type="button" name="showOrder">
+				<button className="order" type="button" name="showOrder">
 					<Icon path={mdiTextBoxOutline} />
 				</button>
 				<button
-					className={`cart`}
+					className="cart"
 					type="button"
 					name="showCart"
 					data-testid="cart"
