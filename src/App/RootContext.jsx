@@ -14,7 +14,7 @@ const modalDispatchContext = createContext(modalReducer);
 const useModal = () => useContext(modalContext);
 const useModalDispatch = () => useContext(modalDispatchContext);
 
-const RootProvider = ({ children }) => {
+const RootContext = ({ children }) => {
 	const [cart, cartListDispatch] = useReducer(cartReducer, []);
 	const [modal, modalDispatch] = useReducer(modalReducer, {
 		modal: "",
@@ -38,7 +38,7 @@ const RootProvider = ({ children }) => {
 };
 
 export {
-	RootProvider as default,
+	RootContext as default,
 	useCart,
 	useCartDispatch,
 	useModal,
