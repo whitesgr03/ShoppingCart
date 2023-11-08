@@ -1,3 +1,4 @@
+import "../style/App/home.css";
 import { Link, useOutletContext } from "react-router-dom";
 
 const Home = () => {
