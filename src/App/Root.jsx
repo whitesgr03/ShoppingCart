@@ -61,17 +61,10 @@ const Root = () => {
 
 		const handleProductsFetch = async () => {
 			setIsLoading(true);
-
 			const result = await getAllProducts();
-
-			if (!result.success) {
-				navigate("/error");
-				return;
-			}
-
-			result.success && setProducts(result.data);
-
-			setIsLoading(false);
+			!result.success && navigate("/error");
+			result.success && !ignore && setProducts(result.data);
+			result.success && setIsLoading(false);
 		};
 
 		page === "shop" && products.length === 0 && handleProductsFetch();
