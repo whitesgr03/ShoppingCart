@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
-
+import "../style/App/error.css";
 import Icon from "@mdi/react";
 import { mdiHanger } from "@mdi/js";
+
+import { Link } from "react-router-dom";
 
 const Error = () => {
 	return (
