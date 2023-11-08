@@ -1,3 +1,5 @@
+import "../../style/products/productList.css";
+
 import { Link, useOutletContext, useLocation } from "react-router-dom";
 
 const ProductList = () => {
