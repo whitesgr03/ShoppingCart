@@ -28,7 +28,7 @@ const Root = () => {
 	const page =
 		location.pathname.slice(1) === "" ? "home" : location.pathname.slice(1);
 
-	const imageLoad = () => {
+	const imagePreload = () => {
 		setBackgroundImage({
 			...backgroundImage,
 			[page]: `url(${imageUrl})`,
@@ -82,9 +82,9 @@ const Root = () => {
 				{isLoading ? (
 					<div data-testid="loading" className="loading">
 						<img
-							onLoad={imageLoad}
+							onLoad={imagePreload}
 							src={imageUrl}
-							alt="none"
+							alt=""
 							hidden
 						/>
 						<Icon path={mdiLoading} spin={1} size={3} />
