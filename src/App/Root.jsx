@@ -57,6 +57,8 @@ const Root = () => {
 	}, [page, backgroundImage, navigate]);
 
 	useEffect(() => {
+		let ignore = false;
+
 		const handleProductsFetch = async () => {
 			setIsLoading(true);
 
@@ -73,6 +75,10 @@ const Root = () => {
 		};
 
 		page === "shop" && products.length === 0 && handleProductsFetch();
+
+		return () => {
+			ignore = true;
+		};
 	}, [page, products, navigate]);
 
 	return (
