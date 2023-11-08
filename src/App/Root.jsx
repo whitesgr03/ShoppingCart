@@ -43,16 +43,10 @@ const Root = () => {
 
 		const handleBgFetch = async () => {
 			setIsLoading(true);
-
 			const result = await getBackgroundImageUrl(page);
-
-			if (!result.success) {
-				navigate("/error");
-				setIsLoading(false);
-				return;
-			}
-
-			result.success && setImageUrl(result.data);
+			!result.success && navigate("/error");
+			!result.success && setIsLoading(false);
+			result.success && !ignore && setImageUrl(result.data);
 		};
 
 		backgroundImage[page] === null && handleBgFetch();
