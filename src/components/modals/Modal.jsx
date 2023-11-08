@@ -25,13 +25,18 @@ const Modal = () => {
 	};
 
 	return (
-		<div
-			data-testid="shadow"
-			className={`shadow ${modal ? `${modal} active` : ""}`}
-			onPointerUp={handleCloseModule}
-		>
-			<ModalCart isLoading={isLoading} onLoading={setIsLoading} />
-			<ModalProductAlert isLoading={isLoading} onLoading={setIsLoading} />
+		<div className="modal">
+			<div
+				data-testid="shadow"
+				className={`shadow ${modal ? `${modal} active` : ""}`}
+				onPointerUp={handleCloseModule}
+			>
+				<ModalCart isLoading={isLoading} onLoading={setIsLoading} />
+				<ModalProductAlert
+					isLoading={isLoading}
+					onLoading={setIsLoading}
+				/>
+			</div>
 		</div>
 	);
 };
