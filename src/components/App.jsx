@@ -76,31 +76,33 @@ const Root = () => {
 
 	return (
 		<RootContext>
-			<Header />
+			<div className="app">
+				<Header />
 
-			<div data-testid="content" className={"content"}>
-				{isLoading ? (
-					<div data-testid="loading" className="loading">
-						<img
-							onLoad={imagePreload}
-							src={imageUrl}
-							alt=""
-							hidden
+				<div data-testid="content" className={"content"}>
+					{isLoading ? (
+						<div data-testid="loading" className="loading">
+							<img
+								onLoad={imagePreload}
+								src={imageUrl}
+								alt=""
+								hidden
+							/>
+							<Icon path={mdiLoading} spin={1} size={3} />
+							Loading...
+						</div>
+					) : (
+						<Outlet
+							context={{
+								products,
+								backgroundImage,
+							}}
 						/>
-						<Icon path={mdiLoading} spin={1} size={3} />
-						Loading...
-					</div>
-				) : (
-					<Outlet
-						context={{
-							products,
-							backgroundImage,
-						}}
-					/>
-				)}
-				<Footer />
+					)}
+					<Footer />
+				</div>
+				<Modal />
 			</div>
-			<Modal />
 		</RootContext>
 	);
 };
