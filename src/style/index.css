@@ -71,29 +71,6 @@ body {
 
 #root {
 	height: 100%;
-	display: flex;
-	position: relative;
-}
-
-#root .loading {
-	display: flex;
-	height: 100%;
-	width: 100%;
-	row-gap: 20px;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-#root .content {
-	flex: 1 1 80%;
-	display: flex;
-	flex-direction: column;
-	overflow: scroll;
-}
-
-#root .content > :first-child {
-	flex: 1 1 100%;
 }
 
 .slide {
