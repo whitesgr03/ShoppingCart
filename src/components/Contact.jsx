@@ -5,13 +5,15 @@ import { mdiPhone, mdiEmailOutline, mdiMapMarker } from "@mdi/js";
 import { useOutletContext } from "react-router-dom";
 
 const Contact = () => {
-	const { backgroundImage } = useOutletContext();
+	const { imageUrls } = useOutletContext();
+
+	const url = imageUrls.find(imageUrl => imageUrl.includes("contact"));
 
 	return (
 		<div className="contact">
 			<div
 				style={{
-					backgroundImage: backgroundImage.contact,
+					backgroundImage: url ? `url(${url})` : " none",
 				}}
 			>
 				<div className="blur">
