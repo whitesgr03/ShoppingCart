@@ -2,7 +2,7 @@ import App from "./components/App";
 import Home from "./components/Home";
 import Products from "./components/products/Products";
 import ProductList from "./components/products/ProductList";
-import SingleProductPage from "./components/products/SingleProductPage";
+import Product from "./components/products/Product";
 import Contact from "./components/Contact";
 import AuthGuard from "./components/AuthGuard";
 import NotFound from "./components/NotFound";
@@ -27,6 +27,14 @@ const Root = () => {
 						{
 							index: true,
 							element: <ProductList />,
+						},
+						{
+							path: ":productId",
+							element: (
+								<AuthGuard>
+									<Product />
+								</AuthGuard>
+							),
 						},
 					],
 				},
