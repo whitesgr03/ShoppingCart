@@ -1,6 +1,6 @@
 import App from "./components/App";
 import Home from "./components/Home";
-import ShopPage from "./components/products/ShopPage";
+import Products from "./components/products/Products";
 import ProductList from "./components/products/ProductList";
 import SingleProductPage from "./components/products/SingleProductPage";
 import Contact from "./components/Contact";
@@ -15,6 +15,24 @@ const Root = () => {
 			path: "/",
 			element: <App />,
 			errorElement: <NotFound />,
+			children: [
+				{
+					index: true,
+					element: <Home />,
+				},
+				{
+					path: "shop",
+					element: <Products />,
+					children: [
+						{
+							index: true,
+							element: <ProductList />,
+						},
+					],
+				},
+				{
+					path: "contact",
+					element: <Contact />,
 				},
 			],
 		},
