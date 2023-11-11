@@ -5,8 +5,7 @@ import ProductList from "./components/products/ProductList";
 import SingleProductPage from "./components/products/SingleProductPage";
 import Contact from "./components/Contact";
 import AuthGuard from "./components/AuthGuard";
-import Error from "./components/Error";
-import NotFoundPage from "./components/NotFoundPage";
+import NotFound from "./components/NotFound";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -15,38 +14,7 @@ const Root = () => {
 		{
 			path: "/",
 			element: <App />,
-			errorElement: <NotFoundPage />,
-			children: [
-				{
-					errorElement: <Error />,
-					children: [
-						{
-							index: true,
-							element: <Home />,
-						},
-						{
-							path: "shop",
-							element: <ShopPage />,
-							children: [
-								{
-									index: true,
-									element: <ProductList />,
-								},
-								{
-									path: ":productId",
-									element: (
-										<AuthGuard>
-											<SingleProductPage />,
-										</AuthGuard>
-									),
-								},
-							],
-						},
-						{
-							path: "contact",
-							element: <Contact />,
-						},
-					],
+			errorElement: <NotFound />,
 				},
 			],
 		},
