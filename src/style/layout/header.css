@@ -29,6 +29,7 @@
 .sidebar .icons.authenticate button {
 	border-radius: 50%;
 	background-color: rgba(128, 128, 128, 0.499);
+	pointer-events: none;
 }
 
 .sidebar .icons.authenticate button svg {
