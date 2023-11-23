@@ -69,4 +69,4 @@ const handleRegisterUser = async user => {
 	}
 };
 
-export { userLogout, googleLogin, checkUser, createUser };
+export { handleGoogleLogin, handleLogout, handleCheckUser, handleRegisterUser };
