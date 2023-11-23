@@ -13,6 +13,7 @@ import Error from "./Error";
 import Loading from "./Loading";
 
 
+import preLoadImage from "../utils/handlePreLoadImage";
 
 const Root = () => {
 	const { imageUrls, error, loading } = useFetchAllBgImages();
