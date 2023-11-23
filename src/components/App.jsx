@@ -14,6 +14,7 @@ import Loading from "./Loading";
 
 
 import preLoadImage from "../utils/handlePreLoadImage";
+import getStorageImage from "../utils/handleStorageImage";
 
 const Root = () => {
 	const { imageUrls, error, loading } = useFetchAllBgImages();
