@@ -9,9 +9,7 @@ import Footer from "./layout/Footer";
 import Modal from "./modals/Modal";
 import Error from "./Error";
 
-import RootContext from "./RootContext";
 
-import useFetchAllBgImages from "../hook/useFetchAllBgImages";
 
 const Root = () => {
 	const { imageUrls, error, loading } = useFetchAllBgImages();
