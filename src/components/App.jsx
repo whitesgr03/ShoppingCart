@@ -27,6 +27,7 @@ import {
 
 const Root = () => {
 	const [userId, setUserId] = useState(null);
+	const [cart, setCart] = useState(null);
 	const [imageUrls, setImageUrls] = useState(null);
 	const [error, setError] = useState(null);
 
