@@ -124,30 +124,59 @@ const Root = () => {
 		setModalState(defaultModalState);
 
 	return (
-		<RootContext>
-			<div className="app">
-				<Header />
+		<div className="app">
+			{(!cart || !imageUrls) && !error && <Loading />}
+			{error && <Error message={error} />}
+			{cart && imageUrls && !error && (
+				<>
+					<Modal
+						modalState={modalState}
+						onCloseModule={handleCloseModule}
+					>
+						<ModalCart
+							cart={cart}
+							active={modalState.type === "cart"}
+							onOpenModule={handleOpenModal}
+						>
+							<ModalCartList
+								cart={cart}
+								userId={userId}
+								onError={setError}
+								onGetUserCart={handleGetUserCart}
+								onOpenModule={handleOpenModal}
+							/>
+						</ModalCart>
 
-				<div data-testid="content" className={"content"}>
-					{loading && (
-						<div data-testid="loading" className="loading">
-							<Icon path={mdiLoading} spin={1} size={3} />
-							Loading...
-						</div>
-					)}
-					{error && <Error message={error} />}
-					{!loading && !error && (
+						<ModalProductAlert
+							userId={userId}
+							product={modalState.product}
+							behavior={modalState.behavior}
+							active={modalState.type === "alert"}
+							onError={setError}
+							onGetUserCart={handleGetUserCart}
+							onOpenModule={handleOpenModal}
+						/>
+					</Modal>
+					<Header
+						cart={cart}
+						userId={userId}
+						onOpenModal={handleOpenModal}
+					/>
+					<div data-testid="content" className="content">
 						<Outlet
 							context={{
 								imageUrls,
+								userId,
+								cart,
+								onOpenModule: handleOpenModal,
+								onGetUserCart: handleGetUserCart,
 							}}
 						/>
-					)}
-					<Footer />
-				</div>
-				<Modal />
-			</div>
-		</RootContext>
+						<Footer />
+					</div>
+				</>
+			)}
+		</div>
 	);
 };
 
