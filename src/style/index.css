@@ -64,6 +64,10 @@ svg {
 	vertical-align: middle;
 }
 
+svg {
+	pointer-events: none;
+}
+
 body {
 	overflow: hidden;
 	height: 100vh;
