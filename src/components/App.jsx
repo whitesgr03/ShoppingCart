@@ -117,6 +117,10 @@ const Root = () => {
 			behavior,
 		});
 
+	const handleCloseModule = e =>
+		e.target.className.includes("close") &&
+		setModalState(defaultModalState);
+
 	return (
 		<RootContext>
 			<div className="app">
