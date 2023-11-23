@@ -7,8 +7,10 @@ import { Outlet } from "react-router-dom";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import Modal from "./modals/Modal";
+import ModalCart from "./modals/ModalCart";
+import ModalCartList from "./modals/ModalCartList";
+import ModalProductAlert from "./modals/ModalProductAlert";
 import Error from "./Error";
-
 
 import Loading from "./Loading";
 
