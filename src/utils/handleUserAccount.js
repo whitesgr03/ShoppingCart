@@ -22,7 +22,7 @@ const handleLogout = async () => {
 	}
 };
 
-const checkUser = async userId => {
+const handleCheckUser = async userId => {
 	const firestore = initialFirestore();
 	const userRef = firestore.collection("users").doc(userId);
 
