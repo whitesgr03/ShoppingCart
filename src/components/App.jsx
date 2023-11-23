@@ -10,6 +10,9 @@ import Modal from "./modals/Modal";
 import Error from "./Error";
 
 
+import Loading from "./Loading";
+
+
 
 const Root = () => {
 	const { imageUrls, error, loading } = useFetchAllBgImages();
