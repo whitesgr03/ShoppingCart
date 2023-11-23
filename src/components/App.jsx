@@ -33,6 +33,59 @@ const Root = () => {
 
 	const [modalState, setModalState] = useState(defaultModalState);
 
+	useEffect(() => {
+		let ignore = false;
+		const auth = initialAuth();
+
+		const unsubscribe = auth.onAuthStateChanged(async googleLogin => {
+			try {
+				const hasRegister =
+					!ignore &&
+					googleLogin &&
+					(await handleCheckUser(googleLogin.uid));
+
+				!ignore &&
+					googleLogin &&
+					!hasRegister &&
+					(await handleRegisterUser(googleLogin));
+
+				!ignore && setUserId(googleLogin?.uid ?? "");
+				!ignore && handleGetUserCart(googleLogin?.uid);
+			} catch (error) {
+				console.error(error);
+				setError("Service temporarily unavailable");
+			}
+		});
+
+		const handleFetchImageUrls = async () => {
+			const imageResources = [
+				"images/home/background.jpg",
+				"images/contact/background.jpg",
+			];
+			try {
+				const imageUrlsData = await Promise.all([
+					...imageResources.map(url => getStorageImage(url)),
+				]);
+
+				const imageUrlsResult = await Promise.all(
+					imageUrlsData.map(url => preLoadImage(url))
+				);
+
+				!ignore && setImageUrls(imageUrlsResult);
+			} catch (error) {
+				console.error(error);
+				setError("Service temporarily unavailable");
+			}
+		};
+
+		handleFetchImageUrls();
+
+		return () => {
+			ignore = true;
+			unsubscribe();
+		};
+	}, []);
+
 	const handleGetUserCart = async userId => {
 		try {
 			const cartData = userId && (await getUserCart(userId));
