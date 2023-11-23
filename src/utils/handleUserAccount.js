@@ -43,7 +43,7 @@ const handleCheckUser = async userId => {
 	}
 };
 
-const createUser = async user => {
+const handleRegisterUser = async user => {
 	const { displayName: name, uid, email } = user;
 
 	const userInfo = {
