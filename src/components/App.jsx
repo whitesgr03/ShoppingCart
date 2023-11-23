@@ -27,6 +27,7 @@ import {
 
 const Root = () => {
 	const [imageUrls, setImageUrls] = useState(null);
+	const [error, setError] = useState(null);
 
 	return (
 		<RootContext>
