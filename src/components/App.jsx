@@ -33,6 +33,24 @@ const Root = () => {
 
 	const [modalState, setModalState] = useState(defaultModalState);
 
+	const handleGetUserCart = async userId => {
+		try {
+			const cartData = userId && (await getUserCart(userId));
+
+			const cartResult =
+				!cartData || cartData.empty
+					? []
+					: cartData.docs.map(item => ({
+							id: item.id,
+							...item.data(),
+					  }));
+
+			setCart(cartResult);
+		} catch (error) {
+			console.error(error);
+			setError("Service temporarily unavailable");
+		}
+	};
 	return (
 		<RootContext>
 			<div className="app">
