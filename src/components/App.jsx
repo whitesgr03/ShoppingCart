@@ -26,7 +26,7 @@ import {
 
 
 const Root = () => {
-	const { imageUrls, error, loading } = useFetchAllBgImages();
+	const [imageUrls, setImageUrls] = useState(null);
 
 	return (
 		<RootContext>
