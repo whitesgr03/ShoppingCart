@@ -123,7 +123,7 @@
 	position: relative;
 	padding: 20px;
 	transition: var(--button-transition);
-	z-index: 1;
+	z-index: 0;
 }
 
 .home .container .link::before,
