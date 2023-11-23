@@ -8,39 +8,15 @@ const handleGoogleLogin = () => {
 
 const handleLogout = async () => {
 	const auth = initialAuth();
-	try {
-		await auth.signOut();
-		return {
-			message: "User logout success.",
-			success: true,
-		};
-	} catch (error) {
-		return {
-			message: error,
-			success: false,
-		};
-	}
+	await auth.signOut();
 };
 
 const handleCheckUser = async userId => {
 	const firestore = initialFirestore();
 	const userRef = firestore.collection("users").doc(userId);
 
-	try {
-		const user = await userRef.get();
-		return {
-			message: "Check user success.",
-			success: true,
-			data: {
-				userExists: user.exists,
-			},
-		};
-	} catch (error) {
-		return {
-			message: error,
-			success: false,
-		};
-	}
+	const user = await userRef.get();
+	return user.exists;
 };
 
 const handleRegisterUser = async user => {
@@ -52,21 +28,9 @@ const handleRegisterUser = async user => {
 	};
 
 	const firestore = initialFirestore();
-
 	const userRef = firestore.collection("users").doc(uid);
 
-	try {
-		await userRef.set(userInfo);
-		return {
-			message: "Create user success.",
-			success: true,
-		};
-	} catch (error) {
-		return {
-			message: error,
-			success: false,
-		};
-	}
+	await userRef.set(userInfo);
 };
 
 export { handleGoogleLogin, handleLogout, handleCheckUser, handleRegisterUser };
