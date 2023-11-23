@@ -1,21 +1,21 @@
-.productInfo {
+.productDetails {
 	display: flex;
 	flex-wrap: wrap;
 	min-width: 0;
 }
 
-.productInfo .image {
+.productDetails .image {
 	flex: 1 1 50%;
 	padding: 0 30px;
 	text-align: center;
 }
 
-.productInfo .image img {
+.productDetails .image img {
 	height: 100%;
 	object-fit: cover;
 }
 
-.productInfo .info {
+.productDetails .info {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -25,40 +25,40 @@
 	font-size: 1.5rem;
 }
 
-.productInfo .info .description {
+.productDetails .info .description {
 	display: flex;
 	flex-direction: column;
 	row-gap: 40px;
 }
 
-.productInfo .info .description .title {
+.productDetails .info .description .title {
 	font-size: 2rem;
 	margin-bottom: 10px;
 }
-.productInfo .info .description .price {
+.productDetails .info .description .price {
 	font-size: 2rem;
 }
 
-.productInfo .info form {
+.productDetails .info form {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	row-gap: 40px;
 }
 
-.productInfo .info form label {
+.productDetails .info form label {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 }
 
-.productInfo .info form select {
+.productDetails .info form select {
 	margin-top: 10px;
 	padding: 10px 20px;
 	width: 50%;
 }
 
-.productInfo .info form button[type="submit"] {
+.productDetails .info form button[type="submit"] {
 	padding: 20px 30px;
 	color: var(--main-light);
 	width: 100%;
@@ -69,28 +69,28 @@
 	column-gap: 10px;
 }
 
-.productInfo .info form button[type="submit"]:hover {
+.productDetails .info form button[type="submit"]:hover {
 	color: var(--main-light);
 }
 
-.productInfo .info form button[type="submit"]::after {
+.productDetails .info form button[type="submit"]::after {
 	background-color: var(--main-dark);
 }
 
-.productInfo .info form button[type="submit"]::before {
+.productDetails .info form button[type="submit"]::before {
 	background-color: var(--sidebar-link);
 }
 
-.productInfo .info form button[type="submit"].adding::after {
+.productDetails .info form button[type="submit"].adding::after {
 	transform: translateX(0%);
 	transition: all 0.3s ease;
 }
-.productInfo .info form button[type="submit"].adding::before {
+.productDetails .info form button[type="submit"].adding::before {
 	transform: translateX(-100%);
 	transition: transform 0s 0.3s;
 }
 
-.productInfo .info form button[type="submit"].adding svg {
+.productDetails .info form button[type="submit"].adding svg {
 	width: 24px;
 }
 
