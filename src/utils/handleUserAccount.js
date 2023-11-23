@@ -6,7 +6,7 @@ const handleGoogleLogin = () => {
 	auth.signInWithRedirect(provider);
 };
 
-const userLogout = async () => {
+const handleLogout = async () => {
 	const auth = initialAuth();
 	try {
 		await auth.signOut();
