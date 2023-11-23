@@ -1,6 +1,6 @@
 import "../style/app.css";
-import Icon from "@mdi/react";
-import { mdiLoading } from "@mdi/js";
+
+
 
 import { Outlet } from "react-router-dom";
 
