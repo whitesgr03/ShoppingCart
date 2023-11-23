@@ -2,24 +2,22 @@ import "../style/error.css";
 import Icon from "@mdi/react";
 import { mdiHanger } from "@mdi/js";
 
-import { Link } from "react-router-dom";
-
-const Error = () => {
+const Error = ({ message }) => {
 	return (
 		<div className="error">
-			<Icon path={mdiHanger} size={7} />
-
-			<div>
-				<h1>Service temporarily unavailable.</h1>
+			<div className="title">
+				<Icon path={mdiHanger} size={7} />
+				<h1>{message}</h1>
+			</div>
+			<div className="content">
+				<p>Our apologies, there has been an error.</p>
 				<p>
-					Our apologies, there has been an error. Please come back
-					later or return to the <Link to="/">Home</Link> page. If you
-					have any questions, please visit the{" "}
-					<Link to="/contact">Contact us</Link>.
+					Please come back later or you may surf over to our other
+					pages.
 				</p>
 			</div>
 		</div>
 	);
 };
 
-export { Error as default };
+export default Error;
