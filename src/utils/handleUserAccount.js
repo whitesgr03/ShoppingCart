@@ -1,6 +1,6 @@
 import { initialFirestore, initialAuth } from "../firebase-config";
 
-const googleLogin = () => {
+const handleGoogleLogin = () => {
 	const auth = initialAuth();
 	const provider = new initialAuth.GoogleAuthProvider();
 	auth.signInWithRedirect(provider);
