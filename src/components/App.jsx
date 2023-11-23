@@ -24,6 +24,11 @@ import {
 	handleRegisterUser,
 } from "../utils/handleUserAccount";
 
+const defaultModalState = {
+	type: null,
+	product: null,
+	behavior: null,
+};
 
 const Root = () => {
 	const [userId, setUserId] = useState(null);
