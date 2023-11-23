@@ -31,6 +31,8 @@ const Root = () => {
 	const [imageUrls, setImageUrls] = useState(null);
 	const [error, setError] = useState(null);
 
+	const [modalState, setModalState] = useState(defaultModalState);
+
 	return (
 		<RootContext>
 			<div className="app">
