@@ -109,6 +109,14 @@ const Root = () => {
 			setError("Service temporarily unavailable");
 		}
 	};
+
+	const handleOpenModal = (type, product = null, behavior = null) =>
+		setModalState({
+			type,
+			product,
+			behavior,
+		});
+
 	return (
 		<RootContext>
 			<div className="app">
