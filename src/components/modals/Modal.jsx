@@ -1,41 +1,14 @@
 import "../../style/modals/modal.css";
 
-import { useState } from "react";
-
-import ModalCart from "./ModalCart";
-import ModalProductAlert from "./ModalProductAlert";
-
-import { useModal, useModalDispatch } from "../RootContext";
-
-const Modal = () => {
-	const [isLoading, setIsLoading] = useState(false);
-
-	const { modal } = useModal();
-
-	const dispatch = useModalDispatch();
-
-	const handleCloseModule = e => {
-		const classList = e.target.classList;
-
-		!isLoading &&
-			(classList.contains("shadow") || classList.contains("close")) &&
-			dispatch({
-				type: "close",
-			});
-	};
-
+const Modal = ({ modalState, onCloseModule, children }) => {
 	return (
 		<div className="modal">
 			<div
 				data-testid="shadow"
-				className={`shadow ${modal ? `${modal} active` : ""}`}
-				onPointerUp={handleCloseModule}
+				className={`shadow ${modalState.type ? `active close` : ""}`}
+				onClick={onCloseModule}
 			>
-				<ModalCart isLoading={isLoading} onLoading={setIsLoading} />
-				<ModalProductAlert
-					isLoading={isLoading}
-					onLoading={setIsLoading}
-				/>
+				{children}
 			</div>
 		</div>
 	);
