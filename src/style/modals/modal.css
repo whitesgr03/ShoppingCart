@@ -72,11 +72,3 @@
 .shadow > div > .close::before {
 	transform: rotate(-45deg);
 }
-
-.shadow.active.showCart .cart {
-	transform: translateX(0%);
-}
-
-.shadow.active.showAlert .productAlert {
-	transform: translate(-50%, 50%);
-}
