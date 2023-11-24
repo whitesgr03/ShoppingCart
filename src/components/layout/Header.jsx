@@ -7,97 +7,20 @@ import {
 	mdiLogout,
 } from "@mdi/js";
 
-import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { initialAuth } from "../../firebase-config";
+import { NavLink } from "react-router-dom";
+import { handleGoogleLogin, handleLogout } from "../../utils/handleUserAccount";
 
-import { useCart, useCartDispatch, useModalDispatch } from "../RootContext";
-
-import {
-	userLogout,
-	googleLogin,
-	checkUser,
-	createUser,
-} from "../../utils/handleUserAccount";
-import { getUserCart } from "../../utils/handleUserCarts";
-
-const HeaderBadge = () => {
-	const cartList = useCart();
-
-	return (
-		<>
-			{cartList.length > 0 && (
-				<span data-testid="badge" className="badge">
-					{cartList.length}
-				</span>
-			)}
-		</>
-	);
-};
-
-const Header = () => {
-	const [isLogin, setIsLogin] = useState(false);
-	const [auth, setAuth] = useState(true);
-	const navigate = useNavigate();
-
-	const modalDispatch = useModalDispatch();
-	const cartDispatch = useCartDispatch();
-
-	const handlePointerUp = () => {
-		modalDispatch({
-			type: "cart",
-		});
-	};
-
-	useEffect(() => {
-		const auth = initialAuth();
-
-		const unsubscribe = auth.onAuthStateChanged(async user => {
-			const hasUser = user && (await checkUser(user.uid));
-
-			if (hasUser && !hasUser.success) {
-				console.error(hasUser.message);
-				return;
-			}
-
-			const createNewUser =
-				user && !hasUser.data.userExists && (await createUser(user));
-
-			if (createNewUser && !createNewUser.success) {
-				console.error(hasUser.message);
-				return;
-			}
-
-			const getCart = user && (await getUserCart());
-
-			if (getCart && !getCart.success) {
-				console.error(getCart.message);
-				navigate("/error");
-				return;
-			}
-
-			cartDispatch({
-				type: "initialize_cart",
-				cart: user && getCart.success ? getCart.data : [],
-			});
-
-			setIsLogin(user ? true : false);
-			setAuth(false);
-		});
-
-		return () => unsubscribe();
-	}, [cartDispatch, navigate]);
-
+const Header = ({ cart, userId, onOpenModal }) => {
 	return (
 		<div className="sidebar" data-testid="sidebar">
-			<div className={`icons ${auth ? "authenticate" : ""}`}>
+			<div className={`icons ${userId === null ? "authenticate" : ""}`}>
 				<button
 					className="account"
 					type="button"
 					name="showAccount"
-					onClick={isLogin ? userLogout : googleLogin}
+					onClick={userId === "" ? handleGoogleLogin : handleLogout}
 				>
-					<Icon path={isLogin ? mdiLogout : mdiAccount} />
+					<Icon path={userId === "" ? mdiAccount : mdiLogout} />
 				</button>
 				<button className="order" type="button" name="showOrder">
 					<Icon path={mdiTextBoxOutline} />
@@ -107,7 +30,7 @@ const Header = () => {
 					type="button"
 					name="showCart"
 					data-testid="cart"
-					onPointerUp={handlePointerUp}
+					onClick={() => onOpenModal("cart")}
 				>
 					<Icon path={mdiCartVariant} />
 					{cart.length > 0 && (
@@ -135,4 +58,4 @@ const Header = () => {
 	);
 };
 
-export { Header as default, HeaderBadge };
+export { Header as default };
