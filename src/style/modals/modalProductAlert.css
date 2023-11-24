@@ -15,6 +15,9 @@
 	opacity: 0;
 }
 
+.modal .productAlert.active {
+	transform: translate(-50%, 50%);
+	opacity: 1;
 }
 
 .modal .productAlert > .title {
