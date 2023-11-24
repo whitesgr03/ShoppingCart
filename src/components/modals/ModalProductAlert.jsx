@@ -2,80 +2,52 @@ import "../../style/modals/modalProductAlert.css";
 import Icon from "@mdi/react";
 import { mdiLoading } from "@mdi/js";
 
-import { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-
-import { useCartDispatch, useModal, useModalDispatch } from "../RootContext";
+import { useState } from "react";
 
 import PropTypes from "prop-types";
 
-import { deleteUserCartItem } from "../../utils/handleUserCarts";
+import { deleteUserCartItem } from "../../utils/handleUserCart";
 
-const ModalProductAlert = ({ isLoading, onLoading }) => {
-	const [imageHeight, setImageHeight] = useState(0);
-	const refDescription = useRef(0);
-
-	const cartDispatch = useCartDispatch();
-	const modalDispatch = useModalDispatch();
-
-	const navigate = useNavigate();
-
-	const { alertProduct } = useModal();
-
-	const { product, state } = alertProduct;
-
-	const getHeight = () => {
-		imageHeight !== refDescription.current.scrollHeight &&
-			setImageHeight(refDescription.current.scrollHeight);
-	};
-
-	const handleShowCart = () => {
-		modalDispatch({
-			type: "cart",
-		});
-	};
-
+const ModalProductAlert = ({
+	userId,
+	product,
+	behavior,
+	active,
+	onError,
+	onGetUserCart,
+	onOpenModule,
+}) => {
+	const [loading, setLoading] = useState(false);
+	const handleShowCart = () => onOpenModule("cart");
 	const handleRemoveItem = async () => {
-		if (isLoading) return;
-
-		onLoading(true);
-		const result = await deleteUserCartItem(product.id);
-
-		if (!result.success) {
-			onLoading(false);
-			navigate("/error");
-			return;
+		try {
+			setLoading(true);
+			await deleteUserCartItem(product.id, userId);
+			await onGetUserCart(userId);
+			handleShowCart();
+		} catch (error) {
+			console.error(error);
+			onError("Service temporarily unavailable");
+		} finally {
+			setLoading(false);
 		}
-
-		result.success &&
-			cartDispatch({
-				type: "deleted",
-				id: product.id,
-			});
-
-		onLoading(false);
-		handleShowCart();
 	};
-
-	useEffect(() => {
-		product && setImageHeight(refDescription.current.scrollHeight);
-	}, [product, refDescription]);
 
 	return (
-		<div className="productAlert">
+		<div className={`productAlert ${active ? "active" : ""}`}>
 			<div className="title" data-testid="title">
-				{state === "add"
+				{behavior === "add"
 					? "Add product to cart"
 					: "Remove product from cart"}
 			</div>
 			<button className="close"></button>
-			<div className={"product"} onScroll={getHeight}>
+			<div className={"product"}>
 				{product && (
 					<>
-						<div className="image" style={{ height: imageHeight }}>
+						<div className="image">
 							<img src={product.url} alt={product.name} />
 						</div>
-						<div className="description" ref={refDescription}>
+						<div className="description">
 							<h2 className="title">{product.name}</h2>
 							<p className="quantity">
 								Quantity: {product.quantity}
@@ -93,12 +65,9 @@ const ModalProductAlert = ({ isLoading, onLoading }) => {
 				)}
 			</div>
 			<div className="buttons">
-				{state === "add" ? (
+				{behavior === "add" ? (
 					<>
-						<button
-							className="left slide"
-							onPointerUp={handleShowCart}
-						>
+						<button className="left slide" onClick={handleShowCart}>
 							VIEW CART
 						</button>
 						<button className="right slide close">
@@ -109,20 +78,20 @@ const ModalProductAlert = ({ isLoading, onLoading }) => {
 					<>
 						<button
 							className="left slide"
-							onPointerUp={handleRemoveItem}
+							onClick={handleRemoveItem}
 						>
 							REMOVE
 						</button>
 						<button
 							className="right slide"
-							onPointerUp={handleShowCart}
+							onClick={handleShowCart}
 						>
 							CANCEL
 						</button>
 					</>
 				)}
 			</div>
-			{isLoading && (
+			{loading && (
 				<div className="loading">
 					<Icon path={mdiLoading} spin={1} size={3}></Icon>
 				</div>
