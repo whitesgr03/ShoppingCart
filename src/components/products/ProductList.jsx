@@ -17,6 +17,7 @@ const ProductList = () => {
 
 	return (
 		<div data-testid="productList" className="productList">
+			{filterProducts.length > 0 ? (
 				<ul className="list">
 					{filterProducts.map(product => (
 						<li className="item" key={product.id}>
@@ -42,6 +43,9 @@ const ProductList = () => {
 						</li>
 					))}
 				</ul>
+			) : (
+				<h3>There are no results containing your search terms.</h3>
+			)}
 		</div>
 	);
 };
