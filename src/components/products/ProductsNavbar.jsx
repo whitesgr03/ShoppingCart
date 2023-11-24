@@ -16,6 +16,7 @@ const ProductsNavbar = ({ onFilterText }) => {
 
 	const handleAddBorder = () => setActive(true);
 	const handleRemoveBorder = () => setActive(false);
+	const handleFilterTextChange = e => setSearchBarValue(e.target.value);
 	const handleFilterProduct = e => {
 		e.preventDefault();
 		onFilterText(searchBarValue);
