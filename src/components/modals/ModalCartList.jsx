@@ -2,60 +2,33 @@ import "../../style/modals/modalCartList.css";
 import Icon from "@mdi/react";
 import { mdiTrashCanOutline, mdiLoading } from "@mdi/js";
 
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+import { updateUserCartItem } from "../../utils/handleUserCart";
 
 import PropTypes from "prop-types";
 
-import { useCartDispatch, useModalDispatch } from "../RootContext";
+const ModalCartList = ({
+	cart,
+	userId,
+	onError,
+	onGetUserCart,
+	onOpenModule,
+}) => {
+	const [loading, setLoading] = useState(false);
 
-import { updateUserCartItem } from "../../utils/handleUserCarts";
-
-const ModalCartListOption = ({ quantity }) => {
-	const maxQuantity = quantity > 10 ? quantity : 10;
-
-	return Array.from({ length: maxQuantity })
-		.fill([])
-		.map((_, i) => (
-			<option key={i} value={i + 1}>
-				{i + 1}
-			</option>
-		));
-};
-
-const ModalCartList = ({ list, isLoading, onLoading }) => {
-	const cartDispatch = useCartDispatch();
-	const modalDispatch = useModalDispatch();
-
-	const navigate = useNavigate();
-
-	const handleRemove = product => {
-		modalDispatch({
-			type: "alert",
-			item: {
-				state: "remove",
-				product,
-			},
-		});
-	};
-
+	const handleRemove = product => onOpenModule("alert", product, "remove");
 	const handleChange = async product => {
-		onLoading(true);
-
-		const result = await updateUserCartItem(product);
-
-		if (!result.success) {
-			onLoading(false);
-			navigate("/error");
-			return;
+		try {
+			setLoading(true);
+			await updateUserCartItem(product, userId);
+			await onGetUserCart(userId);
+		} catch (error) {
+			console.error(error);
+			onError("Service temporarily unavailable");
+		} finally {
+			setLoading(false);
 		}
-
-		result.success &&
-			cartDispatch({
-				type: "changed",
-				product,
-			});
-
-		onLoading(false);
 	};
 
 	return (
@@ -105,7 +78,7 @@ const ModalCartList = ({ list, isLoading, onLoading }) => {
 						<button
 							className="removeBtn"
 							data-testid="removeBtn"
-							onPointerUp={() => handleRemove(product)}
+							onClick={() => handleRemove(product)}
 						>
 							<Icon path={mdiTrashCanOutline} />
 						</button>
@@ -113,7 +86,7 @@ const ModalCartList = ({ list, isLoading, onLoading }) => {
 				))}
 			</div>
 
-			{isLoading && (
+			{loading && (
 				<div className="loading">
 					<Icon path={mdiLoading} spin={1} size={3}></Icon>
 				</div>
