@@ -1,20 +1,19 @@
 import "../../style/products/productList.css";
 
-import { Link, useOutletContext, useLocation } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 const ProductList = () => {
-	const { products, filterText } = useOutletContext();
-	const location = useLocation();
+	const { products, searchParams } = useOutletContext();
+	const filterText = searchParams.get("search");
 
-	const filterProducts =
-		filterText === ""
-			? products
-			: products.filter(
-					item =>
-						item.name
-							.toLowerCase()
-							.indexOf(filterText.toLowerCase().trim()) !== -1
-			  );
+	const filterProducts = filterText
+		? products.filter(
+				item =>
+					item.name
+						.toLowerCase()
+						.indexOf(filterText.toLowerCase().trim()) !== -1
+		  )
+		: products;
 
 	return (
 		<div data-testid="products" className="products">
