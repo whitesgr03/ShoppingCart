@@ -1,20 +1,6 @@
-.shop {
+.products {
 	display: flex;
 	flex-direction: column;
 	padding: 40px 50px;
 	row-gap: 40px;
-}
-
-.shop:first-child {
-	flex: 2 1 auto;
-}
-
-.shop:last-child {
-	flex: 8 1 auto;
-}
-
-.navigation {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 }
