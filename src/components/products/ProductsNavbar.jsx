@@ -14,10 +14,8 @@ const ProductsNavbar = ({ onFilterText }) => {
 	const [active, setActive] = useState(false);
 	const [searchBarValue, setSearchBarValue] = useState("");
 
-	const handleFilterTextChange = e => {
-		setSearchBarValue(e.target.value);
-	};
-
+	const handleAddBorder = () => setActive(true);
+	const handleRemoveBorder = () => setActive(false);
 	const handleFilterProduct = e => {
 		e.preventDefault();
 		onFilterText(searchBarValue);
@@ -46,8 +44,6 @@ const ProductsNavbar = ({ onFilterText }) => {
 			<form
 				data-testid="searchBar"
 				className={`searchBar ${active ? "active-border" : ""}`}
-				onFocus={handleActiveSearchBarBorder}
-				onBlur={handleDeActivateSearchBarBorder}
 				onSubmit={handleFilterProduct}
 			>
 				<div className="search-border">
@@ -58,6 +54,8 @@ const ProductsNavbar = ({ onFilterText }) => {
 						placeholder="search..."
 						value={searchBarValue}
 						onChange={handleFilterTextChange}
+						onFocus={handleAddBorder}
+						onBlur={handleRemoveBorder}
 					/>
 				</div>
 				<button type="submit">
