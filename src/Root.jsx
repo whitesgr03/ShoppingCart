@@ -2,7 +2,7 @@ import App from "./components/App";
 import Home from "./components/Home";
 import Products from "./components/products/Products";
 import ProductList from "./components/products/ProductList";
-import Product from "./components/products/Product";
+import ProductDetails from "./components/products/ProductDetails";
 import Contact from "./components/Contact";
 import AuthGuard from "./components/AuthGuard";
 import NotFound from "./components/NotFound";
@@ -32,7 +32,7 @@ const Root = () => {
 							path: ":productId",
 							element: (
 								<AuthGuard>
-									<Product />
+									<ProductDetails />
 								</AuthGuard>
 							),
 						},
