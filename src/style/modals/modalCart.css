@@ -11,6 +11,9 @@
 	border-left: 1px solid var(--main-light);
 	transform: translateX(100%);
 	transition: transform 0.2s ease;
+	z-index: 1;
+}
+
 }
 
 .modal .cart .title {
