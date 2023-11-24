@@ -1,46 +1,30 @@
 import "../../style/modals/modalCart.css";
 
-import { useNavigate } from "react-router-dom";
-
-import { useCart, useModalDispatch } from "../RootContext";
+import { useMemo } from "react";
 
 import PropTypes from "prop-types";
 
-import ModalCartList from "./ModalCartList";
+const ModalCart = ({ cart, active, onOpenModule, children }) => {
+	const handleCheckout = () => onOpenModule(null);
 
-const ModalCart = ({ isLoading, onLoading }) => {
-	const navigate = useNavigate();
-	const cartList = useCart();
-
-	const modalDispatch = useModalDispatch();
-
-	const handleCheckout = () => {
-		modalDispatch({
-			type: "close",
-		});
-		navigate("/");
-	};
-
-	const totalPrice = cartList
-		.reduce((sum, product) => sum + product.price * product.quantity, 0)
-		.toFixed(2);
+	const totalPrice = useMemo(() => {
+		return cart
+			.reduce((sum, product) => sum + product.price * product.quantity, 0)
+			.toFixed(2);
+	}, [cart]);
 
 	return (
-		<div className="cart">
+		<div className={`cart ${active ? "active" : ""}`}>
 			<button className="close"></button>
 			<div className="title">Shopping cart</div>
 
-			{cartList.length === 0 ? (
+			{cart.length === 0 ? (
 				<div data-testid="empty" className="empty">
 					Your cart is currently empty.
 				</div>
 			) : (
 				<>
-					<ModalCartList
-						list={cartList}
-						isLoading={isLoading}
-						onLoading={onLoading}
-					/>
+					{children}
 					<div className="checkout">
 						<p className="price">
 							Total: <b>${totalPrice}</b>
@@ -48,7 +32,7 @@ const ModalCart = ({ isLoading, onLoading }) => {
 
 						<button
 							className="checkoutBtn slide"
-							onPointerUp={handleCheckout}
+							onClick={handleCheckout}
 						>
 							CHECKOUT
 						</button>
