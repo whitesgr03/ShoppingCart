@@ -7,7 +7,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
-const ProductsNavbar = ({ onFilterText }) => {
+const ProductsNavbar = ({ onSearchParams }) => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
@@ -18,17 +18,10 @@ const ProductsNavbar = ({ onFilterText }) => {
 	const handleRemoveBorder = () => setActive(false);
 	const handleFilterTextChange = e => setSearchBarValue(e.target.value);
 	const handleFilterProduct = e => {
-		e.preventDefault();
-		onFilterText(searchBarValue);
 		pathname !== "/shop" && navigate("/shop");
-	};
-
-	const handleActiveSearchBarBorder = () => {
-		setActive(true);
-	};
-
-	const handleDeActivateSearchBarBorder = () => {
-		setActive(false);
+		const value = searchBarValue.trim();
+		onSearchParams(value ? `search=${value}` : "");
+		e.preventDefault();
 	};
 
 	return (
@@ -68,7 +61,7 @@ const ProductsNavbar = ({ onFilterText }) => {
 };
 
 ProductsNavbar.propTypes = {
-	onFilterText: PropTypes.func,
+	onSearchParams: PropTypes.func,
 };
 
 export default ProductsNavbar;
