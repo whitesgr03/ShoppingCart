@@ -110,7 +110,11 @@ const Header = () => {
 					onPointerUp={handlePointerUp}
 				>
 					<Icon path={mdiCartVariant} />
-					<HeaderBadge />
+					{cart.length > 0 && (
+						<span data-testid="badge" className="badge">
+							{cart.length}
+						</span>
+					)}
 				</button>
 			</div>
 			<h1 className="title">
