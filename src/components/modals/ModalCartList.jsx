@@ -34,7 +34,7 @@ const ModalCartList = ({
 	return (
 		<div className="items">
 			<div className="itemWarp">
-				{list.map(product => (
+				{cart.map(product => (
 					<div className="item" key={product.id}>
 						<div className="warp">
 							<img src={product.url} alt={product.name} />
@@ -62,9 +62,18 @@ const ModalCartList = ({
 										}
 										value={product.quantity}
 									>
-										<ModalCartListOption
-											quantity={product.quantity}
-										/>
+										{Array.from({
+											length:
+												product.quantity > 10
+													? product.quantity
+													: 10,
+										})
+											.fill([])
+											.map((_, i) => (
+												<option key={i} value={i + 1}>
+													{i + 1}
+												</option>
+											))}
 									</select>
 								</label>
 								<p>
