@@ -1,3 +1,9 @@
+.navigation {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .category {
 	display: flex;
 	flex: 7 1 auto;
@@ -9,4 +15,93 @@
 
 .category li:hover {
 	color: var(--sidebar-link);
+}
+
+.searchBar {
+	--border-color: var(--main-dark);
+	--border-size: 2.5px;
+
+	display: flex;
+	flex: 3 1 auto;
+	position: relative;
+	padding: 5px;
+}
+
+.searchBar::before,
+.searchBar::after {
+	height: 0%;
+	width: var(--border-size);
+	transition: height 0.5s ease;
+	background-color: var(--border-color);
+	content: "";
+	position: absolute;
+}
+
+.searchBar::before {
+	left: 0;
+	bottom: 0;
+	transition-delay: 1.5s;
+}
+.searchBar::after {
+	right: 0;
+	top: 0;
+}
+
+.searchBar .search-border {
+	flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+}
+
+.searchBar .search-border::before,
+.searchBar .search-border::after {
+	content: "";
+	position: absolute;
+	background-color: var(--border-color);
+	height: var(--border-size);
+	left: 0;
+}
+
+.searchBar .search-border::before {
+	top: 0;
+	width: 0%;
+	transition: width 1s 0.5s;
+}
+.searchBar .search-border::after {
+	bottom: 0;
+	width: 100%;
+}
+
+.searchBar.active-border::before {
+	transition: height 0.5s;
+	height: 100%;
+}
+.searchBar.active-border::after {
+	height: 100%;
+	transition: height 0.5s 1.5s;
+}
+.searchBar.active-border .search-border::before {
+	width: 100%;
+}
+
+.searchBar input[type="search"] {
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+.searchBar button {
+	transition: transform 0.3s ease;
+}
+
+.searchBar button:hover {
+	transform: scale(1.2);
+}
+
+.searchBar button:active {
+	transform: scale(0.9);
+}
+
+.searchBar svg {
+	width: 2rem;
 }
