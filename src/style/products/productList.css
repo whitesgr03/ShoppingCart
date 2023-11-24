@@ -1,9 +1,11 @@
-.products {
+.productList {
+	flex: 1 1 auto;
+}
 	display: flex;
 	flex-wrap: wrap;
 }
 
-.products .item {
+.productList .item {
 	display: flex;
 	flex-direction: column;
 	row-gap: 10px;
@@ -12,47 +14,47 @@
 	min-width: 0;
 }
 
-.products .item:hover .info .text-link::after {
+.productList .item:hover .info .text-link::after {
 	transform: translateX(0);
 	transition: transform 0.3s ease;
 }
 
-.products .item .image-link {
+.productList .item .image-link {
 	overflow: hidden;
 	display: inline-block;
 	width: 100%;
 	height: 100%;
 }
 
-.products .item img {
+.productList .item img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	transition: transform 0.3s ease;
 }
 
-.products .item img:hover {
+.productList .item img:hover {
 	transform: scale(1.1);
 }
 
-.products .item .info {
+.productList .item .info {
 	display: flex;
 	flex-direction: column;
 	row-gap: 10px;
 }
 
-.products .item .info .title {
+.productList .item .info .title {
 	position: relative;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
 }
 
-.products .item .info .text-link {
+.productList .item .info .text-link {
 	position: relative;
 }
 
-.products .item .info .text-link::after {
+.productList .item .info .text-link::after {
 	content: "";
 	position: absolute;
 	bottom: 0;
@@ -62,6 +64,6 @@
 	width: 100%;
 }
 
-.products .item .info .price {
+.productList .item .info .price {
 	text-align: right;
 }
