@@ -1,26 +1,28 @@
-import { useLayoutEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
-import { initialAuth } from "../firebase-config";
+import Loading from "./Loading";
 
-import { googleLogin } from "../utils/handleUserAccount";
+import { handleGoogleLogin } from "../utils/handleUserAccount";
 
 const AuthGuard = ({ children }) => {
-	const navigate = useNavigate();
-	const location = useLocation();
+	const [loading, setLoading] = useState(true);
+	const { userId, onError } = useOutletContext();
 
-	useLayoutEffect(() => {
-		const auth = initialAuth();
+	useEffect(() => {
+		let ignore = false;
+		try {
+			!ignore && !userId && handleGoogleLogin();
+			!ignore && userId && setLoading(false);
+		} catch (error) {
+			!ignore && onError(error);
+		}
+		return () => {
+			ignore = true;
+		};
+	}, [userId, onError]);
 
-		const unsubscribe = auth.onAuthStateChanged(async user => {
-			!user && location.state && navigate(location.state.prevPath);
-			!user && googleLogin();
-		});
-
-		return () => unsubscribe();
-	}, [navigate, location]);
-
-	return <>{children}</>;
+	return <>{loading ? <Loading /> : children}</>;
 };
 
 export { AuthGuard as default };
