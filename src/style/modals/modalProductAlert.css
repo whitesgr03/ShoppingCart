@@ -10,7 +10,7 @@
 	height: 50%;
 	background-color: var(--main-light);
 	border-radius: 10px;
-	transition: transform 0.3s ease;
+	transition: transform 0.2s ease, opacity 0.15s ease;
 	overflow: hidden;
 }
 
