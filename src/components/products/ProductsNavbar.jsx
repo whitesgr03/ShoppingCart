@@ -25,7 +25,7 @@ const ProductsNavbar = ({ onSearchParams }) => {
 	};
 
 	return (
-		<>
+		<div className="navigation">
 			<ul className="category">
 				<li>
 					<Link to="/shop">Shop</Link>
@@ -56,7 +56,7 @@ const ProductsNavbar = ({ onSearchParams }) => {
 					<Icon path={mdiMagnify} />
 				</button>
 			</form>
-		</>
+		</div>
 	);
 };
 
