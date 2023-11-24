@@ -16,33 +16,32 @@ const ProductList = () => {
 		: products;
 
 	return (
-		<div data-testid="products" className="products">
-			{filterProducts.map(product => (
-				<div className="item" key={product.id}>
-					<Link
-						className="image-link"
-						to={`/shop/${product.id}`}
-						state={{
-							product,
-							prevPath: location.pathname,
-						}}
-					>
-						<img src={product.url} alt={product.name} />
-					</Link>
-					<div className="info">
-						<div className="title">
+		<div data-testid="productList" className="productList">
+				<ul className="list">
+					{filterProducts.map(product => (
+						<li className="item" key={product.id}>
 							<Link
-								className="text-link"
+								className="image-link"
 								to={`/shop/${product.id}`}
-								state={{ product, prevPath: location.pathname }}
 							>
-								{product.name}
+								<img src={product.url} alt={product.name} />
 							</Link>
-						</div>
-						<div className="price">${product.price.toFixed(2)}</div>
-					</div>
-				</div>
-			))}
+							<div className="info">
+								<div className="title">
+									<Link
+										className="text-link"
+										to={`/shop/${product.id}`}
+									>
+										{product.name}
+									</Link>
+								</div>
+								<div className="price">
+									${product.price.toFixed(2)}
+								</div>
+							</div>
+						</li>
+					))}
+				</ul>
 		</div>
 	);
 };
