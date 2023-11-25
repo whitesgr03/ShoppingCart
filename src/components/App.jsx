@@ -36,8 +36,43 @@ const Root = () => {
 	const [cart, setCart] = useState(null);
 	const [imageUrls, setImageUrls] = useState(null);
 	const [error, setError] = useState(null);
-
 	const [modalState, setModalState] = useState(defaultModalState);
+
+	const handleGetUserCart = useCallback(async id => {
+		try {
+			const cartData = id && (await getUserCart(id));
+
+			const cartResult =
+				!cartData || cartData.empty
+					? []
+					: cartData.docs.map(item => ({
+							id: item.id,
+							...item.data(),
+					  }));
+
+			setCart(cartResult);
+		} catch (error) {
+			console.error(error);
+			setError("Service temporarily unavailable");
+		}
+	}, []);
+
+	const handleOpenModal = useCallback(
+		(type, product = null, behavior = null) =>
+			setModalState({
+				type,
+				product,
+				behavior,
+			}),
+		[]
+	);
+
+	const handleCloseModule = useCallback(
+		e =>
+			e.target.className.includes("close") &&
+			setModalState(defaultModalState),
+		[]
+	);
 
 	useEffect(() => {
 		let ignore = false;
