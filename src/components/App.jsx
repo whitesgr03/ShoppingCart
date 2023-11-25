@@ -111,7 +111,13 @@ const Root = () => {
 					imageUrlsData.map(url => preLoadImage(url))
 				);
 
-				!ignore && setImageUrls(imageUrlsResult);
+				const [home, contact] = imageUrlsResult;
+
+				!ignore &&
+					setImageUrls({
+						home,
+						contact,
+					});
 			} catch (error) {
 				console.error(error);
 				setError("Service temporarily unavailable");
