@@ -35,6 +35,15 @@ const Header = ({ userId, onError, onOpenModal, children }) => {
 		}
 	};
 
+	const handleLogout = () => {
+		try {
+			handleUserLogout();
+		} catch (error) {
+			console.error(error);
+			onError("Service temporarily unavailable");
+		}
+	};
+
 	return (
 		<div className="sidebar" data-testid="sidebar">
 			<div className={`icons ${userId === null ? "authenticate" : ""}`}>
