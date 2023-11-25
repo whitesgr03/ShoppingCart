@@ -132,34 +132,39 @@ const Root = () => {
 			{error && <Error message={error} />}
 			{cart && imageUrls && !error && (
 				<>
-					<Modal
-						modalState={modalState}
-						onCloseModule={handleCloseModule}
-					>
-						<ModalCart
-							cart={cart}
-							active={modalState.type === "cart"}
-							onOpenModule={handleOpenModal}
+					<div className="modal">
+						<div
+							data-testid="shadow"
+							className={`shadow ${
+								modalState.type ? `active close` : ""
+							}`}
+							onClick={handleCloseModule}
 						>
-							<ModalCartList
+							<ModalCart
 								cart={cart}
+								active={modalState.type === "cart"}
+								onOpenModule={handleOpenModal}
+							>
+								<ModalCartList
+									cart={cart}
+									userId={userId}
+									onError={setError}
+									onGetUserCart={handleGetUserCart}
+									onOpenModule={handleOpenModal}
+								/>
+							</ModalCart>
+
+							<ModalProductAlert
 								userId={userId}
+								product={modalState.product}
+								behavior={modalState.behavior}
+								active={modalState.type === "alert"}
 								onError={setError}
 								onGetUserCart={handleGetUserCart}
 								onOpenModule={handleOpenModal}
 							/>
-						</ModalCart>
-
-						<ModalProductAlert
-							userId={userId}
-							product={modalState.product}
-							behavior={modalState.behavior}
-							active={modalState.type === "alert"}
-							onError={setError}
-							onGetUserCart={handleGetUserCart}
-							onOpenModule={handleOpenModal}
-						/>
-					</Modal>
+						</div>
+					</div>
 					<Header
 						cart={cart}
 						userId={userId}
