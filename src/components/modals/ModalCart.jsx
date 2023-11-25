@@ -44,8 +44,10 @@ const ModalCart = ({ cart, active, onOpenModule, children }) => {
 };
 
 ModalCart.propTypes = {
-	isLoading: PropTypes.bool,
-	onLoading: PropTypes.func,
+	cart: PropTypes.array,
+	active: PropTypes.bool,
+	onOpenModule: PropTypes.func,
+	children: PropTypes.node.isRequired,
 };
 
 export default ModalCart;

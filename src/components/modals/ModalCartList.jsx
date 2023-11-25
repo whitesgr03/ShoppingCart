@@ -105,12 +105,14 @@ const ModalCartList = ({
 };
 
 ModalCartList.propTypes = {
-	list: PropTypes.array,
-	isLoading: PropTypes.bool,
-	onLoading: PropTypes.func,
+	cart: PropTypes.array,
+	userId: PropTypes.string,
+	onError: PropTypes.func,
+	onGetUserCart: PropTypes.func,
+	onOpenModule: PropTypes.func,
 };
 
-ModalCartListOption.propTypes = {
+Options.propTypes = {
 	quantity: PropTypes.number,
 };
 

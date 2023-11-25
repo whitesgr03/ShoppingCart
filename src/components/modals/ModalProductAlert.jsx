@@ -4,9 +4,9 @@ import { mdiLoading } from "@mdi/js";
 
 import { useState } from "react";
 
-import PropTypes from "prop-types";
-
 import { deleteUserCartItem } from "../../utils/handleUserCart";
+
+import PropTypes from "prop-types";
 
 const ModalProductAlert = ({
 	userId,
@@ -101,8 +101,13 @@ const ModalProductAlert = ({
 };
 
 ModalProductAlert.propTypes = {
-	isLoading: PropTypes.bool,
-	onLoading: PropTypes.func,
+	userId: PropTypes.string,
+	product: PropTypes.object,
+	behavior: PropTypes.string,
+	active: PropTypes.bool,
+	onError: PropTypes.func,
+	onGetUserCart: PropTypes.func,
+	onOpenModule: PropTypes.func,
 };
 
 export default ModalProductAlert;

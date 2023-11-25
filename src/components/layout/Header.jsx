@@ -8,7 +8,7 @@ import {
 } from "@mdi/js";
 
 import { NavLink } from "react-router-dom";
-import { handleGoogleLogin, handleLogout } from "../../utils/handleUserAccount";
+import PropTypes from "prop-types";
 
 const Header = ({ cart, userId, onOpenModal }) => {
 	return (
@@ -58,4 +58,15 @@ const Header = ({ cart, userId, onOpenModal }) => {
 	);
 };
 
-export { Header as default };
+Header.propTypes = {
+	userId: PropTypes.string,
+	onError: PropTypes.func,
+	onOpenModal: PropTypes.func,
+	children: PropTypes.node.isRequired,
+};
+
+Badge.propTypes = {
+	isLoading: PropTypes.array,
+};
+
+export { Header as default, Badge };

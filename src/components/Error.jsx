@@ -2,6 +2,8 @@ import "../style/error.css";
 import Icon from "@mdi/react";
 import { mdiHanger } from "@mdi/js";
 
+import PropTypes from "prop-types";
+
 const Error = ({ message }) => {
 	return (
 		<div className="error">
@@ -18,6 +20,10 @@ const Error = ({ message }) => {
 			</div>
 		</div>
 	);
+};
+
+Error.propTypes = {
+	message: PropTypes.string,
 };
 
 export default Error;
