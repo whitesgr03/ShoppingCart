@@ -2,16 +2,14 @@ import "../style/home.css";
 import { Link, useOutletContext } from "react-router-dom";
 
 const Home = () => {
-	const { imageUrls } = useOutletContext();
-
-	const url = imageUrls.find(imageUrl => imageUrl.includes("home"));
+	const { homeUrl: url } = useOutletContext();
 
 	return (
 		<div className="home">
 			<div
 				className="carousel"
 				style={{
-					backgroundImage: url ? `url(${url})` : " none",
+					backgroundImage: `url(${url})`,
 				}}
 			>
 				<button type="button" className="arrow left"></button>
