@@ -6,7 +6,7 @@ const handleGoogleLogin = () => {
 	auth.signInWithRedirect(provider);
 };
 
-const handleLogout = async () => {
+const handleUserLogout = async () => {
 	const auth = initialAuth();
 	await auth.signOut();
 };
@@ -33,4 +33,9 @@ const handleRegisterUser = async user => {
 	await userRef.set(userInfo);
 };
 
-export { handleGoogleLogin, handleLogout, handleCheckUser, handleRegisterUser };
+export {
+	handleGoogleLogin,
+	handleUserLogout,
+	handleCheckUser,
+	handleRegisterUser,
+};
