@@ -169,6 +169,7 @@ const Root = () => {
 					<Header
 						cart={cart}
 						userId={userId}
+						onError={setError}
 						onOpenModal={handleOpenModal}
 					>
 						<Badge cart={cart} />
