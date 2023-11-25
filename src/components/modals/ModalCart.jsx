@@ -7,11 +7,16 @@ import PropTypes from "prop-types";
 const ModalCart = ({ cart, active, onOpenModule, children }) => {
 	const handleCheckout = () => onOpenModule(null);
 
-	const totalPrice = useMemo(() => {
-		return cart
-			.reduce((sum, product) => sum + product.price * product.quantity, 0)
-			.toFixed(2);
-	}, [cart]);
+	const totalPrice = useMemo(
+		() =>
+			cart
+				.reduce(
+					(sum, product) => sum + product.price * product.quantity,
+					0
+				)
+				.toFixed(2),
+		[cart]
+	);
 
 	return (
 		<div className={`cart ${active ? "active" : ""}`}>
