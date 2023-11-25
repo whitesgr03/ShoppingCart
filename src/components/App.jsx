@@ -183,7 +183,8 @@ const Root = () => {
 					<div data-testid="content" className="content">
 						<Outlet
 							context={{
-								imageUrls,
+								homeUrl: imageUrls["home"],
+								contactUrl: imageUrls["contact"],
 								userId,
 								cart,
 								onOpenModule: handleOpenModal,
