@@ -8,6 +8,11 @@ import {
 } from "@mdi/js";
 
 import { NavLink } from "react-router-dom";
+import {
+	handleGoogleLogin,
+	handleUserLogout,
+} from "../../utils/handleUserAccount";
+
 import PropTypes from "prop-types";
 
 const Badge = ({ cart }) => {
