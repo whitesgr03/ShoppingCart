@@ -167,7 +167,6 @@ const Root = () => {
 					</div>
 
 					<Header
-						cart={cart}
 						userId={userId}
 						onError={setError}
 						onOpenModal={handleOpenModal}
