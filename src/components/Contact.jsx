@@ -2,10 +2,11 @@ import "../style/contact.css";
 import Icon from "@mdi/react";
 import { mdiPhone, mdiEmailOutline, mdiMapMarker } from "@mdi/js";
 
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 const Contact = () => {
 	const { contactUrl: url } = useOutletContext();
+	const navigate = useNavigate();
 
 	const url = imageUrls.find(imageUrl => imageUrl.includes("contact"));
 
