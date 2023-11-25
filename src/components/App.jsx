@@ -165,11 +165,15 @@ const Root = () => {
 							/>
 						</div>
 					</div>
+
 					<Header
 						cart={cart}
 						userId={userId}
 						onOpenModal={handleOpenModal}
-					/>
+					>
+						<Badge cart={cart} />
+					</Header>
+
 					<div data-testid="content" className="content">
 						<Outlet
 							context={{
