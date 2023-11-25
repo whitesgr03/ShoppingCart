@@ -9,7 +9,7 @@ import { addUserCartItem } from "../../utils/handleUserCart";
 
 const OptionNum = 10;
 
-const Product = () => {
+const ProductDetails = () => {
 	const [loading, setLoading] = useState(false);
 	const { products, userId, cart, onOpenModule, onGetUserCart, onError } =
 		useOutletContext();
@@ -115,4 +115,4 @@ const Product = () => {
 	);
 };
 
-export default Product;
+export default ProductDetails;
