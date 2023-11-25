@@ -10,7 +10,17 @@ import {
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Header = ({ cart, userId, onOpenModal }) => {
+const Badge = ({ cart }) => {
+	return (
+		cart.length > 0 && (
+			<span data-testid="badge" className="badge">
+				{cart.length}
+			</span>
+		)
+	);
+};
+
+
 	return (
 		<div className="sidebar" data-testid="sidebar">
 			<div className={`icons ${userId === null ? "authenticate" : ""}`}>
