@@ -8,13 +8,16 @@ const Contact = () => {
 	const { contactUrl: url } = useOutletContext();
 	const navigate = useNavigate();
 
-	const url = imageUrls.find(imageUrl => imageUrl.includes("contact"));
+	const handleSubmit = e => {
+		navigate("/");
+		e.preventDefault();
+	};
 
 	return (
 		<div className="contact">
 			<div
 				style={{
-					backgroundImage: url ? `url(${url})` : " none",
+					backgroundImage: `url(${url})`,
 				}}
 			>
 				<div className="blur">
@@ -39,7 +42,7 @@ const Contact = () => {
 								<li>123 Anywhere St.,Any City</li>
 							</ul>
 						</div>
-						<form id="contact" onSubmit={e => e.preventDefault()}>
+						<form id="contact" onSubmit={handleSubmit}>
 							<label htmlFor="name">
 								Name
 								<input type="text" name="name" id="name" />
