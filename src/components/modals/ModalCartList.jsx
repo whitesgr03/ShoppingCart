@@ -71,6 +71,9 @@ const ModalCartList = memo(
 											}
 											value={product.quantity}
 										>
+											<Options
+												quantity={product.quantity}
+											/>
 										</select>
 									</label>
 									<p>
