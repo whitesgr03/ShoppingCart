@@ -16,7 +16,10 @@ const ProductDetails = () => {
 
 	const { productId } = useParams();
 
-	const product = products.find(item => item.id === productId);
+	const product = useMemo(
+		() => products.find(item => item.id === productId),
+		[products, productId]
+	);
 
 	const handleSubmit = e => {
 		const addProduct = async () => {
