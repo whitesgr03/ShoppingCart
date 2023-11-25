@@ -20,6 +20,7 @@ const Badge = ({ cart }) => {
 	);
 };
 
+const Header = ({ userId, onError, onOpenModal, children }) => {
 
 	return (
 		<div className="sidebar" data-testid="sidebar">
@@ -43,11 +44,7 @@ const Badge = ({ cart }) => {
 					onClick={() => onOpenModal("cart")}
 				>
 					<Icon path={mdiCartVariant} />
-					{cart.length > 0 && (
-						<span data-testid="badge" className="badge">
-							{cart.length}
-						</span>
-					)}
+					{children}
 				</button>
 			</div>
 			<h1 className="title">
