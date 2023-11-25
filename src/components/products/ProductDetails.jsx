@@ -2,7 +2,7 @@ import "../../style/products/productDetails.css";
 import Icon from "@mdi/react";
 import { mdiLoading } from "@mdi/js";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 
 import { addUserCartItem } from "../../utils/handleUserCart";
