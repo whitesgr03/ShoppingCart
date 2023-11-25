@@ -8,14 +8,18 @@ import { updateUserCartItem } from "../../utils/handleUserCart";
 
 import PropTypes from "prop-types";
 
-const ModalCartList = ({
-	cart,
-	userId,
-	onError,
-	onGetUserCart,
-	onOpenModule,
-}) => {
-	const [loading, setLoading] = useState(false);
+const Options = memo(quantity =>
+	Array.from({
+		length: quantity > 10 ? quantity : 10,
+	})
+		.fill([])
+		.map((_, i) => (
+			<option key={i} value={i + 1}>
+				{i + 1}
+			</option>
+		))
+);
+
 
 	const handleRemove = product => onOpenModule("alert", product, "remove");
 	const handleChange = async product => {
