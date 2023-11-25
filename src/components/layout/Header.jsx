@@ -26,6 +26,14 @@ const Badge = ({ cart }) => {
 };
 
 const Header = ({ userId, onError, onOpenModal, children }) => {
+	const handleLogin = () => {
+		try {
+			handleGoogleLogin();
+		} catch (error) {
+			console.error(error);
+			onError("Service temporarily unavailable");
+		}
+	};
 
 	return (
 		<div className="sidebar" data-testid="sidebar">
