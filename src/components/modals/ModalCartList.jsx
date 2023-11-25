@@ -2,7 +2,7 @@ import "../../style/modals/modalCartList.css";
 import Icon from "@mdi/react";
 import { mdiTrashCanOutline, mdiLoading } from "@mdi/js";
 
-import { useState } from "react";
+import { useState, memo } from "react";
 
 import { updateUserCartItem } from "../../utils/handleUserCart";
 
