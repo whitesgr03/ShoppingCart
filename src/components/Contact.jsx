@@ -5,7 +5,7 @@ import { mdiPhone, mdiEmailOutline, mdiMapMarker } from "@mdi/js";
 import { useOutletContext } from "react-router-dom";
 
 const Contact = () => {
-	const { imageUrls } = useOutletContext();
+	const { contactUrl: url } = useOutletContext();
 
 	const url = imageUrls.find(imageUrl => imageUrl.includes("contact"));
 
