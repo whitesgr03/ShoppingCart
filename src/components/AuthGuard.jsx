@@ -5,6 +5,8 @@ import Loading from "./Loading";
 
 import { handleGoogleLogin } from "../utils/handleUserAccount";
 
+import PropTypes from "prop-types";
+
 const AuthGuard = ({ children }) => {
 	const [loading, setLoading] = useState(true);
 	const { userId, onError } = useOutletContext();
@@ -23,6 +25,10 @@ const AuthGuard = ({ children }) => {
 	}, [userId, onError]);
 
 	return <>{loading ? <Loading /> : children}</>;
+};
+
+AuthGuard.propTypes = {
+	children: PropTypes.node.isRequired,
 };
 
 export { AuthGuard as default };
