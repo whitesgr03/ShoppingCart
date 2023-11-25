@@ -51,7 +51,7 @@ const Header = ({ userId, onError, onOpenModal, children }) => {
 					className="account"
 					type="button"
 					name="showAccount"
-					onClick={userId === "" ? handleGoogleLogin : handleLogout}
+					onClick={userId === "" ? handleLogin : handleLogout}
 				>
 					<Icon path={userId === "" ? mdiAccount : mdiLogout} />
 				</button>
