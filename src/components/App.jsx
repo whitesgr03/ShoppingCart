@@ -183,7 +183,19 @@ const App = () => {
 					</Header>
 
 					<div data-testid="content" className="content">
+						<AppContext.Provider
+							value={{
+								homeUrl: imageUrls["home"],
+								contactUrl: imageUrls["contact"],
+								userId,
+								cart,
+								onOpenModule: handleOpenModal,
+								onGetUserCart: handleGetUserCart,
+							}}
+						>
 							<Outlet />
+						</AppContext.Provider>
+						;
 						<Footer />
 					</div>
 				</>
@@ -192,7 +204,4 @@ const App = () => {
 	);
 };
 
-export {
-	App as default,
-	AppContext
-};
+export { App as default, AppContext };
