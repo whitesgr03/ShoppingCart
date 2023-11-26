@@ -183,16 +183,7 @@ const App = () => {
 					</Header>
 
 					<div data-testid="content" className="content">
-						<Outlet
-							context={{
-								homeUrl: imageUrls["home"],
-								contactUrl: imageUrls["contact"],
-								userId,
-								cart,
-								onOpenModule: handleOpenModal,
-								onGetUserCart: handleGetUserCart,
-							}}
-						/>
+							<Outlet />
 						<Footer />
 					</div>
 				</>
