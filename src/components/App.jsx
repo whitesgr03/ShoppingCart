@@ -30,7 +30,7 @@ const defaultModalState = {
 	behavior: null,
 };
 
-const Root = () => {
+const App = () => {
 	const [userId, setUserId] = useState(null);
 	const [cart, setCart] = useState(null);
 	const [imageUrls, setImageUrls] = useState(null);
@@ -199,4 +199,6 @@ const Root = () => {
 	);
 };
 
-export default Root;
+export {
+	App as default,
+};
