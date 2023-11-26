@@ -1,5 +1,8 @@
 import "../style/home.css";
-import { Link, useOutletContext } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+
+import { AppContext } from "./App";
 
 const Home = () => {
 	const { homeUrl: url } = useOutletContext();
