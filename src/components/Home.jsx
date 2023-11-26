@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "./App";
 
 const Home = () => {
-	const { homeUrl: url } = useOutletContext();
+	const { homeUrl: url } = useContext(AppContext);
 
 	return (
 		<div className="home">
