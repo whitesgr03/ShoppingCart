@@ -30,6 +30,8 @@ const defaultModalState = {
 	behavior: null,
 };
 
+const AppContext = createContext(null);
+
 const App = () => {
 	const [userId, setUserId] = useState(null);
 	const [cart, setCart] = useState(null);
@@ -201,4 +203,5 @@ const App = () => {
 
 export {
 	App as default,
+	AppContext
 };
