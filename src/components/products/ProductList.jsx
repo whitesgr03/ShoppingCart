@@ -1,6 +1,6 @@
 import "../../style/products/productList.css";
 
-import { useContext, useMemo } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../App";
 
