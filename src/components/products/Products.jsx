@@ -22,15 +22,15 @@ const Products = () => {
 	useEffect(() => {
 		let ignore = false;
 
-		const handleGetProducts = async () => {
+		const handleFetch = async () => {
 			try {
-				
-				// !ignore && setProducts(productsResult);
+				const productsResult = await handleGetProducts();
+				!ignore && setProducts(productsResult);
 			} catch (error) {
 				setError("Service temporarily unavailable");
 			}
 		};
-		handleGetProducts();
+		handleFetch();
 
 		return () => {
 			ignore = true;
