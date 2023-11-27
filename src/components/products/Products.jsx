@@ -21,6 +21,24 @@ const Products = () => {
 	const { userId, cart, onOpenModule, onGetUserCart } =
 		useContext(AppContext);
 
+	const filterText = useMemo(
+		() => searchParams.get("search"),
+		[searchParams]
+	);
+
+	const filterProducts = useMemo(
+		() =>
+			filterText
+				? products.filter(
+						item =>
+							item.name
+								.toLowerCase()
+								.indexOf(filterText.toLowerCase().trim()) !== -1
+				  )
+				: products,
+		[filterText, products]
+	);
+
 	useEffect(() => {
 		let ignore = false;
 
