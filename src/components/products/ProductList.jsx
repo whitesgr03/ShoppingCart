@@ -5,22 +5,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../App";
 
 const ProductList = () => {
-	const { products, searchParams } = useContext(AppContext);
-
-	const filterText = searchParams.get("search");
-
-	const filterProducts = useMemo(
-		() =>
-			filterText
-				? products.filter(
-						item =>
-							item.name
-								.toLowerCase()
-								.indexOf(filterText.toLowerCase().trim()) !== -1
-				  )
-				: products,
-		[filterText, products]
-	);
+	const { products } = useContext(AppContext);
 
 	return (
 		<div data-testid="productList" className="productList">
