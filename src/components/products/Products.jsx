@@ -41,7 +41,7 @@ const Products = () => {
 		<div className="products">
 			{!products && !error && <Loading />}
 			{error && <Error message={error} />}
-			{products && !error && (
+			{products && (
 				<>
 					<ProductsNavbar onSearchParams={setSearchParams} />
 					<Outlet
