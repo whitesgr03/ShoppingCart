@@ -7,7 +7,7 @@ import ProductsNavbar from "./ProductsNavbar";
 import Error from "../Error";
 import Loading from "../Loading";
 
-import handleGetProducts from "../../utils/handleGetProducts";
+import handleGetAllProducts from "../../utils/handleGetAllProducts";
 
 import { AppContext } from "../App";
 
@@ -24,7 +24,7 @@ const Products = () => {
 
 		const handleFetch = async () => {
 			try {
-				const productsResult = await handleGetProducts();
+				const productsResult = await handleGetAllProducts();
 				!ignore && setProducts(productsResult);
 			} catch (error) {
 				setError("Service temporarily unavailable");
