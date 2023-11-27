@@ -61,9 +61,9 @@ describe("Products Component", () => {
 
 		render(<Products />, { wrapper: Provider });
 
-		await waitFor(async () => {
-			const element = await screen.findByRole("list");
-			expect(element).toBeInTheDocument();
+		const element = await screen.findByRole("list");
+
+		expect(element).toBeInTheDocument();
 		});
 	});
 });
