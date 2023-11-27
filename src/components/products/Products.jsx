@@ -1,6 +1,6 @@
 import "../../style/products/products.css";
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import { Outlet, useSearchParams } from "react-router-dom";
 
 import ProductsNavbar from "./ProductsNavbar";
