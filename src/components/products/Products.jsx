@@ -44,17 +44,19 @@ const Products = () => {
 			{products && (
 				<>
 					<ProductsNavbar onSearchParams={setSearchParams} />
-					<Outlet
-						context={{
-							products,
-							searchParams,
+					<AppContext.Provider
+						value={{
 							userId,
 							cart,
 							onOpenModule,
 							onGetUserCart,
+							products,
+							searchParams,
 							onError: setError,
 						}}
-					/>
+					>
+						<Outlet />
+					</AppContext.Provider>
 				</>
 			)}
 		</div>
