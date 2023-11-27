@@ -20,7 +20,7 @@ const ProductsNavbar = ({ onSearchParams }) => {
 	const handleFilterProduct = e => {
 		pathname !== "/shop" && navigate("/shop");
 		const value = searchBarValue.trim();
-		onSearchParams(value ? `search=${value}` : "");
+		onSearchParams(value && `search=${value}`);
 		e.preventDefault();
 	};
 
