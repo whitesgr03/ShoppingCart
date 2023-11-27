@@ -7,6 +7,7 @@ import ProductsNavbar from "./ProductsNavbar";
 import Error from "../Error";
 import Loading from "../Loading";
 
+import handleGetProducts from "../../utils/handleGetProducts";
 
 import { AppContext } from "../App";
 
