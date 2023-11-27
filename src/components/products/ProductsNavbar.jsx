@@ -8,11 +8,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const ProductsNavbar = ({ onSearchParams }) => {
-	const { pathname } = useLocation();
-	const navigate = useNavigate();
-
 	const [active, setActive] = useState(false);
 	const [searchBarValue, setSearchBarValue] = useState("");
+
+	const { pathname } = useLocation();
+	const navigate = useNavigate();
 
 	const handleAddBorder = () => setActive(true);
 	const handleRemoveBorder = () => setActive(false);
