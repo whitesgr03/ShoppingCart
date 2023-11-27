@@ -8,7 +8,7 @@ const ProductList = () => {
 	const { products } = useContext(AppContext);
 
 	return (
-		<div data-testid="productList" className="productList">
+		<div className="productList">
 			{filterProducts.length > 0 ? (
 				<ul className="list">
 					{filterProducts.map(product => (
