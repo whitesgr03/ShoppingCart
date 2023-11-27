@@ -20,28 +20,12 @@ const Products = () => {
 
 	useEffect(() => {
 		let ignore = false;
-		const firestore = initialFirestore();
-		const productRef = firestore.collection("products");
 
 		const handleGetProducts = async () => {
 			try {
-				const result = await productRef.get();
-
-				await Promise.all(
-					result.docs.map(item => {
-						const obj = { ...item.data() };
-						return handlePreLoadImage(obj.url);
-					})
-				);
-
-				const productsResult = result.docs.map(item => ({
-					id: item.id,
-					...item.data(),
-				}));
-
-				!ignore && setProducts(productsResult);
+				
+				// !ignore && setProducts(productsResult);
 			} catch (error) {
-				console.error(error);
 				setError("Service temporarily unavailable");
 			}
 		};
