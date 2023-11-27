@@ -9,6 +9,8 @@ import Loading from "../Loading";
 
 import handleGetAllProducts from "../../utils/handleGetAllProducts";
 
+import handlePreLoadImage from "../../utils/handlePreLoadImage";
+
 import { AppContext } from "../App";
 
 const Products = () => {
@@ -25,6 +27,14 @@ const Products = () => {
 		const handleFetch = async () => {
 			try {
 				const productsResult = await handleGetAllProducts();
+
+				!ignore &&
+					(await Promise.all(
+						productsResult.map(product =>
+							handlePreLoadImage(product.url)
+						)
+					));
+
 				!ignore && setProducts(productsResult);
 			} catch (error) {
 				setError("Service temporarily unavailable");
