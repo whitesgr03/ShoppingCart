@@ -1,21 +1,22 @@
 import "../../style/products/products.css";
 
-import { useState, useEffect } from "react";
-import { Outlet, useSearchParams, useOutletContext } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { Outlet, useSearchParams } from "react-router-dom";
 
 import ProductsNavbar from "./ProductsNavbar";
 import Error from "../Error";
 import Loading from "../Loading";
 
-import { initialFirestore } from "../../firebase-config";
-import handlePreLoadImage from "../../utils/handlePreLoadImage";
+
+import { AppContext } from "../App";
 
 const Products = () => {
 	const [error, setError] = useState(null);
 	const [products, setProducts] = useState(null);
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const { userId, cart, onOpenModule, onGetUserCart } = useOutletContext();
+	const { userId, cart, onOpenModule, onGetUserCart } =
+		useContext(AppContext);
 
 	useEffect(() => {
 		let ignore = false;

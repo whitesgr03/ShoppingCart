@@ -1,9 +1,12 @@
 import "../../style/products/productList.css";
 
-import { Link, useOutletContext } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AppContext } from "../App";
 
 const ProductList = () => {
-	const { products, searchParams } = useOutletContext();
+	const { products, searchParams } = useContext(AppContext);
+
 	const filterText = searchParams.get("search");
 
 	const filterProducts = filterText

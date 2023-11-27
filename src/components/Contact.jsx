@@ -2,10 +2,14 @@ import "../style/contact.css";
 import Icon from "@mdi/react";
 import { mdiPhone, mdiEmailOutline, mdiMapMarker } from "@mdi/js";
 
-import { useOutletContext, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+
+import { useNavigate } from "react-router-dom";
+
+import { AppContext } from "./App";
 
 const Contact = () => {
-	const { contactUrl: url } = useOutletContext();
+	const { contactUrl: url } = useContext(AppContext);
 	const navigate = useNavigate();
 
 	const handleSubmit = e => {

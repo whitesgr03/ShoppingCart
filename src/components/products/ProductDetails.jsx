@@ -2,17 +2,20 @@ import "../../style/products/productDetails.css";
 import Icon from "@mdi/react";
 import { mdiLoading } from "@mdi/js";
 
-import { useEffect, useState, useMemo } from "react";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useEffect, useState, useMemo, useContext } from "react";
+import { useParams } from "react-router-dom";
 
 import { addUserCartItem } from "../../utils/handleUserCart";
+
+import { AppContext } from "../App";
 
 const OptionNum = 10;
 
 const ProductDetails = () => {
 	const [loading, setLoading] = useState(false);
+
 	const { products, userId, cart, onOpenModule, onGetUserCart, onError } =
-		useOutletContext();
+		useContext(AppContext);
 
 	const { productId } = useParams();
 
