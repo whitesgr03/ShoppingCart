@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 
 import Products from "../../components/products/Products";
@@ -64,6 +64,6 @@ describe("Products Component", () => {
 		const element = await screen.findByRole("list");
 
 		expect(element).toBeInTheDocument();
-		});
+		expect(handlePreLoadImage).toBeCalledTimes(1);
 	});
 });
