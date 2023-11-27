@@ -5,6 +5,7 @@ import Products from "../../components/products/Products";
 import { AppContext } from "../../components/App";
 
 import handleGetAllProducts from "../../utils/handleGetAllProducts";
+import handlePreLoadImage from "../../utils/handlePreLoadImage";
 
 jest.mock("../../utils/handleGetAllProducts");
 jest.mock("../../components/products/ProductsNavbar.jsx", () => () => (
