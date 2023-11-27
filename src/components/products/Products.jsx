@@ -63,4 +63,4 @@ const Products = () => {
 	);
 };
 
-export default Products;
+export { Products as default };
