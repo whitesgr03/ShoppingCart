@@ -9,9 +9,9 @@ const ProductList = () => {
 
 	return (
 		<div className="productList">
-			{filterProducts.length > 0 ? (
+			{products.length > 0 ? (
 				<ul className="list">
-					{filterProducts.map(product => (
+					{products.map(product => (
 						<li className="item" key={product.id}>
 							<Link
 								className="image-link"
