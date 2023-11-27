@@ -8,6 +8,7 @@ import handleGetAllProducts from "../../utils/handleGetAllProducts";
 import handlePreLoadImage from "../../utils/handlePreLoadImage";
 
 jest.mock("../../utils/handleGetAllProducts");
+jest.mock("../../utils/handlePreLoadImage");
 jest.mock("../../components/products/ProductsNavbar.jsx", () => () => (
 	<ul></ul>
 ));
