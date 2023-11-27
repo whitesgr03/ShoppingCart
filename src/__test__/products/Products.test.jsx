@@ -4,9 +4,9 @@ import { BrowserRouter } from "react-router-dom";
 import Products from "../../components/products/Products";
 import { AppContext } from "../../components/App";
 
-import handleGetProducts from "../../utils/handleGetProducts";
+import handleGetAllProducts from "../../utils/handleGetAllProducts";
 
-jest.mock("../../utils/handleGetProducts");
+jest.mock("../../utils/handleGetAllProducts");
 jest.mock("../../components/products/ProductsNavbar.jsx", () => () => (
 	<ul></ul>
 ));
@@ -40,7 +40,7 @@ describe("Products Component", () => {
 		expect(element).toHaveClass("loading");
 	});
 	it("Should render Error component when error is true", async () => {
-		handleGetProducts.mockImplementation(() => {
+		handleGetAllProducts.mockImplementationOnce(() => {
 			throw new Error();
 		});
 
