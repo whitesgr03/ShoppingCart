@@ -78,8 +78,7 @@ const Products = () => {
 							cart,
 							onOpenModule,
 							onGetUserCart,
-							products,
-							searchParams,
+							products: filterProducts,
 							onError: setError,
 						}}
 					>
