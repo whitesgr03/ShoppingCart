@@ -53,7 +53,11 @@ describe("Products Component", () => {
 		expect(element).toHaveTextContent("Service temporarily unavailable");
 	});
 	it("Should render Products component when products is true", async () => {
-		handleGetProducts.mockReturnValue(true);
+		handleGetAllProducts.mockReturnValueOnce([
+			{
+				url: null,
+			},
+		]);
 
 		render(<Products />, { wrapper: Provider });
 
