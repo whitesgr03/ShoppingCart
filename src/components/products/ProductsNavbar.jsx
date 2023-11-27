@@ -42,7 +42,6 @@ const ProductsNavbar = ({ onSearchParams }) => {
 			>
 				<div className="search-border">
 					<input
-						data-testid="search"
 						type="search"
 						name="search"
 						placeholder="search..."
