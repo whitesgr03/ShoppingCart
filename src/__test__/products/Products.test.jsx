@@ -48,7 +48,7 @@ describe("Products Component", () => {
 
 		render(<Products />, { wrapper: Provider });
 
-		const element = await screen.findByRole("heading");
+		const element = await screen.findByRole("heading", { level: 1 });
 
 		expect(element).toHaveTextContent("Service temporarily unavailable");
 	});
