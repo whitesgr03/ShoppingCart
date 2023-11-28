@@ -5,6 +5,8 @@ import { mdiLoading } from "@mdi/js";
 import { useEffect, useState, useMemo, useContext } from "react";
 import { useParams } from "react-router-dom";
 
+import Loading from "../Loading";
+
 import { addUserCartItem } from "../../utils/handleUserCart";
 
 import handlePreLoadImage from "../../utils/handlePreLoadImage";
