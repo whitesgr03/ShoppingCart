@@ -30,7 +30,7 @@ const ProductDetails = () => {
 
 	const handleSubmit = e => {
 		const addProduct = async () => {
-			setLoading(true);
+			setAdding(true);
 
 			const quantityToNumeric = data =>
 				[...data].map(([key, value]) =>
@@ -58,12 +58,11 @@ const ProductDetails = () => {
 				console.error(error);
 				onError("Service temporarily unavailable");
 			} finally {
-				await onGetUserCart(userId);
-				setLoading(false);
+				setAdding(false);
 			}
 		};
 
-		!loading && addProduct();
+		!adding && addProduct();
 		e.preventDefault();
 	};
 
