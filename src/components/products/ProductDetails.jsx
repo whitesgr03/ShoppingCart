@@ -2,7 +2,7 @@ import "../../style/products/productDetails.css";
 import Icon from "@mdi/react";
 import { mdiLoading } from "@mdi/js";
 
-import { useEffect, useState, useMemo, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import Loading from "../Loading";
