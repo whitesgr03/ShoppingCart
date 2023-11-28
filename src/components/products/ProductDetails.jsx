@@ -124,23 +124,19 @@ const ProductDetails = () => {
 							</select>
 						</label>
 
-						<button
-							className={`slide ${loading ? "adding" : ""}`}
-							type="submit"
-						>
-							{loading ? (
-								<>
-									Adding
-									<Icon path={mdiLoading} spin={1} />
-								</>
-							) : (
-								<>Add to Cart</>
-							)}
-						</button>
-					</form>
-				</div>
-			</div>
-		)
+							<button
+								className={`slide ${adding ? "adding" : ""}`}
+								type="submit"
+							>
+								{adding ? (
+									<>
+										Adding
+										<Icon path={mdiLoading} spin={1} />
+									</>
+								) : (
+									<>Add to Cart</>
+								)}
+							</button>
 	);
 };
 
