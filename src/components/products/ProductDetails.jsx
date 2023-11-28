@@ -12,9 +12,9 @@ import { AppContext } from "../App";
 const OptionNum = 10;
 
 const ProductDetails = () => {
-	const [loading, setLoading] = useState(false);
+	const [product, setProduct] = useState(null);
 
-	const { products, userId, cart, onOpenModule, onGetUserCart, onError } =
+	const { userId, cart, onOpenModule, onGetUserCart, onError } =
 		useContext(AppContext);
 
 	const { productId } = useParams();
