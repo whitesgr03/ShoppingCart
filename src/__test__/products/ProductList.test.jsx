@@ -1,88 +1,47 @@
 import { render, screen } from "@testing-library/react";
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import ProductList from "../../components/products/ProductList";
+import { AppContext } from "../../components/App";
 
-let mockOutletContext = null;
+let mockProducts = null;
 
-jest.mock("react-router-dom", () => ({
-	...jest.requireActual("react-router-dom"),
-	useOutletContext: () => mockOutletContext,
-}));
+const Provider = ({ children }) => (
+	<BrowserRouter>
+		<AppContext.Provider
+			value={{
+				products: mockProducts,
+			}}
+		>
+			{children}
+		</AppContext.Provider>
+	</BrowserRouter>
+);
 
-describe("Renders Products Component", () => {
-	it("Should show products matching the search text", () => {
-		mockOutletContext = {
-			products: [
-				{
-					id: 0,
-					name: "fakeBag",
-					url: "../",
-					price: 19.9,
-				},
-				{
-					id: 1,
-					name: "fakePants",
-					url: "../",
-					price: 19.9,
-				},
-			],
-			filterText: "fakeBag",
-		};
-
-		const routes = [
+describe("ProductList Component", () => {
+	it("Should render list when products context is provided", () => {
+		mockProducts = [
 			{
-				path: "/",
-				element: <ProductList />,
+				id: "item01",
+				name: "fakeBag",
+				url: "../",
+				price: 19.9,
 			},
 		];
 
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
-		});
+		render(<ProductList />, { wrapper: Provider });
 
-		render(<RouterProvider router={router} />);
+		const element = screen.getByRole("list");
 
-		expect(screen.queryByText("fakePants")).not.toBeInTheDocument();
-
-		const actual = screen.getByText(mockOutletContext.filterText);
-
-		expect(actual).toBeInTheDocument();
+		expect(element).toBeInTheDocument();
 	});
+	it("Should render heading when products context is not provided", () => {
+		mockProducts = [];
 
-	it("Should show all products without searchText", () => {
-		mockOutletContext = {
-			products: [
-				{
-					id: 0,
-					name: "fakeBag",
-					url: "../",
-					price: 19.9,
-				},
-				{
-					id: 1,
-					name: "fakePants",
-					url: "../",
-					price: 19.9,
-				},
-			],
-			filterText: "",
-		};
+		render(<ProductList />, { wrapper: Provider });
 
-		const routes = [
-			{
-				path: "/",
-				element: <ProductList />,
-			},
-		];
+		const element = screen.getByRole("heading", { level: 3 });
 
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
-		});
-
-		render(<RouterProvider router={router} />);
-
-		expect(screen.getByText("fakePants")).toBeInTheDocument();
-		expect(screen.getByText("fakeBag")).toBeInTheDocument();
+		expect(element).toBeInTheDocument();
 	});
 });
