@@ -47,6 +47,7 @@ const Products = () => {
 				const productsResult = await handleGetAllProducts();
 
 				!ignore &&
+					productsResult &&
 					(await Promise.all(
 						productsResult.map(product =>
 							handlePreLoadImage(product.url)
