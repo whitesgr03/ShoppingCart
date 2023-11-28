@@ -64,8 +64,27 @@ const ProductDetails = () => {
 	};
 
 	useEffect(() => {
-		!product && onError("Product not find");
-	}, [product, onError]);
+		let ignore = false;
+
+		const handleFetch = async () => {
+			try {
+				const productsResult = await handleGetProduct(productId);
+
+				!ignore &&
+					productsResult &&
+					(await handlePreLoadImage(productsResult.url));
+
+				!ignore && setProduct(productsResult);
+			} catch (error) {
+				onError("Service temporarily unavailable");
+			}
+		};
+		handleFetch();
+
+		return () => {
+			ignore = true;
+		};
+	}, [productId, onError]);
 
 	return (
 		product && (
