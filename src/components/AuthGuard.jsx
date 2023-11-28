@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 
 import Loading from "./Loading";
 
@@ -9,23 +9,17 @@ import { handleGoogleLogin } from "../utils/handleUserAccount";
 import PropTypes from "prop-types";
 
 const AuthGuard = ({ children }) => {
-	const [loading, setLoading] = useState(true);
 	const { userId, onError } = useContext(AppContext);
 
 	useEffect(() => {
-		let ignore = false;
 		try {
-			!ignore && !userId && handleGoogleLogin();
-			!ignore && userId && setLoading(false);
+			!userId && handleGoogleLogin();
 		} catch (error) {
-			!ignore && onError(error);
+			onError(error);
 		}
-		return () => {
-			ignore = true;
-		};
 	}, [userId, onError]);
 
-	return <>{loading ? <Loading /> : children}</>;
+	return <>{userId ? children : <Loading />}</>;
 };
 
 AuthGuard.propTypes = {
