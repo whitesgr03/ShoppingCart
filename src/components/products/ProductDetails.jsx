@@ -7,6 +7,9 @@ import { useParams } from "react-router-dom";
 
 import { addUserCartItem } from "../../utils/handleUserCart";
 
+import handlePreLoadImage from "../../utils/handlePreLoadImage";
+import handleGetProduct from "../../utils/handleGetProduct";
+
 import { AppContext } from "../App";
 
 const OptionNum = 10;
