@@ -56,9 +56,9 @@ const ProductDetails = () => {
 				};
 
 				await addUserCartItem(newItem, userId);
+				await onGetUserCart(userId);
 				onOpenModule("alert", newItem, "add");
 			} catch (error) {
-				console.error(error);
 				onError("Service temporarily unavailable");
 			} finally {
 				setAdding(false);
