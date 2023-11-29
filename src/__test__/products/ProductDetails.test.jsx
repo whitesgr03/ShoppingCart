@@ -45,14 +45,14 @@ const Provider = ({ children }) => (
 );
 
 describe("ProductDetails Component", () => {
-	it("Should render Loading component when products is false", async () => {
+	it("Should render Loading component if products is false", async () => {
 		render(<ProductDetails />, { wrapper: Provider });
 
 		const element = await screen.findByTestId("loading");
 
 		expect(element).toHaveClass("loading");
 	});
-	it("Should call the onError when catch error", async () => {
+	it("Should set products error if catch error", async () => {
 		handleGetProduct.mockImplementationOnce(() => {
 			throw new Error();
 		});
@@ -61,7 +61,7 @@ describe("ProductDetails Component", () => {
 
 		expect(mockSetProductsError).toBeCalledTimes(1);
 	});
-	it("Should render ProductDetails component when product is true", async () => {
+	it("Should render content if product is true", async () => {
 		handleGetProduct.mockReturnValueOnce({
 			id: 0,
 			name: "fakeBag",
@@ -109,7 +109,7 @@ describe("ProductDetails Component", () => {
 		expect(mockOnOpenModule).toBeCalledTimes(1);
 		expect(mockOnGetUserCart).toBeCalledTimes(1);
 	});
-	it("Should be called the onError when submission fails", async () => {
+	it("Should set products error if submission fails", async () => {
 		handleGetProduct.mockReturnValueOnce({
 			id: "item01",
 			name: "fakeBag",
