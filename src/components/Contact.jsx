@@ -2,7 +2,7 @@ import "../style/contact.css";
 import Icon from "@mdi/react";
 import { mdiPhone, mdiEmailOutline, mdiMapMarker } from "@mdi/js";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
