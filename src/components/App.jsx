@@ -159,6 +159,7 @@ const App = () => {
 								userId,
 								cart,
 								imageUrls,
+								setImageUrls,
 								onOpenModule: handleOpenModal,
 								onGetUserCart: handleGetUserCart,
 							}}
