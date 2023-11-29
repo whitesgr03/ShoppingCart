@@ -41,8 +41,6 @@ const Contact = () => {
 						...imageUrls,
 						contact: imageUrlsResult,
 					});
-
-				!ignore && console.log("active");
 			} catch (error) {
 				setAppError("Service temporarily unavailable");
 			}
