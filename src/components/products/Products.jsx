@@ -65,7 +65,7 @@ const Products = () => {
 				setError("Service temporarily unavailable");
 			}
 		};
-		handleFetch();
+		products.length === 0 && handleFetch();
 
 		return () => {
 			ignore = true;
