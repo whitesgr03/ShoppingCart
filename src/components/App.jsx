@@ -161,6 +161,8 @@ const App = () => {
 								cart,
 								imageUrls,
 								setImageUrls,
+								products,
+								setProducts,
 								onAppError: setError,
 								onOpenModule: handleOpenModal,
 								onGetUserCart: handleGetUserCart,
