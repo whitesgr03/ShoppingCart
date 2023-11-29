@@ -20,7 +20,7 @@ const ProductDetails = () => {
 	const [adding, setAdding] = useState(false);
 	const [product, setProduct] = useState(null);
 
-	const { userId, cart, onOpenModule, onGetUserCart, onProductsError } =
+	const { userId, cart, onOpenModule, onGetUserCart, setProductsError } =
 		useContext(AppContext);
 
 	const { productId } = useParams();
@@ -61,7 +61,7 @@ const ProductDetails = () => {
 				await onGetUserCart(userId);
 				onOpenModule("alert", newItem, "add");
 			} catch (error) {
-				onProductsError("Service temporarily unavailable");
+				setProductsError("Service temporarily unavailable");
 			} finally {
 				setAdding(false);
 			}
@@ -84,7 +84,7 @@ const ProductDetails = () => {
 
 				!ignore && setProduct(productsResult);
 			} catch (error) {
-				onProductsError("Service temporarily unavailable");
+				setProductsError("Service temporarily unavailable");
 			}
 		};
 		handleFetch();
@@ -92,7 +92,7 @@ const ProductDetails = () => {
 		return () => {
 			ignore = true;
 		};
-	}, [productId, onProductsError]);
+	}, [productId, setProductsError]);
 
 	return (
 		<div className="productDetails">
