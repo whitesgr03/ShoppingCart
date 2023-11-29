@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../App";
 
 const ProductList = () => {
-	const { products } = useContext(AppContext);
+	const { filterProducts } = useContext(AppContext);
 
 	return (
 		<div className="productList">
-			{products.length > 0 ? (
+			{filterProducts.length > 0 ? (
 				<ul className="list">
-					{products.map(product => (
+					{filterProducts.map(product => (
 						<li className="item" key={product.id}>
 							<Link
 								className="image-link"
