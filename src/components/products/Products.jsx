@@ -18,8 +18,15 @@ const Products = () => {
 	const [products, setProducts] = useState(null);
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const { userId, cart, onOpenModule, onGetUserCart } =
-		useContext(AppContext);
+	const {
+		userId,
+		cart,
+		products,
+		setProducts,
+		onAppError,
+		onOpenModule,
+		onGetUserCart,
+	} = useContext(AppContext);
 
 	const filterText = useMemo(
 		() => searchParams.get("search"),
