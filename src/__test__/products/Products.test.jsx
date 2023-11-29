@@ -40,7 +40,7 @@ const Provider = ({ children }) => (
 );
 
 describe("Products Component", () => {
-	it("Should render Loading component when context products is empty and state error is false", async () => {
+	it("Should render Loading component if context products are empty and state error is false", async () => {
 		mockProducts = [];
 
 		render(<Products />, { wrapper: Provider });
@@ -49,7 +49,7 @@ describe("Products Component", () => {
 
 		expect(element).toHaveClass("loading");
 	});
-	it("Should render content when products is not empty", async () => {
+	it("Should render content if products are not empty", async () => {
 		mockProducts = [
 			{
 				id: "item01",
@@ -65,7 +65,7 @@ describe("Products Component", () => {
 
 		expect(element).toBeInTheDocument();
 	});
-	it("Should successfully handles Get All Products when products is empty", async () => {
+	it("Should successfully handling get all products if products are empty", async () => {
 		handleGetAllProducts.mockReturnValueOnce([
 			{
 				url: "../",
@@ -80,7 +80,7 @@ describe("Products Component", () => {
 		});
 		expect(handlePreLoadImage).toBeCalledTimes(1);
 	});
-	it("Should render Error component when handles Get All Products catch error", async () => {
+	it("Should set app error if handling get all products and catching error", async () => {
 		handleGetAllProducts.mockImplementationOnce(() => {
 			throw new Error();
 		});
@@ -90,4 +90,15 @@ describe("Products Component", () => {
 
 		expect(mockSetAppError).toBeCalledTimes(1);
 	});
+	// it("Should render Error component when error is provided", async () => {
+	// handleGetAllProducts.mockImplementationOnce(() => {
+	// 	throw new Error();
+	// });
+
+	// 	render(<Products />, { wrapper: Provider });
+
+	// 	const element = await screen.findByRole("heading", { level: 1 });
+
+	// 	expect(element).toHaveTextContent("Service temporarily unavailable");
+	// });
 });
