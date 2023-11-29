@@ -107,9 +107,9 @@ const App = () => {
 
 	return (
 		<div className="app">
-			{(!cart || !imageUrls) && !error && <Loading />}
+			{!cart && !error && <Loading />}
 			{error && <Error message={error} />}
-			{cart && imageUrls && !error && (
+			{cart && !error && (
 				<>
 					<div className="modal">
 						<div
