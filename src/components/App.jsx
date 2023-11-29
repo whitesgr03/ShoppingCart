@@ -16,7 +16,7 @@ import Loading from "./Loading";
 import { initialAuth } from "../firebase-config";
 
 import preLoadImage from "../utils/handlePreLoadImage";
-import getStorageImage from "../utils/handleStorageImage";
+
 import { getUserCart } from "../utils/handleUserCart";
 
 import {
