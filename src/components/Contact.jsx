@@ -6,6 +6,8 @@ import { useContext, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import Loading from "../components/Loading";
+
 import { AppContext } from "./App";
 
 import getStorageImage from "../utils/handleStorageImage";
