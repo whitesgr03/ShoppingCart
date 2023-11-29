@@ -40,36 +40,54 @@ const Provider = ({ children }) => (
 );
 
 describe("Products Component", () => {
-	it("Should render Loading component when products and error is false", async () => {
+	it("Should render Loading component when context products is empty and state error is false", async () => {
+		mockProducts = [];
+
 		render(<Products />, { wrapper: Provider });
 
 		const element = await screen.findByTestId("loading");
 
 		expect(element).toHaveClass("loading");
 	});
-	it("Should render Error component when error is true", async () => {
-		handleGetAllProducts.mockImplementationOnce(() => {
-			throw new Error();
-		});
-
-		render(<Products />, { wrapper: Provider });
-
-		const element = await screen.findByRole("heading", { level: 1 });
-
-		expect(element).toHaveTextContent("Service temporarily unavailable");
-	});
-	it("Should render Products component when products is true", async () => {
-		handleGetAllProducts.mockReturnValueOnce([
+	it("Should render content when products is not empty", async () => {
+		mockProducts = [
 			{
-				url: null,
+				id: "item01",
+				name: "fakeBag",
+				url: "../",
+				price: 19.9,
 			},
-		]);
+		];
 
 		render(<Products />, { wrapper: Provider });
 
 		const element = await screen.findByRole("list");
 
 		expect(element).toBeInTheDocument();
+	});
+	it("Should successfully handles Get All Products when products is empty", async () => {
+		handleGetAllProducts.mockReturnValueOnce([
+			{
+				url: "../",
+			},
+		]);
+		mockProducts = [];
+
+		render(<Products />, { wrapper: Provider });
+
+		await waitFor(async () => {
+			expect(handleGetAllProducts).toBeCalledTimes(1);
+		});
 		expect(handlePreLoadImage).toBeCalledTimes(1);
+	});
+	it("Should render Error component when handles Get All Products catch error", async () => {
+		handleGetAllProducts.mockImplementationOnce(() => {
+			throw new Error();
+		});
+		mockProducts = [];
+
+		render(<Products />, { wrapper: Provider });
+
+		expect(mockSetAppError).toBeCalledTimes(1);
 	});
 });
