@@ -34,6 +34,7 @@ const AppContext = createContext(null);
 
 const App = () => {
 	const [userId, setUserId] = useState(null);
+	const [products, setProducts] = useState([]);
 	const [cart, setCart] = useState(null);
 	const [imageUrls, setImageUrls] = useState({});
 	const [error, setError] = useState(null);
