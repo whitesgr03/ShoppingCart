@@ -85,8 +85,8 @@ const Products = () => {
 							cart,
 							onOpenModule,
 							onGetUserCart,
-							products: filterProducts,
-							onError: setError,
+							filterProducts,
+							onProductsError: setError,
 						}}
 					>
 						<Outlet />
