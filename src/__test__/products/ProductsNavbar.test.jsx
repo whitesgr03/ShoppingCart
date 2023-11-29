@@ -1,11 +1,12 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
 import { BrowserRouter } from "react-router-dom";
 
 import ProductsNavbar from "../../components/products/ProductsNavbar";
 
 describe("ProductsNavbar Component", () => {
-	it("Should add class when input element gets focus", async () => {
+	it("Should add class if input element gets focus", async () => {
 		render(<ProductsNavbar />, { wrapper: BrowserRouter });
 
 		const input = screen.getByRole("searchbox");
@@ -17,7 +18,7 @@ describe("ProductsNavbar Component", () => {
 
 		expect(searchBar).toHaveClass("active-border");
 	});
-	it("Should remove class when input element become blur", async () => {
+	it("Should not class if input element become blur", async () => {
 		render(<ProductsNavbar />, { wrapper: BrowserRouter });
 
 		const input = screen.getByRole("searchbox");
@@ -29,7 +30,7 @@ describe("ProductsNavbar Component", () => {
 
 		expect(searchBar).not.toHaveClass("active-border");
 	});
-	it("Should set value when input element is typed", async () => {
+	it("Should set value if input element is typed", async () => {
 		const user = userEvent.setup();
 
 		render(<ProductsNavbar />, { wrapper: BrowserRouter });
@@ -40,7 +41,7 @@ describe("ProductsNavbar Component", () => {
 
 		expect(input).toHaveValue("hello");
 	});
-	it("Should correctly handles submit", async () => {
+	it("Should search item if submitted", async () => {
 		const mockSearchParams = jest.fn();
 
 		const user = userEvent.setup();

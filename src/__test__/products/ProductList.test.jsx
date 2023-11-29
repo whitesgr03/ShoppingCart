@@ -19,7 +19,7 @@ const Provider = ({ children }) => (
 );
 
 describe("ProductList Component", () => {
-	it("Should render list when filterProducts context is provided", () => {
+	it("Should render content if filter products context is provided", () => {
 		mockFilterProducts = [
 			{
 				id: "item01",
@@ -35,7 +35,7 @@ describe("ProductList Component", () => {
 
 		expect(element).toBeInTheDocument();
 	});
-	it("Should render heading when filterProducts context is not provided", () => {
+	it("Should render heading when filter products context is not provided", () => {
 		mockFilterProducts = [];
 
 		render(<ProductList />, { wrapper: Provider });

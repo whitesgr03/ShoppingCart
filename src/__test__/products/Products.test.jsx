@@ -65,7 +65,7 @@ describe("Products Component", () => {
 
 		expect(element).toBeInTheDocument();
 	});
-	it("Should successfully handling get all products if products are empty", async () => {
+	it("Should get all products if products are empty", async () => {
 		handleGetAllProducts.mockReturnValueOnce([
 			{
 				url: "../",
@@ -80,7 +80,7 @@ describe("Products Component", () => {
 		});
 		expect(handlePreLoadImage).toBeCalledTimes(1);
 	});
-	it("Should set app error if handling get all products and catching error", async () => {
+	it("Should set app error if getting all products fails", async () => {
 		handleGetAllProducts.mockImplementationOnce(() => {
 			throw new Error();
 		});

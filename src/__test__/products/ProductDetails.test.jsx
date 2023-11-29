@@ -52,7 +52,7 @@ describe("ProductDetails Component", () => {
 
 		expect(element).toHaveClass("loading");
 	});
-	it("Should set products error if catch error", async () => {
+	it("Should set products error if handle get product failed", async () => {
 		handleGetProduct.mockImplementationOnce(() => {
 			throw new Error();
 		});
@@ -61,7 +61,7 @@ describe("ProductDetails Component", () => {
 
 		expect(mockSetProductsError).toBeCalledTimes(1);
 	});
-	it("Should render content if product is true", async () => {
+	it("Should render content if handle get product successful", async () => {
 		handleGetProduct.mockReturnValueOnce({
 			id: 0,
 			name: "fakeBag",
@@ -79,7 +79,7 @@ describe("ProductDetails Component", () => {
 		expect(element).toBeInTheDocument();
 		expect(handlePreLoadImage).toBeCalledTimes(1);
 	});
-	it("Should add product to cart after submission successful", async () => {
+	it("Should add product to cart if submission successful", async () => {
 		handleGetProduct.mockReturnValueOnce({
 			id: "item01",
 			name: "fakeBag",
