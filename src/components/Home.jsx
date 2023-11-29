@@ -3,6 +3,8 @@ import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { AppContext } from "./App";
+import getStorageImage from "../utils/handleStorageImage";
+import handlePreLoadImage from "../utils/handlePreLoadImage";
 
 const Home = () => {
 	const { imageUrls, setImageUrls, onAppError } = useContext(AppContext);
