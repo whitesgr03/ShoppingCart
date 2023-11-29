@@ -70,7 +70,7 @@ const Products = () => {
 		return () => {
 			ignore = true;
 		};
-	}, []);
+	}, [products, setProducts, onAppError]);
 
 	return (
 		<div className="products">
