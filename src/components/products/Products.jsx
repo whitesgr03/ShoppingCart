@@ -62,7 +62,7 @@ const Products = () => {
 
 				!ignore && setProducts(productsResult);
 			} catch (error) {
-				setError("Service temporarily unavailable");
+				onAppError("Service temporarily unavailable");
 			}
 		};
 		products.length === 0 && handleFetch();
