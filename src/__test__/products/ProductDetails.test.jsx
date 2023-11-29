@@ -17,7 +17,7 @@ const mockUserId = null;
 let mockCart = null;
 const mockOnOpenModule = jest.fn();
 const mockOnGetUserCart = jest.fn();
-const mockOnError = jest.fn();
+const mockSetProductsError = jest.fn();
 
 const route = "/shop/item01";
 
@@ -33,7 +33,7 @@ const Provider = ({ children }) => (
 							cart: mockCart,
 							onOpenModule: mockOnOpenModule,
 							onGetUserCart: mockOnGetUserCart,
-							onError: mockOnError,
+							setProductsError: mockSetProductsError,
 						}}
 					>
 						{children}
@@ -59,7 +59,7 @@ describe("ProductDetails Component", () => {
 
 		render(<ProductDetails />, { wrapper: Provider });
 
-		expect(mockOnError).toBeCalledTimes(1);
+		expect(mockSetProductsError).toBeCalledTimes(1);
 	});
 	it("Should render ProductDetails component when product is true", async () => {
 		handleGetProduct.mockReturnValueOnce({
@@ -140,6 +140,6 @@ describe("ProductDetails Component", () => {
 		await user.click(element);
 
 		expect(addUserCartItem).toBeCalledTimes(1);
-		expect(mockOnError).toBeCalledTimes(1);
+		expect(mockSetProductsError).toBeCalledTimes(1);
 	});
 });
