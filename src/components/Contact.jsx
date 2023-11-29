@@ -13,12 +13,43 @@ import handlePreLoadImage from "../utils/handlePreLoadImage";
 
 const Contact = () => {
 	const { imageUrls, setImageUrls, onAppError } = useContext(AppContext);
+	const url = imageUrls["contact"];
+
 	const navigate = useNavigate();
 
 	const handleSubmit = e => {
 		navigate("/");
 		e.preventDefault();
 	};
+
+	useEffect(() => {
+		let ignore = false;
+
+		const handleFetch = async () => {
+			const imageResource = "images/contact/background.jpg";
+			try {
+				const imageUrlsResult = await getStorageImage(imageResource);
+
+				!ignore && (await handlePreLoadImage(imageUrlsResult));
+
+				!ignore &&
+					setImageUrls({
+						...imageUrls,
+						contact: imageUrlsResult,
+					});
+
+				!ignore && console.log("active");
+			} catch (error) {
+				onAppError("Service temporarily unavailable");
+			}
+		};
+
+		!url && handleFetch();
+
+		return () => {
+			ignore = true;
+		};
+	}, [url, imageUrls, setImageUrls, onAppError]);
 
 	return (
 		<div className="contact">
