@@ -15,7 +15,6 @@ import { AppContext } from "../App";
 
 const Products = () => {
 	const [error, setError] = useState(null);
-	const [products, setProducts] = useState(null);
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const {
