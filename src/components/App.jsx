@@ -156,10 +156,9 @@ const App = () => {
 					<div data-testid="content" className="content">
 						<AppContext.Provider
 							value={{
-								homeUrl: imageUrls["home"],
-								contactUrl: imageUrls["contact"],
 								userId,
 								cart,
+								imageUrls,
 								onOpenModule: handleOpenModal,
 								onGetUserCart: handleGetUserCart,
 							}}
