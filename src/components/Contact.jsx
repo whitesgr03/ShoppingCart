@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "./App";
 
 const Contact = () => {
-	const { contactUrl: url } = useContext(AppContext);
+	const { imageUrls, setImageUrls, onAppError } = useContext(AppContext);
 	const navigate = useNavigate();
 
 	const handleSubmit = e => {
