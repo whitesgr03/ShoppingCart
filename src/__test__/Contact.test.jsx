@@ -1,36 +1,95 @@
-import { render } from "@testing-library/react";
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { BrowserRouter } from "react-router-dom";
 
 import Contact from "../components/Contact";
 
-let mockOutletContext = null;
+import { AppContext } from "../components/App";
+
+import handleGetStorageImage from "../utils/handleStorageImage";
+import handlePreLoadImage from "../utils/handlePreLoadImage";
+
+jest.mock("../utils/handleStorageImage");
+jest.mock("../utils/handlePreLoadImage");
+
+let mockImageUrls = null;
+const mockSetImageUrls = jest.fn();
+const mockSetAppError = jest.fn();
+const mockUseNavigate = jest.fn();
+
+const Provider = ({ children }) => (
+	<BrowserRouter>
+		<AppContext.Provider
+			value={{
+				imageUrls: mockImageUrls,
+				setImageUrls: mockSetImageUrls,
+				setAppError: mockSetAppError,
+			}}
+		>
+			{children}
+		</AppContext.Provider>
+	</BrowserRouter>
+);
 
 jest.mock("react-router-dom", () => ({
 	...jest.requireActual("react-router-dom"),
-	useOutletContext: () => mockOutletContext,
+	useNavigate: () => mockUseNavigate,
 }));
 
-describe("Renders Contact Component", () => {
-	it("Should return Contact DOM", () => {
-		mockOutletContext = {
-			backgroundImage: {
-				contact: null,
-			},
-		};
+describe("Contact Component", () => {
+	it("Should render Loading component if the contact is not in the imageUrls object", () => {
+		mockImageUrls = {};
 
-		const routes = [
+		render(<Contact />, { wrapper: Provider });
+
+		const element = screen.getByTestId("loading");
+
+		expect(element).toHaveClass("loading");
+	});
+	it("Should render content if the contact is in the imageUrls object", () => {
+		mockImageUrls = { contact: "../" };
+
+		render(<Contact />, { wrapper: Provider });
+
+		const element = screen.getByTestId("backgroundImage");
+
+		expect(element).toBeInTheDocument();
+	});
+	it("Should submit form if submitted", async () => {
+		const user = userEvent.setup();
+		mockImageUrls = { contact: "../" };
+
+		render(<Contact />, { wrapper: Provider });
+
+		const element = screen.getByRole("button");
+
+		await user.click(element);
+
+		expect(mockUseNavigate).toBeCalledTimes(1);
+	});
+	it("Should get storage image if the contact is not in the imageUrls object", async () => {
+		handleGetStorageImage.mockReturnValueOnce([
 			{
-				path: "/",
-				element: <Contact />,
+				url: "../",
 			},
-		];
+		]);
+		mockImageUrls = {};
 
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
+		render(<Contact />, { wrapper: Provider });
+
+		await waitFor(async () => {
+			expect(handleGetStorageImage).toBeCalledTimes(1);
 		});
+		expect(handlePreLoadImage).toBeCalledTimes(1);
+	});
+	it("Should set app error if getting storage image fails", async () => {
+		handleGetStorageImage.mockImplementationOnce(() => {
+			throw new Error();
+		});
+		mockImageUrls = {};
 
-		const { container } = render(<RouterProvider router={router} />);
+		render(<Contact />, { wrapper: Provider });
 
-		expect(container).toMatchSnapshot();
+		expect(mockSetAppError).toBeCalledTimes(1);
 	});
 });
