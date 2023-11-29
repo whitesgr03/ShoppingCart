@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 
 import { AppContext } from "./App";
 
+import getStorageImage from "../utils/handleStorageImage";
+import handlePreLoadImage from "../utils/handlePreLoadImage";
+
 const Contact = () => {
 	const { imageUrls, setImageUrls, onAppError } = useContext(AppContext);
 	const navigate = useNavigate();
