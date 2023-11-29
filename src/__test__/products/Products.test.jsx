@@ -16,6 +16,8 @@ jest.mock("../../components/products/ProductsNavbar.jsx", () => () => (
 const mockUserId = null;
 const mockCart = null;
 let mockProducts = null;
+const mockSetProducts = jest.fn();
+const mockSetAppError = jest.fn();
 const mockOnOpenModule = jest.fn();
 const mockOnGetUserCart = jest.fn();
 
@@ -26,6 +28,8 @@ const Provider = ({ children }) => (
 				userId: mockUserId,
 				cart: mockCart,
 				products: mockProducts,
+				setProducts: mockSetProducts,
+				setAppError: mockSetAppError,
 				onOpenModule: mockOnOpenModule,
 				onGetUserCart: mockOnGetUserCart,
 			}}
