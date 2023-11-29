@@ -160,6 +160,7 @@ const App = () => {
 								cart,
 								imageUrls,
 								setImageUrls,
+								onAppError: setError,
 								onOpenModule: handleOpenModal,
 								onGetUserCart: handleGetUserCart,
 							}}
