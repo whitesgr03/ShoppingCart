@@ -99,35 +99,6 @@ const App = () => {
 			}
 		});
 
-		const handleFetchImageUrls = async () => {
-			const imageResources = [
-				"images/home/background.jpg",
-				"images/contact/background.jpg",
-			];
-			try {
-				const imageUrlsData = await Promise.all([
-					...imageResources.map(url => getStorageImage(url)),
-				]);
-
-				const imageUrlsResult = await Promise.all(
-					imageUrlsData.map(url => preLoadImage(url))
-				);
-
-				const [home, contact] = imageUrlsResult;
-
-				!ignore &&
-					setImageUrls({
-						home,
-						contact,
-					});
-			} catch (error) {
-				console.error(error);
-				setError("Service temporarily unavailable");
-			}
-		};
-
-		handleFetchImageUrls();
-
 		return () => {
 			ignore = true;
 			unsubscribe();
