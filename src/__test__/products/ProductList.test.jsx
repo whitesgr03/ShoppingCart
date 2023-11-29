@@ -4,13 +4,13 @@ import { BrowserRouter } from "react-router-dom";
 import ProductList from "../../components/products/ProductList";
 import { AppContext } from "../../components/App";
 
-let mockProducts = null;
+let mockFilterProducts = null;
 
 const Provider = ({ children }) => (
 	<BrowserRouter>
 		<AppContext.Provider
 			value={{
-				products: mockProducts,
+				filterProducts: mockFilterProducts,
 			}}
 		>
 			{children}
@@ -19,8 +19,8 @@ const Provider = ({ children }) => (
 );
 
 describe("ProductList Component", () => {
-	it("Should render list when products context is provided", () => {
-		mockProducts = [
+	it("Should render list when filterProducts context is provided", () => {
+		mockFilterProducts = [
 			{
 				id: "item01",
 				name: "fakeBag",
@@ -35,8 +35,8 @@ describe("ProductList Component", () => {
 
 		expect(element).toBeInTheDocument();
 	});
-	it("Should render heading when products context is not provided", () => {
-		mockProducts = [];
+	it("Should render heading when filterProducts context is not provided", () => {
+		mockFilterProducts = [];
 
 		render(<ProductList />, { wrapper: Provider });
 
