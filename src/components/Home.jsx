@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import Loading from "./Loading";
 import { AppContext } from "./App";
-import getStorageImage from "../utils/handleStorageImage";
+import handleGetStorageImage from "../utils/handleStorageImage";
 import handlePreLoadImage from "../utils/handlePreLoadImage";
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
 		const handleFetch = async () => {
 			const imageResource = "images/home/background.jpg";
 			try {
-				const imageUrlsResult = await getStorageImage(imageResource);
+				const imageUrlsResult = await handleGetStorageImage(imageResource);
 
 				!ignore && (await handlePreLoadImage(imageUrlsResult));
 

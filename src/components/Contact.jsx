@@ -10,7 +10,7 @@ import Loading from "../components/Loading";
 
 import { AppContext } from "./App";
 
-import getStorageImage from "../utils/handleStorageImage";
+import handleGetStorageImage from "../utils/handleStorageImage";
 import handlePreLoadImage from "../utils/handlePreLoadImage";
 
 const Contact = () => {
@@ -30,7 +30,9 @@ const Contact = () => {
 		const handleFetch = async () => {
 			const imageResource = "images/contact/background.jpg";
 			try {
-				const imageUrlsResult = await getStorageImage(imageResource);
+				const imageUrlsResult = await handleGetStorageImage(
+					imageResource
+				);
 
 				!ignore && (await handlePreLoadImage(imageUrlsResult));
 
