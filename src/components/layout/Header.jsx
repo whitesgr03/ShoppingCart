@@ -25,13 +25,13 @@ const Badge = ({ cart }) => {
 	);
 };
 
-const Header = ({ userId, onError, onOpenModal, children }) => {
+const Header = ({ userId, setAppError, onOpenModal, children }) => {
 	const handleLogin = () => {
 		try {
 			handleGoogleLogin();
 		} catch (error) {
 			console.error(error);
-			onError("Service temporarily unavailable");
+			setAppError("Service temporarily unavailable");
 		}
 	};
 
@@ -40,7 +40,7 @@ const Header = ({ userId, onError, onOpenModal, children }) => {
 			handleUserLogout();
 		} catch (error) {
 			console.error(error);
-			onError("Service temporarily unavailable");
+			setAppError("Service temporarily unavailable");
 		}
 	};
 
@@ -89,7 +89,7 @@ const Header = ({ userId, onError, onOpenModal, children }) => {
 
 Header.propTypes = {
 	userId: PropTypes.string,
-	onError: PropTypes.func,
+	setAppError: PropTypes.func,
 	onOpenModal: PropTypes.func,
 	children: PropTypes.node.isRequired,
 };

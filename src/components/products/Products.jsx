@@ -22,7 +22,7 @@ const Products = () => {
 		cart,
 		products,
 		setProducts,
-		onAppError,
+		setAppError,
 		onOpenModule,
 		onGetUserCart,
 	} = useContext(AppContext);
@@ -62,7 +62,7 @@ const Products = () => {
 
 				!ignore && setProducts(productsResult);
 			} catch (error) {
-				onAppError("Service temporarily unavailable");
+				setAppError("Service temporarily unavailable");
 			}
 		};
 		products.length === 0 && handleFetch();
@@ -70,7 +70,7 @@ const Products = () => {
 		return () => {
 			ignore = true;
 		};
-	}, [products, setProducts, onAppError]);
+	}, [products, setProducts, setAppError]);
 
 	return (
 		<div className="products">

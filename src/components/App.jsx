@@ -37,7 +37,7 @@ const App = () => {
 	const [products, setProducts] = useState([]);
 	const [cart, setCart] = useState(null);
 	const [imageUrls, setImageUrls] = useState({});
-	const [error, setError] = useState(null);
+	const [AppError, setAppError] = useState(null);
 	const [modalState, setModalState] = useState(defaultModalState);
 
 	const handleGetUserCart = useCallback(async id => {
@@ -55,7 +55,7 @@ const App = () => {
 			setCart(cartResult);
 		} catch (error) {
 			console.error(error);
-			setError("Service temporarily unavailable");
+			setAppError("Service temporarily unavailable");
 		}
 	}, []);
 
@@ -96,7 +96,7 @@ const App = () => {
 				!ignore && handleGetUserCart(googleLogin?.uid);
 			} catch (error) {
 				console.error(error);
-				setError("Service temporarily unavailable");
+				setAppError("Service temporarily unavailable");
 			}
 		});
 
@@ -108,9 +108,9 @@ const App = () => {
 
 	return (
 		<div className="app">
-			{!cart && !error && <Loading />}
-			{error && <Error message={error} />}
-			{cart && !error && (
+			{!cart && !AppError && <Loading />}
+			{AppError && <Error message={AppError} />}
+			{cart && !AppError && (
 				<>
 					<div className="modal">
 						<div
@@ -128,7 +128,7 @@ const App = () => {
 								<ModalCartList
 									cart={cart}
 									userId={userId}
-									onError={setError}
+									setAppError={setAppError}
 									onGetUserCart={handleGetUserCart}
 									onOpenModule={handleOpenModal}
 								/>
@@ -139,7 +139,7 @@ const App = () => {
 								product={modalState.product}
 								behavior={modalState.behavior}
 								active={modalState.type === "alert"}
-								onError={setError}
+								setAppError={setAppError}
 								onGetUserCart={handleGetUserCart}
 								onOpenModule={handleOpenModal}
 							/>
@@ -148,7 +148,7 @@ const App = () => {
 
 					<Header
 						userId={userId}
-						onError={setError}
+						setAppError={setAppError}
 						onOpenModal={handleOpenModal}
 					>
 						<Badge cart={cart} />
@@ -163,7 +163,7 @@ const App = () => {
 								setImageUrls,
 								products,
 								setProducts,
-								onAppError: setError,
+								setAppError,
 								onOpenModule: handleOpenModal,
 								onGetUserCart: handleGetUserCart,
 							}}

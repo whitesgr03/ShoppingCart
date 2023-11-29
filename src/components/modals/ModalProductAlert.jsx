@@ -13,7 +13,7 @@ const ModalProductAlert = ({
 	product,
 	behavior,
 	active,
-	onError,
+	setAppError,
 	onGetUserCart,
 	onOpenModule,
 }) => {
@@ -27,7 +27,7 @@ const ModalProductAlert = ({
 			handleShowCart();
 		} catch (error) {
 			console.error(error);
-			onError("Service temporarily unavailable");
+			setAppError("Service temporarily unavailable");
 		} finally {
 			setLoading(false);
 		}
@@ -105,7 +105,7 @@ ModalProductAlert.propTypes = {
 	product: PropTypes.object,
 	behavior: PropTypes.string,
 	active: PropTypes.bool,
-	onError: PropTypes.func,
+	setAppError: PropTypes.func,
 	onGetUserCart: PropTypes.func,
 	onOpenModule: PropTypes.func,
 };

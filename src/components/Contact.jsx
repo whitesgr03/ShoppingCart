@@ -14,7 +14,7 @@ import getStorageImage from "../utils/handleStorageImage";
 import handlePreLoadImage from "../utils/handlePreLoadImage";
 
 const Contact = () => {
-	const { imageUrls, setImageUrls, onAppError } = useContext(AppContext);
+	const { imageUrls, setImageUrls, setAppError } = useContext(AppContext);
 	const url = imageUrls["contact"];
 
 	const navigate = useNavigate();
@@ -42,7 +42,7 @@ const Contact = () => {
 
 				!ignore && console.log("active");
 			} catch (error) {
-				onAppError("Service temporarily unavailable");
+				setAppError("Service temporarily unavailable");
 			}
 		};
 
@@ -51,7 +51,7 @@ const Contact = () => {
 		return () => {
 			ignore = true;
 		};
-	}, [url, imageUrls, setImageUrls, onAppError]);
+	}, [url, imageUrls, setImageUrls, setAppError]);
 
 	return (
 		<div className="contact">

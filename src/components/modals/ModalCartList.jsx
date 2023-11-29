@@ -21,7 +21,7 @@ const Options = memo(quantity =>
 );
 
 const ModalCartList = memo(
-	({ cart, userId, onError, onGetUserCart, onOpenModule }) => {
+	({ cart, userId, setAppError, onGetUserCart, onOpenModule }) => {
 		const [loading, setLoading] = useState(false);
 
 		const handleRemove = product =>
@@ -34,7 +34,7 @@ const ModalCartList = memo(
 				await onGetUserCart(userId);
 			} catch (error) {
 				console.error(error);
-				onError("Service temporarily unavailable");
+				setAppError("Service temporarily unavailable");
 			} finally {
 				setLoading(false);
 			}
@@ -107,7 +107,7 @@ const ModalCartList = memo(
 ModalCartList.propTypes = {
 	cart: PropTypes.array,
 	userId: PropTypes.string,
-	onError: PropTypes.func,
+	setAppError: PropTypes.func,
 	onGetUserCart: PropTypes.func,
 	onOpenModule: PropTypes.func,
 };
