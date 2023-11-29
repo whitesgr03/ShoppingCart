@@ -8,6 +8,36 @@ import handlePreLoadImage from "../utils/handlePreLoadImage";
 
 const Home = () => {
 	const { imageUrls, setImageUrls, onAppError } = useContext(AppContext);
+	const url = imageUrls["home"];
+
+	useEffect(() => {
+		let ignore = false;
+
+		const handleFetch = async () => {
+			const imageResource = "images/home/background.jpg";
+			try {
+				const imageUrlsResult = await getStorageImage(imageResource);
+
+				!ignore && (await handlePreLoadImage(imageUrlsResult));
+
+				!ignore &&
+					setImageUrls({
+						...imageUrls,
+						home: imageUrlsResult,
+					});
+
+				!ignore && console.log("active");
+			} catch (error) {
+				onAppError("Service temporarily unavailable");
+			}
+		};
+
+		!url && handleFetch();
+
+		return () => {
+			ignore = true;
+		};
+	}, [url, imageUrls, setImageUrls, onAppError]);
 
 	return (
 		<div className="home">
