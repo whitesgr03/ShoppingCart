@@ -64,7 +64,7 @@ const Header = ({ userId, setAppError, onOpenModal, children }) => {
 					className="cart"
 					type="button"
 					name="showCart"
-					data-testid="cart"
+					data-testid="cartButton"
 					onClick={() => onOpenModal("cart")}
 				>
 					<Icon path={mdiCartVariant} />
