@@ -1,36 +1,76 @@
-import { render } from "@testing-library/react";
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import { render, screen, waitFor } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
 import Home from "../components/Home";
 
-let mockOutletContext = null;
+import { AppContext } from "../components/App";
 
-jest.mock("react-router-dom", () => ({
-	...jest.requireActual("react-router-dom"),
-	useOutletContext: () => mockOutletContext,
-}));
+import handleGetStorageImage from "../utils/handleStorageImage";
+import handlePreLoadImage from "../utils/handlePreLoadImage";
 
-describe("Renders Home Component", () => {
-	it("Should return Home DOM", () => {
-		mockOutletContext = {
-			backgroundImage: {
-				home: null,
-			},
-		};
+jest.mock("../utils/handleStorageImage");
+jest.mock("../utils/handlePreLoadImage");
 
-		const routes = [
+let mockImageUrls = null;
+const mockSetImageUrls = jest.fn();
+const mockSetAppError = jest.fn();
+
+const Provider = ({ children }) => (
+	<BrowserRouter>
+		<AppContext.Provider
+			value={{
+				imageUrls: mockImageUrls,
+				setImageUrls: mockSetImageUrls,
+				setAppError: mockSetAppError,
+			}}
+		>
+			{children}
+		</AppContext.Provider>
+	</BrowserRouter>
+);
+
+describe("Home Component", () => {
+	it("Should render Loading component if the home is not in the imageUrls object", () => {
+		mockImageUrls = {};
+
+		render(<Home />, { wrapper: Provider });
+
+		const element = screen.getByTestId("loading");
+
+		expect(element).toHaveClass("loading");
+	});
+	it("Should render home if the home is in the imageUrls object", () => {
+		mockImageUrls = { home: "../" };
+
+		render(<Home />, { wrapper: Provider });
+
+		const element = screen.getByTestId("backgroundImage");
+
+		expect(element).toBeInTheDocument();
+	});
+	it("Should get storage image if the home is not in the imageUrls object", async () => {
+		handleGetStorageImage.mockReturnValueOnce([
 			{
-				path: "/",
-				element: <Home />,
+				url: "../",
 			},
-		];
+		]);
+		mockImageUrls = {};
 
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
+		render(<Home />, { wrapper: Provider });
+
+		await waitFor(async () => {
+			expect(handleGetStorageImage).toBeCalledTimes(1);
 		});
+		expect(handlePreLoadImage).toBeCalledTimes(1);
+	});
+	it("Should set app error if getting storage image fails", async () => {
+		handleGetStorageImage.mockImplementationOnce(() => {
+			throw new Error();
+		});
+		mockImageUrls = {};
 
-		const { container } = render(<RouterProvider router={router} />);
+		render(<Home />, { wrapper: Provider });
 
-		expect(container).toMatchSnapshot();
+		expect(mockSetAppError).toBeCalledTimes(1);
 	});
 });
