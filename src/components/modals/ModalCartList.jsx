@@ -21,7 +21,7 @@ const Options = memo(quantity =>
 );
 
 const ModalCartList = memo(
-	({ cart, userId, setAppError, onGetUserCart, onOpenModule }) => {
+	({ cart, userId, setAppError, onGetUserCart, onOpenModal }) => {
 		const [changing, setChanging] = useState(false);
 
 		const handleRemove = product =>
@@ -85,8 +85,7 @@ const ModalCartList = memo(
 							</div>
 							<button
 								className="removeBtn"
-								data-testid="removeBtn"
-								onClick={() => handleRemove(product)}
+									onOpenModal("alert", product, "remove")
 							>
 								<Icon path={mdiTrashCanOutline} />
 							</button>
@@ -108,7 +107,7 @@ ModalCartList.propTypes = {
 	userId: PropTypes.string,
 	setAppError: PropTypes.func,
 	onGetUserCart: PropTypes.func,
-	onOpenModule: PropTypes.func,
+	onOpenModal: PropTypes.func,
 };
 
 Options.propTypes = {
