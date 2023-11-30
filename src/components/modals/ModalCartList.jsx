@@ -45,7 +45,7 @@ const ModalCartList = memo(
 				<div className="listWarp">
 					{cart.map(product => (
 						<li className="item" key={product.id}>
-							<div className="warp">
+							<div className="imageWarp">
 								<img src={product.url} alt={product.name} />
 							</div>
 							<div className="description">
