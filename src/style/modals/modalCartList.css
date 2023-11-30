@@ -1,9 +1,9 @@
-.modal .items {
+.modal .list {
 	flex: 1 1 100%;
 	position: relative;
 }
 
-.modal .items .itemWarp {
+.modal .list .listWarp {
 	position: absolute;
 	padding: 20px;
 	top: 0;
@@ -16,11 +16,11 @@
 	overflow: scroll;
 }
 
-.modal .items.changing {
+.modal .list.changing {
 	pointer-events: none;
 }
 
-.modal .items.changing .update {
+.modal .list.changing .update {
 	position: absolute;
 	display: flex;
 	align-items: center;
@@ -32,7 +32,7 @@
 	z-index: 1;
 }
 
-.modal .items.changing .update::before {
+.modal .list.changing .update::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -49,7 +49,7 @@
 	display: flex;
 }
 
-.modal .item .warp {
+.modal .item .imageWarp {
 	flex: 1 1 40%;
 	padding: 10px;
 	border: 1px solid;
