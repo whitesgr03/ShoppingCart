@@ -26,14 +26,12 @@ const ModalCartList = memo(
 
 		const handleRemove = product =>
 			onOpenModule("alert", product, "remove");
-
-		const handleChange = async product => {
+		const handleUpdate = async product => {
 			setChanging(true);
 			try {
 				await updateUserCartItem(product, userId);
 				await onGetUserCart(userId);
 			} catch (error) {
-				console.error(error);
 				setAppError("Service temporarily unavailable");
 			}
 			setChanging(false);
@@ -63,7 +61,7 @@ const ModalCartList = memo(
 											name="quantity"
 											id={product.name}
 											onChange={e =>
-												handleChange({
+												handleUpdate({
 													...product,
 													quantity: +e.target.value,
 												})
