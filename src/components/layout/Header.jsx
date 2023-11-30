@@ -55,7 +55,15 @@ const Header = ({ userId, setAppError, onOpenModal, children }) => {
 					data-testid="accountButton"
 					onClick={userId === "" ? handleLogin : handleLogout}
 				>
-					<Icon path={userId === "" ? mdiAccount : mdiLogout} />
+					{userId === "" ? (
+						<span data-testid="account">
+							<Icon path={mdiAccount} />
+						</span>
+					) : (
+						<span data-testid="logout">
+							<Icon path={mdiLogout} />
+						</span>
+					)}
 				</button>
 				<button className="order" type="button" name="showOrder">
 					<Icon path={mdiTextBoxOutline} />
