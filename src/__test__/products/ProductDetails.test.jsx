@@ -45,7 +45,7 @@ const Provider = ({ children }) => (
 );
 
 describe("ProductDetails Component", () => {
-	it("Should render Loading component if products is false", async () => {
+	it("Should render Loading component if products is falsy", async () => {
 		render(<ProductDetails />, { wrapper: Provider });
 
 		const element = await screen.findByTestId("loading");

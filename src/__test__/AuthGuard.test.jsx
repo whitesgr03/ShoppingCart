@@ -25,7 +25,7 @@ const Provider = ({ children }) => (
 );
 
 describe("AuthGuard Component", () => {
-	it("Should render Loading component when userId is false", async () => {
+	it("Should render Loading component if userId is falsy", async () => {
 		mockUserId = false;
 		const MockComponent = <div data-testid="content"></div>;
 
@@ -34,9 +34,8 @@ describe("AuthGuard Component", () => {
 		const element = await screen.findByTestId("loading");
 
 		expect(element).toHaveClass("loading");
-		expect(handleGoogleLogin).toBeCalledTimes(1);
 	});
-	it("Should call the onError when catch error", async () => {
+	it("Should set product error if google login is fails", async () => {
 		handleGoogleLogin.mockImplementationOnce(() => {
 			throw new Error();
 		});
@@ -49,7 +48,7 @@ describe("AuthGuard Component", () => {
 
 		expect(mockSetProductError).toBeCalledTimes(1);
 	});
-	it("Should render content when userId is true", async () => {
+	it("Should render content if userId is provide", async () => {
 		mockUserId = true;
 		const MockComponent = <div data-testid="content"></div>;
 

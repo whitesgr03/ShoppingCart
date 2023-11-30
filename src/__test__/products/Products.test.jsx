@@ -40,7 +40,7 @@ const Provider = ({ children }) => (
 );
 
 describe("Products Component", () => {
-	it("Should render Loading component if context products are empty and state error is false", async () => {
+	it("Should render Loading component if context products are empty and state error is falsy", async () => {
 		mockProducts = [];
 
 		render(<Products />, { wrapper: Provider });
