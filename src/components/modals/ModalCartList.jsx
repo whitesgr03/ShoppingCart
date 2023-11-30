@@ -24,8 +24,6 @@ const ModalCartList = memo(
 	({ cart, userId, setAppError, onGetUserCart, onOpenModal }) => {
 		const [changing, setChanging] = useState(false);
 
-		const handleRemove = product =>
-			onOpenModule("alert", product, "remove");
 		const handleUpdate = async product => {
 			setChanging(true);
 			try {
