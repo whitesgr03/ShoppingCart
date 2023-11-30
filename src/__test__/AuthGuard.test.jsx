@@ -9,14 +9,14 @@ import { handleGoogleLogin } from "../utils/handleUserAccount";
 jest.mock("../utils/handleUserAccount");
 
 let mockUserId = null;
-const mockOnError = jest.fn();
+const mockSetProductError = jest.fn();
 
 const Provider = ({ children }) => (
 	<BrowserRouter>
 		<AppContext.Provider
 			value={{
 				userId: mockUserId,
-				onError: mockOnError,
+				setProductError: mockSetProductError,
 			}}
 		>
 			{children}
@@ -47,7 +47,7 @@ describe("AuthGuard Component", () => {
 			wrapper: Provider,
 		});
 
-		expect(mockOnError).toBeCalledTimes(1);
+		expect(mockSetProductError).toBeCalledTimes(1);
 	});
 	it("Should render content when userId is true", async () => {
 		mockUserId = true;
