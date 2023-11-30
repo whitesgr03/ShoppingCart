@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound Component Should render NotFound component 1`] = `
+<div>
+  <div
+    class="notFound"
+  >
+    <div
+      class="title"
+    >
+      <svg
+        role="presentation"
+        style="width: 10.5rem; height: 10.5rem;"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 4A3.5 3.5 0 0 0 8.5 7.5H10.5A1.5 1.5 0 0 1 12 6A1.5 1.5 0 0 1 13.5 7.5A1.5 1.5 0 0 1 12 9C11.45 9 11 9.45 11 10V11.75L2.4 18.2A1 1 0 0 0 3 20H21A1 1 0 0 0 21.6 18.2L13 11.75V10.85A3.5 3.5 0 0 0 15.5 7.5A3.5 3.5 0 0 0 12 4M12 13.5L18 18H6Z"
+          style="fill: currentColor;"
+        />
+      </svg>
+      <h1>
+        404 page not found
+      </h1>
+    </div>
+    <div
+      class="content"
+    >
+      <p>
+        Our apologies, there has been an error.
+      </p>
+      <p>
+        The page you are looking for cannot be found.
+      </p>
+      <p>
+        Please make sure the URL is correct or surf over to our other pages.
+      </p>
+      <p>
+        You may visit the 
+        <a
+          href="/"
+        >
+          Home
+        </a>
+         page.
+      </p>
+      <p>
+        If you have any questions, please
+         
+        <a
+          href="/contact"
+        >
+           Contact us
+        </a>
+        .
+      </p>
+    </div>
+  </div>
+</div>
+`;
