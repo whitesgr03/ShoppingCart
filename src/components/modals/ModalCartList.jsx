@@ -42,9 +42,9 @@ const ModalCartList = memo(
 
 		return (
 			<ul className="list">
-				<div className="itemWarp">
+				<div className="listWarp">
 					{cart.map(product => (
-						<div className="item" key={product.id}>
+						<li className="item" key={product.id}>
 							<div className="warp">
 								<img src={product.url} alt={product.name} />
 							</div>
@@ -91,7 +91,7 @@ const ModalCartList = memo(
 							>
 								<Icon path={mdiTrashCanOutline} />
 							</button>
-						</div>
+						</li>
 					))}
 				</div>
 
