@@ -44,10 +44,15 @@ const Header = ({ userId, setAppError, onOpenModal, children }) => {
 
 	return (
 		<div className="sidebar">
+			<div
+				data-testid="background"
+				className={`icons ${userId === null ? "authenticate" : ""}`}
+			>
 				<button
 					className="account"
 					type="button"
 					name="showAccount"
+					data-testid="accountButton"
 					onClick={userId === "" ? handleLogin : handleLogout}
 				>
 					<Icon path={userId === "" ? mdiAccount : mdiLogout} />
