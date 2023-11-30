@@ -43,8 +43,7 @@ const Header = ({ userId, setAppError, onOpenModal, children }) => {
 	};
 
 	return (
-		<div className="sidebar" data-testid="sidebar">
-			<div className={`icons ${userId === null ? "authenticate" : ""}`}>
+		<div className="sidebar">
 				<button
 					className="account"
 					type="button"
