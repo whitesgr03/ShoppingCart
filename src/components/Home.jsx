@@ -45,6 +45,7 @@ const Home = () => {
 			{!url && <Loading />}
 			{url && (
 				<div
+					data-testid="backgroundImage"
 					className="carousel"
 					style={{
 						backgroundImage: `url(${url})`,
