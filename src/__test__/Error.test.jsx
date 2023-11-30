@@ -1,23 +1,18 @@
-import { render } from "@testing-library/react";
-
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
 
 import Error from "../components/Error";
 
-describe("Renders Error Component", () => {
-	it("Should return Error DOM", () => {
-		const routes = [
-			{
-				path: "/",
-				element: <Error />,
-			},
-		];
+describe("Error Component", () => {
+	it("Should render message if message is provide", () => {
+		const mockMessage = "error";
 
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
+		render(<Error message={mockMessage} />);
+
+		const element = screen.getByRole("heading", {
+			leave: 1,
+			name: mockMessage,
 		});
-		const { container } = render(<RouterProvider router={router} />);
 
-		expect(container).toMatchSnapshot();
+		expect(element).toBeInTheDocument();
 	});
 });
