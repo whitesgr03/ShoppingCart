@@ -17,7 +17,9 @@ const Home = () => {
 		const handleFetch = async () => {
 			const imageResource = "images/home/background.jpg";
 			try {
-				const imageUrlsResult = await handleGetStorageImage(imageResource);
+				const imageUrlsResult = await handleGetStorageImage(
+					imageResource
+				);
 
 				!ignore && (await handlePreLoadImage(imageUrlsResult));
 
@@ -26,8 +28,6 @@ const Home = () => {
 						...imageUrls,
 						home: imageUrlsResult,
 					});
-
-				!ignore && console.log("active");
 			} catch (error) {
 				setAppError("Service temporarily unavailable");
 			}
