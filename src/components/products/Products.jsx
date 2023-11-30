@@ -23,7 +23,7 @@ const Products = () => {
 		products,
 		setProducts,
 		setAppError,
-		onOpenModule,
+		onOpenModal,
 		onGetUserCart,
 	} = useContext(AppContext);
 
@@ -83,7 +83,7 @@ const Products = () => {
 						value={{
 							userId,
 							cart,
-							onOpenModule,
+							onOpenModal,
 							onGetUserCart,
 							filterProducts,
 							setProductError,

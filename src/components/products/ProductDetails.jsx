@@ -20,7 +20,7 @@ const ProductDetails = () => {
 	const [adding, setAdding] = useState(false);
 	const [product, setProduct] = useState(null);
 
-	const { userId, cart, onOpenModule, onGetUserCart, setProductsError } =
+	const { userId, cart, onOpenModal, onGetUserCart, setProductsError } =
 		useContext(AppContext);
 
 	const { productId } = useParams();
@@ -59,7 +59,7 @@ const ProductDetails = () => {
 
 				await addUserCartItem(newItem, userId);
 				await onGetUserCart(userId);
-				onOpenModule("alert", newItem, "add");
+				onOpenModal("alert", newItem, "add");
 			} catch (error) {
 				setProductsError("Service temporarily unavailable");
 			} finally {

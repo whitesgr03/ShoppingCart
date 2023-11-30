@@ -15,7 +15,7 @@ jest.mock("../../utils/handleUserCart");
 
 const mockUserId = null;
 let mockCart = null;
-const mockOnOpenModule = jest.fn();
+const mockOnOpenModal = jest.fn();
 const mockOnGetUserCart = jest.fn();
 const mockSetProductsError = jest.fn();
 
@@ -31,7 +31,7 @@ const Provider = ({ children }) => (
 						value={{
 							userId: mockUserId,
 							cart: mockCart,
-							onOpenModule: mockOnOpenModule,
+							onOpenModal: mockOnOpenModal,
 							onGetUserCart: mockOnGetUserCart,
 							setProductsError: mockSetProductsError,
 						}}
@@ -106,7 +106,7 @@ describe("ProductDetails Component", () => {
 		await user.click(element);
 
 		expect(addUserCartItem).toBeCalledTimes(1);
-		expect(mockOnOpenModule).toBeCalledTimes(1);
+		expect(mockOnOpenModal).toBeCalledTimes(1);
 		expect(mockOnGetUserCart).toBeCalledTimes(1);
 	});
 	it("Should set products error if submission fails", async () => {

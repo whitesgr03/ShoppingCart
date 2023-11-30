@@ -18,7 +18,7 @@ const mockCart = null;
 let mockProducts = null;
 const mockSetProducts = jest.fn();
 const mockSetAppError = jest.fn();
-const mockOnOpenModule = jest.fn();
+const mockOnOpenModal = jest.fn();
 const mockOnGetUserCart = jest.fn();
 
 const Provider = ({ children }) => (
@@ -30,7 +30,7 @@ const Provider = ({ children }) => (
 				products: mockProducts,
 				setProducts: mockSetProducts,
 				setAppError: mockSetAppError,
-				onOpenModule: mockOnOpenModule,
+				onOpenModal: mockOnOpenModal,
 				onGetUserCart: mockOnGetUserCart,
 			}}
 		>

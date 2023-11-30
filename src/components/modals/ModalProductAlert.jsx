@@ -15,10 +15,10 @@ const ModalProductAlert = ({
 	active,
 	setAppError,
 	onGetUserCart,
-	onOpenModule,
+	onOpenModal,
 }) => {
 	const [loading, setLoading] = useState(false);
-	const handleShowCart = () => onOpenModule("cart");
+	const handleShowCart = () => onOpenModal("cart");
 	const handleRemoveItem = async () => {
 		try {
 			setLoading(true);
@@ -107,7 +107,7 @@ ModalProductAlert.propTypes = {
 	active: PropTypes.bool,
 	setAppError: PropTypes.func,
 	onGetUserCart: PropTypes.func,
-	onOpenModule: PropTypes.func,
+	onOpenModal: PropTypes.func,
 };
 
 export default ModalProductAlert;

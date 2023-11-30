@@ -4,8 +4,8 @@ import { useMemo } from "react";
 
 import PropTypes from "prop-types";
 
-const ModalCart = ({ cart, active, onOpenModule, children }) => {
-	const handleCheckout = () => onOpenModule(null);
+const ModalCart = ({ cart, active, onOpenModal, children }) => {
+	const handleCheckout = () => onOpenModal(null);
 
 	const totalPrice = useMemo(
 		() =>
@@ -51,7 +51,7 @@ const ModalCart = ({ cart, active, onOpenModule, children }) => {
 ModalCart.propTypes = {
 	cart: PropTypes.array,
 	active: PropTypes.bool,
-	onOpenModule: PropTypes.func,
+	onOpenModal: PropTypes.func,
 	children: PropTypes.node.isRequired,
 };
 
