@@ -28,16 +28,15 @@ const ModalCartList = memo(
 			onOpenModule("alert", product, "remove");
 
 		const handleChange = async product => {
+			setLoading(true);
 			try {
-				setLoading(true);
 				await updateUserCartItem(product, userId);
 				await onGetUserCart(userId);
 			} catch (error) {
 				console.error(error);
 				setAppError("Service temporarily unavailable");
-			} finally {
-				setLoading(false);
 			}
+			setLoading(false);
 		};
 
 		return (
