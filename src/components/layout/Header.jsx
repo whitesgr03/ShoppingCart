@@ -26,20 +26,18 @@ const Badge = ({ cart }) => {
 };
 
 const Header = ({ userId, setAppError, onOpenModal, children }) => {
-	const handleLogin = () => {
+	const handleLogin = async () => {
 		try {
-			handleGoogleLogin();
+			await handleGoogleLogin();
 		} catch (error) {
-			console.error(error);
 			setAppError("Service temporarily unavailable");
 		}
 	};
 
-	const handleLogout = () => {
+	const handleLogout = async () => {
 		try {
-			handleUserLogout();
+			await handleUserLogout();
 		} catch (error) {
-			console.error(error);
 			setAppError("Service temporarily unavailable");
 		}
 	};
