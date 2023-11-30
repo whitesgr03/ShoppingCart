@@ -2,14 +2,14 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 
-import Header, { Badge } from "../components/layout/Header";
+import Header, { Badge } from "../../components/layout/Header";
 
 import {
 	handleGoogleLogin,
 	handleUserLogout,
-} from "../utils/handleUserAccount";
+} from "../../utils/handleUserAccount";
 
-jest.mock("../utils/handleUserAccount");
+jest.mock("../../utils/handleUserAccount");
 
 let mockUserId = null;
 const mokSetAppError = jest.fn();
