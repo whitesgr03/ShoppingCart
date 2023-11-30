@@ -22,13 +22,13 @@ const Options = memo(quantity =>
 
 const ModalCartList = memo(
 	({ cart, userId, setAppError, onGetUserCart, onOpenModule }) => {
-		const [loading, setLoading] = useState(false);
+		const [changing, setChanging] = useState(false);
 
 		const handleRemove = product =>
 			onOpenModule("alert", product, "remove");
 
 		const handleChange = async product => {
-			setLoading(true);
+			setChanging(true);
 			try {
 				await updateUserCartItem(product, userId);
 				await onGetUserCart(userId);
@@ -36,7 +36,7 @@ const ModalCartList = memo(
 				console.error(error);
 				setAppError("Service temporarily unavailable");
 			}
-			setLoading(false);
+			setChanging(false);
 		};
 
 		return (
@@ -94,7 +94,7 @@ const ModalCartList = memo(
 					))}
 				</div>
 
-				{loading && (
+				{changing && (
 					<div className="loading">
 						<Icon path={mdiLoading} spin={1} size={3}></Icon>
 					</div>
