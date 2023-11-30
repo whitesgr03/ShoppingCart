@@ -9,15 +9,15 @@ import { handleGoogleLogin } from "../utils/handleUserAccount";
 import PropTypes from "prop-types";
 
 const AuthGuard = ({ children }) => {
-	const { userId, onError } = useContext(AppContext);
+	const { userId, setProductError } = useContext(AppContext);
 
 	useEffect(() => {
 		try {
 			!userId && handleGoogleLogin();
 		} catch (error) {
-			onError(error);
+			setProductError(error);
 		}
-	}, [userId, onError]);
+	}, [userId, setProductError]);
 
 	return <>{userId ? children : <Loading />}</>;
 };
