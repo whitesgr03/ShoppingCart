@@ -1,99 +1,219 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { BrowserRouter } from "react-router-dom";
 
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import Header, { Badge } from "../components/layout/Header";
 
-import { useCart, useModalDispatch } from "../components/RootContext";
+import {
+	handleGoogleLogin,
+	handleUserLogout,
+} from "../utils/handleUserAccount";
 
-import Header, { HeaderBadge } from "../components/layout/Header";
-
-jest.mock("../firebase-config", () => ({
-	...jest.requireActual("../firebase-config"),
-	initialAuth: () => ({
-		onAuthStateChanged: jest.fn(() => jest.fn()),
-	}),
-}));
-
-jest.mock("../components/RootContext");
 jest.mock("../utils/handleUserAccount");
-jest.mock("../utils/handleUserCarts");
 
-describe("Renders Header Component", () => {
-	it("Should return Header DOM", () => {
-		useCart.mockReturnValueOnce([]);
+let mockUserId = null;
+const mokSetAppError = jest.fn();
+const mockOnOpenModal = jest.fn();
 
-		const routes = [
-			{
-				path: "/",
-				element: <Header />,
-			},
-		];
+describe("Header Component", () => {
+	it("Should add class if userId is null", () => {
+		const MockComponent = <div data-testid="content"></div>;
 
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
-		});
+		mockUserId = null;
 
-		render(<RouterProvider router={router} />);
+		render(
+			<Header
+				userId={mockUserId}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			>
+				{MockComponent}
+			</Header>,
+			{ wrapper: BrowserRouter }
+		);
 
-		const actual = screen.getByTestId("sidebar");
+		const element = screen.getByTestId("background");
 
-		expect(actual).toBeInTheDocument();
+		expect(element).toHaveClass("authenticate");
 	});
+	it("Should render account icon if userId is empty string", () => {
+		const MockComponent = <div data-testid="content"></div>;
 
-	it("Should return HeaderBadge DOM with cartList", () => {
-		const mockUseCart = [
-			{
-				id: 0,
-				name: "fake",
-				url: "../",
-				price: "19.90",
-				quantity: 1,
-			},
-		];
+		mockUserId = "";
 
-		useCart.mockReturnValueOnce(mockUseCart);
+		render(
+			<Header
+				userId={mockUserId}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			>
+				{MockComponent}
+			</Header>,
+			{ wrapper: BrowserRouter }
+		);
 
-		const routes = [
-			{
-				path: "/",
-				element: <HeaderBadge />,
-			},
-		];
+		const element = screen.getByTestId("account");
 
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
-		});
-		render(<RouterProvider router={router} />);
-
-		const actual = screen.queryByTestId("badge");
-
-		expect(actual).toHaveTextContent("1");
+		expect(element).toBeInTheDocument();
 	});
+	it("Should render logout icon if userId is not empty string", () => {
+		const MockComponent = <div data-testid="content"></div>;
 
-	it("Should show cart Alert with click event", async () => {
-		useCart.mockReturnValueOnce([]);
+		mockUserId = "fake";
 
-		const mockFn = jest.fn();
+		render(
+			<Header
+				userId={mockUserId}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			>
+				{MockComponent}
+			</Header>,
+			{ wrapper: BrowserRouter }
+		);
 
-		useModalDispatch.mockReturnValueOnce(mockFn);
+		const element = screen.getByTestId("logout");
 
+		expect(element).toBeInTheDocument();
+	});
+	it("Should login if button is clicked", async () => {
 		const user = userEvent.setup();
+		const MockComponent = <div data-testid="content"></div>;
 
-		const routes = [
-			{
-				path: "/",
-				element: <Header />,
-			},
-		];
+		mockUserId = "";
 
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
+		render(
+			<Header
+				userId={mockUserId}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			>
+				{MockComponent}
+			</Header>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByTestId("accountButton");
+
+		await user.click(element);
+
+		expect(handleGoogleLogin).toBeCalledTimes(1);
+	});
+	it("Should set app error if login fails", async () => {
+		handleGoogleLogin.mockImplementationOnce(() => {
+			throw new Error();
 		});
-		render(<RouterProvider router={router} />);
+		const user = userEvent.setup();
+		const MockComponent = <div data-testid="content"></div>;
 
-		const button = screen.getByTestId("cart");
-		await user.pointer({ keys: "[MouseLeft]", target: button });
+		mockUserId = "";
 
-		expect(mockFn).toBeCalledTimes(1);
+		render(
+			<Header
+				userId={mockUserId}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			>
+				{MockComponent}
+			</Header>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByTestId("accountButton");
+
+		await user.click(element);
+
+		expect(mokSetAppError).toBeCalledTimes(1);
+	});
+	it("Should logout if button is clicked", async () => {
+		const user = userEvent.setup();
+		const MockComponent = <div data-testid="content"></div>;
+
+		mockUserId = "fake";
+
+		render(
+			<Header
+				userId={mockUserId}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			>
+				{MockComponent}
+			</Header>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByTestId("accountButton");
+
+		await user.click(element);
+
+		expect(handleUserLogout).toBeCalledTimes(1);
+	});
+	it("Should set app error if logout fails", async () => {
+		handleUserLogout.mockImplementationOnce(() => {
+			throw new Error();
+		});
+		const user = userEvent.setup();
+		const MockComponent = <></>;
+
+		mockUserId = "fake";
+
+		render(
+			<Header
+				userId={mockUserId}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			>
+				{MockComponent}
+			</Header>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByTestId("accountButton");
+
+		await user.click(element);
+
+		expect(mokSetAppError).toBeCalledTimes(1);
+	});
+	it("Should open modal cart if button is clicked", async () => {
+		const user = userEvent.setup();
+		const MockComponent = <div data-testid="content"></div>;
+
+		render(
+			<Header
+				userId={mockUserId}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			>
+				{MockComponent}
+			</Header>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByTestId("cartButton");
+
+		await user.click(element);
+
+		expect(mockOnOpenModal).toBeCalledTimes(1);
+	});
+});
+
+describe("Badge Component", () => {
+	it("Should render content if cart is provide", () => {
+		const mockCart = [{}];
+
+		render(<Badge cart={mockCart} />);
+
+		const element = screen.getByTestId("badge");
+
+		expect(element).toBeInTheDocument();
+	});
+	it("Should not render content if cart is not provide", () => {
+		const mockCart = [];
+
+		render(<Badge cart={mockCart} />);
+
+		const element = screen.queryByTestId("badge");
+
+		expect(element).toBeFalsy();
 	});
 });
