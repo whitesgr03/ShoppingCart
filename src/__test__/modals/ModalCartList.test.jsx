@@ -1,20 +1,24 @@
-import { screen, render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
-
-import { updateUserCartItem } from "../../utils/handleUserCarts";
-import { useModalDispatch, useCartDispatch } from "../../components/RootContext";
+import { BrowserRouter } from "react-router-dom";
 
 import ModalCartList from "../../components/modals/ModalCartList";
 
-jest.mock("../../components/RootContext");
-jest.mock("../../firebase-config");
-jest.mock("../../utils/handleUserCarts");
+import { updateUserCartItem } from "../../utils/handleUserCart";
 
-describe("Renders ModalCartList Component", () => {
-	it("Should return ModalCartList DOM", async () => {
-		const mockCartData = [
+jest.mock("../../utils/handleUserCart");
+
+let mockUserId = null;
+let mockCart = null;
+
+const mockOnGetUserCart = jest.fn();
+const mokSetAppError = jest.fn();
+const mockOnOpenModal = jest.fn();
+
+describe("ModalCartList Component", () => {
+	it("Should update user cart item if a different option is selected", async () => {
+		const user = userEvent.setup();
+		mockCart = [
 			{
 				id: 0,
 				name: "fake",
@@ -24,136 +28,85 @@ describe("Renders ModalCartList Component", () => {
 			},
 		];
 
-		const mockIsLoad = false;
+		render(
+			<ModalCartList
+				userId={mockUserId}
+				cart={mockCart}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
+		);
 
-		const mockOnLoading = jest.fn();
+		const element = screen.getByRole("combobox");
+		expect(element).toHaveValue(mockCart.quantity);
 
-		const routes = [
-			{
-				path: "/",
-				element: (
-					<ModalCartList
-						list={mockCartData}
-						isLoading={mockIsLoad}
-						onLoading={mockOnLoading}
-					/>
-				),
-			},
-		];
+		await user.selectOptions(element, "2");
 
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
-		});
-
-		const { container } = render(<RouterProvider router={router} />);
-
-		expect(container).toMatchSnapshot();
-	});
-	it("Should show Remove Alert modal DOM with click event", async () => {
-		const mockCartData = {
-			id: 0,
-			name: "fake",
-			url: "../",
-			price: 19.9,
-			quantity: 1,
-		};
-
-		const fakeData = {
-			type: "alert",
-			item: {
-				state: "remove",
-				product: mockCartData,
-			},
-		};
-
-		const mockIsLoad = false;
-
-		const mockModalDispatch = jest.fn();
-		const mockOnLoading = jest.fn();
-
-		useModalDispatch.mockReturnValueOnce(mockModalDispatch);
-
-		const user = userEvent.setup();
-
-		const routes = [
-			{
-				path: "/",
-				element: (
-					<ModalCartList
-						list={[mockCartData]}
-						isLoading={mockIsLoad}
-						onLoading={mockOnLoading}
-					/>
-				),
-			},
-		];
-
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
-		});
-
-		render(<RouterProvider router={router} />);
-
-		const button = screen.getByTestId("removeBtn");
-
-		await user.pointer({ keys: "[MouseLeft]", target: button });
-
-		expect(mockModalDispatch).toBeCalledTimes(1);
-		expect(mockModalDispatch.mock.calls[0][0]).toEqual(fakeData);
-	});
-	it("Should change select value with change event", async () => {
-		const mockCartData = {
-			id: 0,
-			name: "fake",
-			url: "../",
-			price: 19.9,
-			quantity: 1,
-		};
-
-		const updateFetchResult = {
-			message: "Update cart item success.",
-			success: true,
-		};
-
-		const mockIsLoad = false;
-
-		const mockModalDispatch = jest.fn();
-		const mockCartDispatch = jest.fn();
-		const mockOnLoading = jest.fn();
-
-		useModalDispatch.mockReturnValueOnce(mockModalDispatch);
-		useCartDispatch.mockReturnValueOnce(mockCartDispatch);
-		updateUserCartItem.mockReturnValueOnce(updateFetchResult);
-
-		const user = userEvent.setup();
-
-		const routes = [
-			{
-				path: "/",
-				element: (
-					<ModalCartList
-						list={[mockCartData]}
-						isLoading={mockIsLoad}
-						onLoading={mockOnLoading}
-					/>
-				),
-			},
-		];
-
-		const router = createMemoryRouter(routes, {
-			initialEntries: ["/"],
-		});
-
-		render(<RouterProvider router={router} />);
-
-		const select = screen.getByTestId("quantity");
-
-		expect(select).toHaveValue("1");
-
-		await user.selectOptions(select, "2");
-
+		expect(element).toHaveValue("2");
 		expect(updateUserCartItem).toBeCalledTimes(1);
-		expect(mockOnLoading).toBeCalledTimes(2);
-		expect(mockCartDispatch).toBeCalledTimes(1);
+		expect(mockOnGetUserCart).toBeCalledTimes(1);
+	});
+	it("Should set app error if update user cart item fails", async () => {
+		updateUserCartItem.mockImplementationOnce(() => {
+			throw new Error();
+		});
+		const user = userEvent.setup();
+		mockCart = [
+			{
+				id: 0,
+				name: "fake",
+				url: "../",
+				price: 19.9,
+				quantity: 1,
+			},
+		];
+
+		render(
+			<ModalCartList
+				userId={mockUserId}
+				cart={mockCart}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByRole("combobox");
+
+		await user.selectOptions(element, "2");
+
+		expect(mokSetAppError).toBeCalledTimes(1);
+	});
+	it("Should open alert Modal if button is clicked", async () => {
+		const user = userEvent.setup();
+		mockCart = [
+			{
+				id: 0,
+				name: "fake",
+				url: "../",
+				price: 19.9,
+				quantity: 1,
+			},
+		];
+
+		render(
+			<ModalCartList
+				userId={mockUserId}
+				cart={mockCart}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByRole("button");
+
+		await user.click(element);
+
+		expect(mockOnOpenModal).toBeCalledTimes(1);
 	});
 });
