@@ -57,7 +57,6 @@ const ModalCartList = memo(
 									<label htmlFor={product.name}>
 										Quantity
 										<select
-											data-testid="quantity"
 											name="quantity"
 											id={product.name}
 											onChange={e =>
@@ -83,7 +82,9 @@ const ModalCartList = memo(
 							</div>
 							<button
 								className="removeBtn"
+								onClick={() =>
 									onOpenModal("alert", product, "remove")
+								}
 							>
 								<Icon path={mdiTrashCanOutline} />
 							</button>
