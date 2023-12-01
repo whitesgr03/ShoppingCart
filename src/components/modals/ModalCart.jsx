@@ -19,7 +19,7 @@ const ModalCart = ({ cart, active, onOpenModal, children }) => {
 	);
 
 	return (
-		<div className={`cart ${active ? "active" : ""}`}>
+		<div data-tesxtid="cart" className={`cart ${active ? "active" : ""}`}>
 			<button className="close"></button>
 			<div className="title">Shopping cart</div>
 
