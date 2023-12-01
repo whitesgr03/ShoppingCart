@@ -36,6 +36,15 @@ const ModalProductAlert = ({
 			data-testid="productAlert"
 			className={`productAlert ${active ? "active" : ""}`}
 		>
+			{product && (
+				<>
+					<div className="title" data-testid="title">
+						{behavior === "add"
+							? "Add product to cart"
+							: "Remove product from cart"}
+					</div>
+					<button className="close"></button>
+					<div className="product">
 						<div className="image">
 							<img src={product.url} alt={product.name} />
 						</div>
@@ -53,8 +62,40 @@ const ModalProductAlert = ({
 								{(product.quantity * product.price).toFixed(2)}
 							</p>
 						</div>
+					</div>
+
+					<div className="buttons">
+						{behavior === "add" ? (
+							<>
+								<button
+									className="left slide"
 									onClick={() => onOpenModal("cart")}
+								>
+									VIEW CART
+								</button>
+								<button className="right slide close">
+									CONTINUE SHOPPING
+								</button>
+							</>
+						) : (
+							<>
+								<button
+									className="left slide"
+									onClick={handleRemoveItem}
+								>
+									REMOVE
+								</button>
+								<button
+									className="right slide"
 									onClick={() => onOpenModal("cart")}
+								>
+									CANCEL
+								</button>
+							</>
+						)}
+					</div>
+				</>
+			)}
 			{removing && (
 				<div className="loading">
 					<Icon path={mdiLoading} spin={1} size={3}></Icon>
