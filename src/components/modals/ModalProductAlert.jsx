@@ -26,7 +26,6 @@ const ModalProductAlert = ({
 			await onGetUserCart(userId);
 			onOpenModal("cart");
 		} catch (error) {
-			console.error(error);
 			setAppError("Service temporarily unavailable");
 		}
 		setRemoving(false);
