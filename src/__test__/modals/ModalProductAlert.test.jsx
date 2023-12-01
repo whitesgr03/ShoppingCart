@@ -1,200 +1,271 @@
-import { screen, render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
-import { deleteUserCartItem } from "../../utils/handleUserCarts";
-
-import {
-	useModal,
-	useModalDispatch,
-	useCartDispatch,
-} from "../../components/RootContext";
+import { BrowserRouter } from "react-router-dom";
 
 import ModalProductAlert from "../../components/modals/ModalProductAlert";
 
-let mockNavigate = null;
+import { deleteUserCartItem } from "../../utils/handleUserCart";
 
-jest.mock("react-router-dom", () => ({
-	...jest.requireActual("react-router-dom"),
-	useNavigate: jest.fn(() => mockNavigate),
-}));
+jest.mock("../../utils/handleUserCart");
 
-jest.mock("../../firebase-config");
-jest.mock("../../utils/handleUserCarts");
-jest.mock("../../components/RootContext");
-jest.mock("../../utils/handleUserCarts");
+let mockProduct = null;
+let mockBehavior = null;
+let mockActive = null;
 
-describe("Renders Alert Component", () => {
-	it("Should return ModalProductAlert DOM", async () => {
-		const mockModal = {
-			modal: "",
-			alertProduct: {
-				state: "add",
-				product: {
-					id: 0,
-					name: "fake",
-					url: "../",
-					price: 19.9,
-				},
-			},
+const mockUserId = null;
+
+const mockOnGetUserCart = jest.fn();
+const mokSetAppError = jest.fn();
+const mockOnOpenModal = jest.fn();
+
+describe("Alert Component", () => {
+	it("Should render content if product is provide", async () => {
+		mockProduct = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+			quantity: 1,
 		};
-
-		useModal.mockReturnValueOnce(mockModal);
-
-		const mockIsLoad = false;
-		const mockOnLoading = jest.fn();
-
-		const { container } = render(
-			<ModalProductAlert
-				isLoading={mockIsLoad}
-				onLoading={mockOnLoading}
-			/>
-		);
-
-		expect(container).toMatchSnapshot();
-	});
-	it("Should show cart DOM with click event", async () => {
-		const mockModal = {
-			modal: "",
-			alertProduct: {
-				state: "add",
-				product: {
-					id: 0,
-					name: "fake",
-					url: "../",
-					price: 19.9,
-				},
-			},
-		};
-
-		const mockModalDispatch = jest.fn();
-
-		useModal.mockReturnValueOnce(mockModal);
-		useModalDispatch.mockReturnValueOnce(mockModalDispatch);
-
-		const mockIsLoad = false;
-		const mockOnLoading = jest.fn();
-
-		const user = userEvent.setup();
 
 		render(
 			<ModalProductAlert
-				isLoading={mockIsLoad}
-				onLoading={mockOnLoading}
-			/>
+				userId={mockUserId}
+				product={mockProduct}
+				behavior={mockBehavior}
+				active={mockActive}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByTestId("title");
+
+		expect(element).toBeInTheDocument();
+	});
+	it("Should add class if active is true", async () => {
+		mockActive = true;
+
+		render(
+			<ModalProductAlert
+				userId={mockUserId}
+				product={mockProduct}
+				behavior={mockBehavior}
+				active={mockActive}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByTestId("productAlert");
+
+		expect(element).toHaveClass("active");
+	});
+	it("Should not add class if active is false", async () => {
+		mockActive = false;
+
+		render(
+			<ModalProductAlert
+				userId={mockUserId}
+				product={mockProduct}
+				behavior={mockBehavior}
+				active={mockActive}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByTestId("productAlert");
+
+		expect(element).not.toHaveClass("active");
+	});
+	it("Should render title with added text and button with added action if behavior is add", async () => {
+		mockProduct = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+			quantity: 1,
+		};
+		mockBehavior = "add";
+
+		render(
+			<ModalProductAlert
+				userId={mockUserId}
+				product={mockProduct}
+				behavior={mockBehavior}
+				active={mockActive}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByTestId("title");
+		const button = screen.getByRole("button", { name: "VIEW CART" });
+
+		expect(element).toHaveTextContent("Add product to cart");
+		expect(button).toBeInTheDocument();
+	});
+	it("Should render title with remove text and button with remove action if behavior is remove", async () => {
+		mockProduct = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+			quantity: 1,
+		};
+		mockBehavior = "remove";
+
+		render(
+			<ModalProductAlert
+				userId={mockUserId}
+				product={mockProduct}
+				behavior={mockBehavior}
+				active={mockActive}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const element = screen.getByTestId("title");
+		const button = screen.getByRole("button", { name: "REMOVE" });
+
+		expect(element).toHaveTextContent("Remove product from cart");
+		expect(button).toBeInTheDocument();
+	});
+	it("Should open cart modal if view cart button is clicked", async () => {
+		const user = userEvent.setup();
+		mockProduct = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+			quantity: 1,
+		};
+		mockBehavior = "add";
+
+		render(
+			<ModalProductAlert
+				userId={mockUserId}
+				product={mockProduct}
+				behavior={mockBehavior}
+				active={mockActive}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
 		);
 
 		const button = screen.getByRole("button", { name: "VIEW CART" });
 
-		await user.pointer({ keys: "[MouseLeft]", target: button });
+		await user.click(button);
 
-		const actual = screen.getByTestId("title");
-
-		const expected = "Add product to cart";
-
-		expect(actual).toHaveTextContent(expected);
-
-		expect(mockModalDispatch).toBeCalledTimes(1);
+		expect(mockOnOpenModal).toBeCalledTimes(1);
 	});
-	it("Should successfully remove product with click event", async () => {
-		const mockModal = {
-			modal: "",
-			alertProduct: {
-				state: "remove",
-				product: {
-					id: 0,
-					name: "fake",
-					url: "../",
-					price: 19.9,
-				},
-			},
-		};
-
-		const mockModalDispatch = jest.fn();
-		const mockCartDispatch = jest.fn();
-
-		const deleteFetchResult = {
-			message: "Delete cart item success.",
-			success: true,
-		};
-
-		useModal.mockReturnValueOnce(mockModal);
-		useModalDispatch.mockReturnValueOnce(mockModalDispatch);
-		useCartDispatch.mockReturnValueOnce(mockCartDispatch);
-		deleteUserCartItem.mockReturnValueOnce(deleteFetchResult);
-
-		const mockIsLoad = false;
-		const mockOnLoading = jest.fn();
-
+	it("Should open cart modal if cancel button is clicked", async () => {
 		const user = userEvent.setup();
+		mockProduct = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+			quantity: 1,
+		};
+		mockBehavior = "remove";
 
 		render(
 			<ModalProductAlert
-				isLoading={mockIsLoad}
-				onLoading={mockOnLoading}
-			/>
+				userId={mockUserId}
+				product={mockProduct}
+				behavior={mockBehavior}
+				active={mockActive}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
+		);
+
+		const button = screen.getByRole("button", { name: "CANCEL" });
+
+		await user.click(button);
+
+		expect(mockOnOpenModal).toBeCalledTimes(1);
+	});
+	it("Should remove item if remove button is clicked", async () => {
+		const user = userEvent.setup();
+		mockProduct = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+			quantity: 1,
+		};
+		mockBehavior = "remove";
+
+		render(
+			<ModalProductAlert
+				userId={mockUserId}
+				product={mockProduct}
+				behavior={mockBehavior}
+				active={mockActive}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
 		);
 
 		const button = screen.getByRole("button", { name: "REMOVE" });
 
-		await user.pointer({ keys: "[MouseLeft]", target: button });
+		await user.click(button);
 
-		const actual = screen.getByTestId("title");
-
-		const expected = "Remove product from cart";
-
-		expect(actual).toHaveTextContent(expected);
-
-		expect(mockOnLoading).toBeCalledTimes(2);
-		expect(mockCartDispatch).toBeCalledTimes(1);
-		expect(mockModalDispatch).toBeCalledTimes(1);
+		expect(deleteUserCartItem).toBeCalledTimes(1);
+		expect(mockOnGetUserCart).toBeCalledTimes(1);
+		expect(mockOnOpenModal).toBeCalledTimes(1);
 	});
-	it("Should failed to remove product with click event", async () => {
-		mockNavigate = jest.fn();
-
-		const mockModal = {
-			modal: "",
-			alertProduct: {
-				state: "remove",
-				product: {
-					id: 0,
-					name: "fake",
-					url: "../",
-					price: 19.9,
-				},
-			},
-		};
-
-		const deleteFetchResult = {
-			message: "failed to remove",
-			success: false,
-		};
-
-		useModal.mockReturnValueOnce(mockModal);
-		deleteUserCartItem.mockReturnValueOnce(deleteFetchResult);
-
-		const mockIsLoad = false;
-		const mockOnLoading = jest.fn();
-
+	it("Should set app error if remove item  is fails", async () => {
+		deleteUserCartItem.mockImplementationOnce(() => {
+			throw new Error();
+		});
 		const user = userEvent.setup();
+		mockProduct = {
+			id: 0,
+			name: "fake",
+			url: "../",
+			price: 19.9,
+			quantity: 1,
+		};
+		mockBehavior = "remove";
 
 		render(
 			<ModalProductAlert
-				isLoading={mockIsLoad}
-				onLoading={mockOnLoading}
-			/>
+				userId={mockUserId}
+				product={mockProduct}
+				behavior={mockBehavior}
+				active={mockActive}
+				onGetUserCart={mockOnGetUserCart}
+				setAppError={mokSetAppError}
+				onOpenModal={mockOnOpenModal}
+			/>,
+			{ wrapper: BrowserRouter }
 		);
 
 		const button = screen.getByRole("button", { name: "REMOVE" });
 
-		await user.pointer({ keys: "[MouseLeft]", target: button });
+		await user.click(button);
 
-		const actual = screen.getByTestId("title");
-
-		const expected = "Remove product from cart";
-
-		expect(actual).toHaveTextContent(expected);
-
-		expect(mockNavigate).toBeCalledTimes(1);
-		expect(mockOnLoading).toBeCalledTimes(2);
+		expect(mokSetAppError).toBeCalledTimes(1);
 	});
 });
