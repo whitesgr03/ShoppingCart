@@ -25,7 +25,7 @@ const ModalCart = ({ cart, active, onOpenModal, children }) => {
 
 			{cart.length === 0 ? (
 				<div data-testid="empty" className="empty">
-					Your cart is currently empty.
+					Your cart is currently empty
 				</div>
 			) : (
 				<>
