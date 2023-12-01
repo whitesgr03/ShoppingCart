@@ -55,6 +55,7 @@ const ModalProductAlert = ({
 						</div>
 									onClick={() => onOpenModal("cart")}
 									onClick={() => onOpenModal("cart")}
+			{removing && (
 				<div className="loading">
 					<Icon path={mdiLoading} spin={1} size={3}></Icon>
 				</div>
