@@ -17,7 +17,7 @@ const ModalProductAlert = ({
 	onGetUserCart,
 	onOpenModal,
 }) => {
-	const [loading, setLoading] = useState(false);
+	const [removing, setRemoving] = useState(false);
 	const handleShowCart = () => onOpenModal("cart");
 	const handleRemoveItem = async () => {
 		try {
