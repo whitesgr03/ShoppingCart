@@ -18,13 +18,13 @@ const ModalProductAlert = ({
 	onOpenModal,
 }) => {
 	const [removing, setRemoving] = useState(false);
-	const handleShowCart = () => onOpenModal("cart");
+
 	const handleRemoveItem = async () => {
 		try {
 			setLoading(true);
 			await deleteUserCartItem(product.id, userId);
 			await onGetUserCart(userId);
-			handleShowCart();
+			onOpenModal("cart");
 		} catch (error) {
 			console.error(error);
 			setAppError("Service temporarily unavailable");
@@ -55,37 +55,8 @@ const ModalProductAlert = ({
 								{(product.quantity * product.price).toFixed(2)}
 							</p>
 						</div>
-					</>
-				)}
-			</div>
-			<div className="buttons">
-				{behavior === "add" ? (
-					<>
-						<button className="left slide" onClick={handleShowCart}>
-							VIEW CART
-						</button>
-						<button className="right slide close">
-							CONTINUE SHOPPING
-						</button>
-					</>
-				) : (
-					<>
-						<button
-							className="left slide"
-							onClick={handleRemoveItem}
-						>
-							REMOVE
-						</button>
-						<button
-							className="right slide"
-							onClick={handleShowCart}
-						>
-							CANCEL
-						</button>
-					</>
-				)}
-			</div>
-			{loading && (
+									onClick={() => onOpenModal("cart")}
+									onClick={() => onOpenModal("cart")}
 				<div className="loading">
 					<Icon path={mdiLoading} spin={1} size={3}></Icon>
 				</div>
