@@ -34,16 +34,10 @@ const ModalProductAlert = ({
 	};
 
 	return (
-		<div className={`productAlert ${active ? "active" : ""}`}>
-			<div className="title" data-testid="title">
-				{behavior === "add"
-					? "Add product to cart"
-					: "Remove product from cart"}
-			</div>
-			<button className="close"></button>
-			<div className={"product"}>
-				{product && (
-					<>
+		<div
+			data-testid="productAlert"
+			className={`productAlert ${active ? "active" : ""}`}
+		>
 						<div className="image">
 							<img src={product.url} alt={product.name} />
 						</div>
