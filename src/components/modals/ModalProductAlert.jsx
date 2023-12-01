@@ -20,17 +20,16 @@ const ModalProductAlert = ({
 	const [removing, setRemoving] = useState(false);
 
 	const handleRemoveItem = async () => {
+		setRemoving(true);
 		try {
-			setLoading(true);
 			await deleteUserCartItem(product.id, userId);
 			await onGetUserCart(userId);
 			onOpenModal("cart");
 		} catch (error) {
 			console.error(error);
 			setAppError("Service temporarily unavailable");
-		} finally {
-			setLoading(false);
 		}
+		setRemoving(false);
 	};
 
 	return (
