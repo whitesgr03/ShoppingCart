@@ -77,7 +77,10 @@ const App = () => {
 					!hasCreateUser &&
 					(await handleCreateUser(user));
 
-				!ignore && user && hasCreateUser && handleGetUserCart(user.uid);
+				!ignore &&
+					user &&
+					hasCreateUser &&
+					(await handleGetUserCart(user.uid));
 
 				!ignore && user && setUserId(user.uid);
 
