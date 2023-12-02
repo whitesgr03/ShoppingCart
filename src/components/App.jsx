@@ -82,27 +82,26 @@ const App = () => {
 
 	useEffect(() => {
 		let ignore = false;
-		const auth = initialAuth();
 
-		const unsubscribe = auth.onAuthStateChanged(async googleLogin => {
+		const handleUserLogin = async user => {
 			try {
-				const hasRegister =
-					!ignore &&
-					googleLogin &&
-					(await handleCheckUser(googleLogin.uid));
+				const hasRegister = user && (await handleCheckUser(user.uid));
 
 				!ignore &&
-					googleLogin &&
+					user &&
 					!hasRegister &&
-					(await handleRegisterUser(googleLogin));
+					(await handleRegisterUser(user));
 
-				!ignore && setUserId(googleLogin?.uid ?? "");
-				!ignore && handleGetUserCart(googleLogin?.uid);
+				!ignore && user && setUserId(user.uid);
+				!ignore && user && handleGetUserCart(user.uid);
+
+				!ignore && !user && setUserId(defaultUserId);
+				!ignore && !user && setCart(defaultCart);
 			} catch (error) {
-				console.error(error);
 				setAppError("Service temporarily unavailable");
 			}
-		});
+		};
+
 
 		return () => {
 			ignore = true;
