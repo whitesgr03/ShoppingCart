@@ -42,19 +42,17 @@ const App = () => {
 
 	const handleGetUserCart = useCallback(async id => {
 		try {
-			const cartData = id && (await getUserCart(id));
+			const cartData = await getUserCart(id);
 
-			const cartResult =
-				!cartData || cartData.empty
-					? []
-					: cartData.docs.map(item => ({
-							id: item.id,
-							...item.data(),
-					  }));
+			const cartResult = cartData.empty
+				? []
+				: cartData.docs.map(item => ({
+						id: item.id,
+						...item.data(),
+				  }));
 
 			setCart(cartResult);
 		} catch (error) {
-			console.error(error);
 			setAppError("Service temporarily unavailable");
 		}
 	}, []);
