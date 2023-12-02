@@ -1,6 +1,6 @@
 import { initialFirestore } from "../firebase-config";
 
-const getUserCart = userId => {
+const getUserCart = async userId => {
 	const firestore = initialFirestore();
 	const cartRef = firestore
 		.collection("carts")
