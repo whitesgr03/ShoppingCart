@@ -13,10 +13,6 @@ import ModalProductAlert from "./modals/ModalProductAlert";
 import Error from "./Error";
 import Loading from "./Loading";
 
-import { initialAuth } from "../firebase-config";
-
-import preLoadImage from "../utils/handlePreLoadImage";
-
 import { getUserCart } from "../utils/handleUserCart";
 
 import {
