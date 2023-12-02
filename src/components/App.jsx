@@ -35,7 +35,7 @@ const defaultUserId = "";
 const App = () => {
 	const [userId, setUserId] = useState(null);
 	const [products, setProducts] = useState([]);
-	const [cart, setCart] = useState(defaultCart);
+	const [cart, setCart] = useState(null);
 	const [imageUrls, setImageUrls] = useState({});
 	const [AppError, setAppError] = useState(null);
 	const [modalState, setModalState] = useState(defaultModalState);
