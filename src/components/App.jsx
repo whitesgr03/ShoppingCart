@@ -86,11 +86,12 @@ const App = () => {
 					!hasCreateUser &&
 					(await handleCreateUser(user));
 
+				!ignore && user && hasCreateUser && handleGetUserCart(user.uid);
+
 				!ignore && user && setUserId(user.uid);
-				!ignore && user && handleGetUserCart(user.uid);
 
 				!ignore && !user && setUserId(defaultUserId);
-				!ignore && !user && setCart(defaultCart);
+				!ignore && (!user || !hasCreateUser) && setCart(defaultCart);
 			} catch (error) {
 				setAppError("Service temporarily unavailable");
 			}
