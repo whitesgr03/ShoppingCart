@@ -102,6 +102,7 @@ const App = () => {
 			}
 		};
 
+		const unsubscribe = handleAuthState(handleUserLogin);
 
 		return () => {
 			ignore = true;
