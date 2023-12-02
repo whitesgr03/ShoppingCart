@@ -121,7 +121,7 @@ const App = () => {
 							className={`shadow ${
 								modalState.type ? `active close` : ""
 							}`}
-							onClick={handleCloseModule}
+							onClick={handleCloseModal}
 						>
 							<ModalCart
 								cart={cart}
