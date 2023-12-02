@@ -42,6 +42,7 @@ const handleRegisterUser = async user => {
 
 export {
 	handleGoogleLogin,
+	handleAuthState,
 	handleUserLogout,
 	handleCheckUser,
 	handleRegisterUser,
