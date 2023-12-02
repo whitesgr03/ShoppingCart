@@ -40,23 +40,6 @@ const App = () => {
 	const [AppError, setAppError] = useState(null);
 	const [modalState, setModalState] = useState(defaultModalState);
 
-	const handleGetUserCart = useCallback(async id => {
-		try {
-			const cartData = await getUserCart(id);
-
-			const cartResult = cartData.empty
-				? []
-				: cartData.docs.map(item => ({
-						id: item.id,
-						...item.data(),
-				  }));
-
-			setCart(cartResult);
-		} catch (error) {
-			setAppError("Service temporarily unavailable");
-		}
-	}, []);
-
 	const handleOpenModal = useCallback(
 		(type, product = null, behavior = null) =>
 			setModalState({
@@ -73,6 +56,14 @@ const App = () => {
 			setModalState(defaultModalState),
 		[]
 	);
+
+	const handleGetUserCart = useCallback(async id => {
+		try {
+			setCart(await getUserCart(id));
+		} catch (error) {
+			setAppError("Service temporarily unavailable");
+		}
+	}, []);
 
 	useEffect(() => {
 		let ignore = false;
