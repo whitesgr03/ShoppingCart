@@ -18,7 +18,7 @@ import { getUserCart } from "../utils/handleUserCart";
 import {
 	handleAuthState,
 	handleCheckUser,
-	handleRegisterUser,
+	handleCreateUser,
 } from "../utils/handleUserAccount";
 
 const defaultModalState = {
@@ -79,12 +79,12 @@ const App = () => {
 
 		const handleUserLogin = async user => {
 			try {
-				const hasRegister = user && (await handleCheckUser(user.uid));
+				const hasCreateUser = user && (await handleCheckUser(user.uid));
 
 				!ignore &&
 					user &&
-					!hasRegister &&
-					(await handleRegisterUser(user));
+					!hasCreateUser &&
+					(await handleCreateUser(user));
 
 				!ignore && user && setUserId(user.uid);
 				!ignore && user && handleGetUserCart(user.uid);

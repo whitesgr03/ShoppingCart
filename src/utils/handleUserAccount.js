@@ -26,7 +26,7 @@ const handleCheckUser = async userId => {
 	return user.exists;
 };
 
-const handleRegisterUser = async user => {
+const handleCreateUser = async user => {
 	const firestore = initialFirestore();
 
 	const { displayName: name, uid, email } = user;
@@ -45,5 +45,5 @@ export {
 	handleAuthState,
 	handleUserLogout,
 	handleCheckUser,
-	handleRegisterUser,
+	handleCreateUser,
 };
