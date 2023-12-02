@@ -27,14 +27,14 @@ const handleCheckUser = async userId => {
 };
 
 const handleRegisterUser = async user => {
-	const { displayName: name, uid, email } = user;
+	const firestore = initialFirestore();
 
+	const { displayName: name, uid, email } = user;
 	const userInfo = {
 		name,
 		email,
 	};
 
-	const firestore = initialFirestore();
 	const userRef = firestore.collection("users").doc(uid);
 
 	await userRef.set(userInfo);
