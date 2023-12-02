@@ -126,14 +126,14 @@ const App = () => {
 							<ModalCart
 								cart={cart}
 								active={modalState.type === "cart"}
-								onOpenModule={handleOpenModal}
+								onOpenModal={handleOpenModal}
 							>
 								<ModalCartList
 									cart={cart}
 									userId={userId}
 									setAppError={setAppError}
 									onGetUserCart={handleGetUserCart}
-									onOpenModule={handleOpenModal}
+									onOpenModal={handleOpenModal}
 								/>
 							</ModalCart>
 
@@ -144,7 +144,7 @@ const App = () => {
 								active={modalState.type === "alert"}
 								setAppError={setAppError}
 								onGetUserCart={handleGetUserCart}
-								onOpenModule={handleOpenModal}
+								onOpenModal={handleOpenModal}
 							/>
 						</div>
 					</div>
@@ -167,13 +167,12 @@ const App = () => {
 								products,
 								setProducts,
 								setAppError,
-								onOpenModule: handleOpenModal,
+								onOpenModal: handleOpenModal,
 								onGetUserCart: handleGetUserCart,
 							}}
 						>
 							<Outlet />
 						</AppContext.Provider>
-						;
 						<Footer />
 					</div>
 				</>
