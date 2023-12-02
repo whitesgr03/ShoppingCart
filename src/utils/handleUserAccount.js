@@ -6,6 +6,13 @@ const handleGoogleLogin = () => {
 	auth.signInWithRedirect(provider);
 };
 
+const handleAuthState = cb => {
+	const auth = initialAuth();
+	const unsubscribe = auth.onAuthStateChanged(user => cb(user));
+
+	return unsubscribe;
+};
+
 const handleUserLogout = async () => {
 	const auth = initialAuth();
 	await auth.signOut();
