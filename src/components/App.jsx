@@ -20,6 +20,7 @@ import preLoadImage from "../utils/handlePreLoadImage";
 import { getUserCart } from "../utils/handleUserCart";
 
 import {
+	handleAuthState,
 	handleCheckUser,
 	handleRegisterUser,
 } from "../utils/handleUserAccount";
