@@ -7,7 +7,16 @@ const getUserCart = async userId => {
 		.doc(userId)
 		.collection("cart");
 
-	return cartRef.get();
+	const result = await cartRef.get();
+
+	const cartResult = result.empty
+		? []
+		: result.docs.map(item => ({
+				id: item.id,
+				...item.data(),
+		  }));
+
+	return cartResult;
 };
 
 const addUserCartItem = async (item, userId) => {
