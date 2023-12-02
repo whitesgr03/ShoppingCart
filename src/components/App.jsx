@@ -72,7 +72,7 @@ const App = () => {
 		[]
 	);
 
-	const handleCloseModule = useCallback(
+	const handleCloseModal = useCallback(
 		e =>
 			e.target.className.includes("close") &&
 			setModalState(defaultModalState),
