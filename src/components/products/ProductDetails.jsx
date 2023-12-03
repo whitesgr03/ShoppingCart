@@ -70,13 +70,16 @@ const ProductDetails = () => {
 
 		const handleFetch = async () => {
 			try {
-				const productsResult = await handleGetProduct(productId);
+				const productResult = await handleGetProduct(productId);
+
+				!productResult &&
+					setProductsError("No matches found");
 
 				!ignore &&
-					productsResult &&
-					(await handlePreLoadImage(productsResult.url));
+					productResult &&
+					(await handlePreLoadImage(productResult.url));
 
-				!ignore && setProduct(productsResult);
+				!ignore && productResult && setProduct(productResult);
 			} catch (error) {
 				setProductsError("Service temporarily unavailable");
 			}
