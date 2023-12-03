@@ -8,7 +8,7 @@ import { updateUserCartItem } from "../../utils/handleUserCart";
 
 import PropTypes from "prop-types";
 
-const Options = memo(quantity => {
+const Options = memo(({ quantity }) => {
 	const qty = quantity > 10 ? quantity : 10;
 	return [...Array(qty)].map((_, i) => (
 		<option key={i} value={i + 1}>
