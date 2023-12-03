@@ -76,7 +76,7 @@ const Products = () => {
 		<div className="products">
 			{products.length === 0 && !productsError && <Loading />}
 			{productsError && <Error message={productsError} />}
-			{products.length > 0 && (
+			{products.length > 0 && !productsError && (
 				<>
 					<ProductsNavbar onSearchParams={setSearchParams} />
 					<AppContext.Provider
