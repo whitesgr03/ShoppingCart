@@ -47,8 +47,8 @@ const ProductDetails = () => {
 				const newItem = {
 					...product,
 					quantity: productInCart
-						? productInCart.quantity + formData.quantity
-						: formData.quantity,
+						? productInCart.quantity + +formData.quantity
+						: +formData.quantity,
 				};
 
 				await addUserCartItem(newItem, userId);
