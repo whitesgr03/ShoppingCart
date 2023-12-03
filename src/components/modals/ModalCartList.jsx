@@ -60,7 +60,7 @@ const ModalCartList = memo(
 													quantity: +e.target.value,
 												})
 											}
-											defaultValue={product.quantity}
+											value={product.quantity}
 										>
 											<Options
 												quantity={product.quantity}
