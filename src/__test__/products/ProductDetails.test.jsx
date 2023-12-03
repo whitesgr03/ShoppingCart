@@ -79,6 +79,15 @@ describe("ProductDetails Component", () => {
 		expect(element).toBeInTheDocument();
 		expect(handlePreLoadImage).toBeCalledTimes(1);
 	});
+	it("Should set products error if handle get product is successful but value is empty", async () => {
+		handleGetProduct.mockReturnValueOnce(false);
+
+		render(<ProductDetails />, { wrapper: Provider });
+
+		await waitFor(() => {
+			expect(mockSetProductsError).toBeCalledTimes(1);
+		});
+	});
 	it("Should add product to cart if submission successful", async () => {
 		handleGetProduct.mockReturnValueOnce({
 			id: "item01",
