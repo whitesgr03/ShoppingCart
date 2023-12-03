@@ -6,10 +6,12 @@ const handleGetAllProducts = async () => {
 
 	const result = await productsRef.get();
 
-	const allProductsResult = result.docs.map(item => ({
-		id: item.id,
-		...item.data(),
-	}));
+	const allProductsResult = result.empty
+		? []
+		: result.docs.map(item => ({
+				id: item.id,
+				...item.data(),
+		  }));
 
 	return allProductsResult;
 };
