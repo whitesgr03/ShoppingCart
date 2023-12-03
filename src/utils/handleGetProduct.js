@@ -6,7 +6,7 @@ const handleGetProduct = async productId => {
 
 	const result = await productRef.get();
 
-	const productResult = {
+	const productResult = result.exists && {
 		id: result.id,
 		...result.data(),
 	};
