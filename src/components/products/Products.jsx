@@ -14,7 +14,7 @@ import handlePreLoadImage from "../../utils/handlePreLoadImage";
 import { AppContext } from "../App";
 
 const Products = () => {
-	const [productError, setProductError] = useState(null);
+	const [productsError, setProductsError] = useState(null);
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const {
@@ -74,8 +74,8 @@ const Products = () => {
 
 	return (
 		<div className="products">
-			{products.length === 0 && !productError && <Loading />}
-			{productError && <Error message={productError} />}
+			{products.length === 0 && !productsError && <Loading />}
+			{productsError && <Error message={productsError} />}
 			{products.length > 0 && (
 				<>
 					<ProductsNavbar onSearchParams={setSearchParams} />
@@ -86,7 +86,7 @@ const Products = () => {
 							onOpenModal,
 							onGetUserCart,
 							filterProducts,
-							setProductError,
+							setProductsError,
 						}}
 					>
 						<Outlet />
