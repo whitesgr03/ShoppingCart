@@ -72,8 +72,7 @@ const ProductDetails = () => {
 			try {
 				const productResult = await handleGetProduct(productId);
 
-				!productResult &&
-					setProductsError("No matches found");
+				!productResult && setProductsError("No matches found");
 
 				!ignore &&
 					productResult &&
