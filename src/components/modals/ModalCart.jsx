@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 const ModalCart = ({ cart, active, onOpenModal, children }) => {
 	const handleCheckout = () => onOpenModal(null);
-
+	
 	const totalPrice = useMemo(
 		() =>
 			cart
