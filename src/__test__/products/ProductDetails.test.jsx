@@ -61,7 +61,7 @@ describe("ProductDetails Component", () => {
 
 		expect(mockSetProductsError).toBeCalledTimes(1);
 	});
-	it("Should render content if handle get product successful", async () => {
+	it("Should render content if handle get product is successful and has value", async () => {
 		handleGetProduct.mockReturnValueOnce({
 			id: 0,
 			name: "fakeBag",
