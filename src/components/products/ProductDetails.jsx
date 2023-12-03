@@ -37,17 +37,11 @@ const ProductDetails = () => {
 		const addProduct = async () => {
 			setAdding(true);
 
-			const quantityToNumeric = data =>
-				[...data].map(([key, value]) =>
-					key === "quantity" ? [key, Number(value)] : [key, value]
-				);
-
 			try {
 				const formData = {
-					...Object.fromEntries(
-						quantityToNumeric(new FormData(e.target).entries())
-					),
+					...Object.fromEntries(new FormData(e.target).entries()),
 				};
+
 				const productInCart = cart.find(item => item.id === productId);
 
 				const newItem = {
