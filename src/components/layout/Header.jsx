@@ -1,4 +1,5 @@
 import "../../style/layout/header.css";
+
 import Icon from "@mdi/react";
 import {
 	mdiCartVariant,
@@ -44,41 +45,8 @@ const Header = ({ userId, setAppError, onOpenModal, children }) => {
 
 	return (
 		<div className="sidebar">
-			<div
-				data-testid="background"
-				className={`icons ${userId === null ? "authenticate" : ""}`}
-			>
-				<button
-					className="account"
-					type="button"
-					name="showAccount"
-					data-testid="accountButton"
-					onClick={userId === "" ? handleLogin : handleLogout}
-				>
-					{userId === "" ? (
-						<span data-testid="account">
-							<Icon path={mdiAccount} />
-						</span>
-					) : (
-						<span data-testid="logout">
-							<Icon path={mdiLogout} />
-						</span>
-					)}
-				</button>
-				<button className="order" type="button" name="showOrder">
-					<Icon path={mdiTextBoxOutline} />
-				</button>
-				<button
-					className="cart"
-					type="button"
-					name="showCart"
-					data-testid="cartButton"
-					onClick={() => onOpenModal("cart")}
-				>
-					<Icon path={mdiCartVariant} />
-					{children}
-				</button>
-			</div>
+			<ul className={`icons ${userId === null ? "authenticate" : ""}`}>
+			</ul>
 			<h1 className="title">
 				<NavLink to="/">GentSkin</NavLink>
 			</h1>
