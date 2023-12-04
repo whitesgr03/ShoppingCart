@@ -25,7 +25,7 @@ const ProductsNavbar = ({ onSearchParams }) => {
 	};
 
 	return (
-		<div className="navigation">
+		<div className="navBar">
 			<ul className="category">
 				<li>
 					<Link to="/shop">Shop</Link>
