@@ -26,7 +26,7 @@ const ProductsNavbar = ({ onSearchParams }) => {
 
 	return (
 		<div className="navBar">
-			<ul className="category">
+			<nav>
 				<li>
 					<Link to="/shop">Shop</Link>
 				</li>
@@ -34,7 +34,7 @@ const ProductsNavbar = ({ onSearchParams }) => {
 				<li>
 					<Link to="/shop">Category</Link>
 				</li>
-			</ul>
+			</nav>
 			<form
 				data-testid="searchBar"
 				className={`searchBar ${active ? "active-border" : ""}`}
