@@ -46,6 +46,42 @@ const Header = ({ userId, setAppError, onOpenModal, children }) => {
 	return (
 		<div className="sidebar">
 			<ul className={`icons ${userId === null ? "authenticate" : ""}`}>
+				<li>
+					<button
+						className="account"
+						type="button"
+						name="showAccount"
+						data-testid="accountButton"
+						onClick={userId === "" ? handleLogin : handleLogout}
+					>
+						{userId === "" ? (
+							<span data-testid="account">
+								<Icon path={mdiAccount} />
+							</span>
+						) : (
+							<span data-testid="logout">
+								<Icon path={mdiLogout} />
+							</span>
+						)}
+					</button>
+				</li>
+				<li>
+					<button className="order" type="button" name="showOrder">
+						<Icon path={mdiTextBoxOutline} />
+					</button>
+				</li>
+				<li>
+					<button
+						className="cart"
+						type="button"
+						name="showCart"
+						data-testid="cartButton"
+						onClick={() => onOpenModal("cart")}
+					>
+						<Icon path={mdiCartVariant} />
+						{children}
+					</button>
+				</li>
 			</ul>
 			<h1 className="title">
 				<NavLink to="/">GentSkin</NavLink>
