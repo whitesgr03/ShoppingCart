@@ -69,7 +69,7 @@
 	justify-content: center;
 	align-items: center;
 }
-.sidebar .pages {
+.sidebar .navigation {
 	flex: 8 1 auto;
 	padding: 20px 0;
 	display: flex;
@@ -78,8 +78,8 @@
 	row-gap: 20px;
 }
 
-.sidebar .pages a:hover,
-.sidebar .pages a.active {
+.sidebar .navigation a:hover,
+.sidebar .navigation a.active {
 	text-shadow: 0 0 4px var(--sidebar-link), 0 0 4px var(--sidebar-link),
 		0 0 4px var(--sidebar-link), 0 0 4px var(--sidebar-link),
 		0 0 4px var(--sidebar-link), 0 0 4px var(--sidebar-link),
