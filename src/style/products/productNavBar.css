@@ -1,23 +1,21 @@
-.navigation {
+.navBar {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.category {
+.navBar nav {
 	display: flex;
+	column-gap: 10px;
+	align-items: center;
 	flex: 7 1 auto;
 }
 
-.category li {
-	white-space: break-spaces;
-}
-
-.category li:hover {
+.navBar nav li:hover {
 	color: var(--sidebar-link);
 }
 
-.searchBar {
+.navBar form {
 	--border-color: var(--main-dark);
 	--border-size: 2.5px;
 
@@ -27,8 +25,8 @@
 	padding: 5px;
 }
 
-.searchBar::before,
-.searchBar::after {
+.navBar form::before,
+.navBar form::after {
 	height: 0%;
 	width: var(--border-size);
 	transition: height 0.5s ease;
@@ -37,24 +35,24 @@
 	position: absolute;
 }
 
-.searchBar::before {
+.navBar form::before {
 	left: 0;
 	bottom: 0;
 	transition-delay: 1.5s;
 }
-.searchBar::after {
+.navBar form::after {
 	right: 0;
 	top: 0;
 }
 
-.searchBar .search-border {
+.navBar form .search-border {
 	flex: 1 1 auto;
 	display: flex;
 	align-items: center;
 }
 
-.searchBar .search-border::before,
-.searchBar .search-border::after {
+.navBar form .search-border::before,
+.navBar form .search-border::after {
 	content: "";
 	position: absolute;
 	background-color: var(--border-color);
@@ -62,46 +60,46 @@
 	left: 0;
 }
 
-.searchBar .search-border::before {
+.navBar form .search-border::before {
 	top: 0;
 	width: 0%;
 	transition: width 1s 0.5s;
 }
-.searchBar .search-border::after {
+.navBar form .search-border::after {
 	bottom: 0;
 	width: 100%;
 }
 
-.searchBar.active-border::before {
+.navBar form.active-border::before {
 	transition: height 0.5s;
 	height: 100%;
 }
-.searchBar.active-border::after {
+.navBar form.active-border::after {
 	height: 100%;
 	transition: height 0.5s 1.5s;
 }
-.searchBar.active-border .search-border::before {
+.navBar form.active-border .search-border::before {
 	width: 100%;
 }
 
-.searchBar input[type="search"] {
+.navBar form input[type="search"] {
 	width: 100%;
 	height: 100%;
 	border: 0;
 }
 
-.searchBar button {
+.navBar form button {
 	transition: transform 0.3s ease;
 }
 
-.searchBar button:hover {
+.navBar form button:hover {
 	transform: scale(1.2);
 }
 
-.searchBar button:active {
+.navBar form button:active {
 	transform: scale(0.9);
 }
 
-.searchBar svg {
+.navBar form svg {
 	width: 2rem;
 }
