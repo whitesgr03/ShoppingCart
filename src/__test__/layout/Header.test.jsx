@@ -32,7 +32,7 @@ describe("Header Component", () => {
 			{ wrapper: BrowserRouter }
 		);
 
-		const element = screen.getByTestId("background");
+		const element = screen.getByRole("list");
 
 		expect(element).toHaveClass("authenticate");
 	});
