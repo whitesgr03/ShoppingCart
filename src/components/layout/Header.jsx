@@ -82,9 +82,7 @@ const Header = ({ userId, setAppError, onOpenModal, children }) => {
 			<h1 className="title">
 				<NavLink to="/">GentSkin</NavLink>
 			</h1>
-			<nav
-				className="navigation"
-			>
+			<nav id="primaryNavigation" className="navigation">
 				<li>
 					<NavLink to="/">Home</NavLink>
 				</li>
@@ -94,7 +92,7 @@ const Header = ({ userId, setAppError, onOpenModal, children }) => {
 				<li>
 					<NavLink to="contact">Contact</NavLink>
 				</li>
-			</ul>
+			</nav>
 		</div>
 	);
 };
