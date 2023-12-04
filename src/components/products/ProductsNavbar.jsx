@@ -30,7 +30,7 @@ const ProductsNavbar = ({ onSearchParams }) => {
 				<li>
 					<Link to="/shop">Shop</Link>
 				</li>
-				<li> / </li>
+				<div> / </div>
 				<li>
 					<Link to="/shop">Category</Link>
 				</li>
