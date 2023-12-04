@@ -82,7 +82,9 @@ const Header = ({ userId, setAppError, onOpenModal, children }) => {
 			<h1 className="title">
 				<NavLink to="/">GentSkin</NavLink>
 			</h1>
-			<ul className="pages">
+			<nav
+				className="navigation"
+			>
 				<li>
 					<NavLink to="/">Home</NavLink>
 				</li>
