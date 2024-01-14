@@ -18,6 +18,7 @@
 	"scripts": {
 		"start": "PUBLIC_URL=/ react-scripts start",
 		"build": "react-scripts build",
+		"deploy": "firebase deploy --only hosting ",
 		"test": "react-scripts test --watchAll --detectOpenHandles --coverage",
 		"eject": "react-scripts eject"
 	},
